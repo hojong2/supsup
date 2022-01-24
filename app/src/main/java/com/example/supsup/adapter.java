@@ -12,19 +12,18 @@ import java.util.ArrayList;
 
 public class adapter extends BaseAdapter {
 
-    Context mContext=null;
-    LayoutInflater mLayoutInflater=null;
-    ArrayList<data> sample;
+    private ImageView iconImageView;
+    private TextView titleTextView;
+    private TextView contentTextview;
 
-    public adapter(Context context, ArrayList<data> data) {
-        mContext=context;
-        sample=data;
-        mLayoutInflater=LayoutInflater.from(mContext);
+    private ArrayList<data> dataList = new ArrayList<data>();
+    public adapter() {
+
     }
 
     @Override
     public int getCount() {
-        return sample.size();
+        return dataList.size();
     }
 
     @Override
@@ -34,21 +33,41 @@ public class adapter extends BaseAdapter {
 
     @Override
     public data getItem(int position) {
-        return sample.get(position);
+        return dataList.get(position);
     }
 
     @Override
-    public View getView(int position, View converView, ViewGroup parent) {
-        View view=mLayoutInflater.inflate(R.layout.fragment_home_helpme, null);
+    public View getView(int position, View convertView, ViewGroup parent) {
+       final int pos = position;
+       final Context context = parent.getContext();
 
-        ImageView imageview=(ImageView)view.findViewById(R.id.image);
-        TextView textname=(TextView)view.findViewById(R.id.TextName);
-        TextView textperson=(TextView)view.findViewById(R.id.TextPerson);
+        if(convertView ==null) {
+            LayoutInflater mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+           convertView = mLayoutInflater.inflate(R.layout.fragment_home_helpme_resource, parent, false);
+       }
 
-        imageview.setImageResource(sample.get(position).getImage());
-        textname.setText(sample.get(position).getTextname());
-        textperson.setText(sample.get(position).getTextperson());
+        iconImageView =(ImageView)convertView.findViewById(R.id.image);
+        titleTextView=(TextView)convertView.findViewById(R.id.TextName);
+        contentTextview=(TextView)convertView.findViewById(R.id.TextPerson);
 
-        return view;
+        data listViewItem = dataList.get(position);
+
+
+        iconImageView.setImageResource(listViewItem.getImage());
+        titleTextView.setText(listViewItem.getTextname());
+        contentTextview.setText(listViewItem.getTextperson());
+
+
+        return convertView;
+    }
+
+    public void addItem(String name, int image, String person) {
+        data item = new data();
+
+        item.setTextname(name);
+        item.setImage(image);
+        item.setTextperson(person);
+
+        dataList.add(item);
     }
 }

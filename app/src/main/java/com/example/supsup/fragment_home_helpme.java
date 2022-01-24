@@ -1,45 +1,39 @@
 package com.example.supsup;
 
+
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class fragment_home_helpme extends Fragment {
 
-    ArrayList<data> datalist;
-    Context mContext=getActivity();
+
+    private ListView listview;
+    private adapter adapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_home_helpme, container, false);
-        this.InitializeData();
 
-        ListView listView = (ListView) v.findViewById(R.id.listview);
-        final adapter adapter = new adapter(getActivity(), this.datalist);
+        adapter = new adapter();
 
-        listView.setAdapter(adapter);
+        listview = (ListView) v.findViewById(R.id.listview);
+        listview.setAdapter(adapter);
+
+        adapter.addItem("해주세요 제목1", R.drawable.intro,"해주세요 작성자1");
+        adapter.addItem("해주세요 제목2", R.drawable.intro,"해주세요 작성자2");
+        adapter.addItem("해주세요 제목3", R.drawable.intro,"해주세요 작성자3");
         return v;
     }
-
-        public void InitializeData ()
-        {
-            datalist = new ArrayList<data>();
-
-            datalist.add(new data(R.drawable.intro, "글1", "작성자1"));
-            datalist.add(new data(R.drawable.intro, "글2", "작성자2"));
-            datalist.add(new data(R.drawable.intro, "글3", "작성자3"));
-        }
 }
 
 

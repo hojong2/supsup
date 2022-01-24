@@ -1,19 +1,22 @@
 package com.example.supsup;
 
 public class data {
-    private int image;
+    private int textimage;
     private String textname;
     private String textperson;
 
-    public data(int image, String textname, String textperson){
-        this.image=image;
-        this.textname=textname;
-        this.textperson=textperson;
+    public void setTextname(String name) {
+        textname = name;
     }
-
+    public void setTextperson(String person) {
+        textperson = person;
+    }
+    public void setImage(int image) {
+        textimage = image;
+    }
     public int getImage()
     {
-        return this.image;
+        return this.textimage;
     }
 
     public String getTextname()
