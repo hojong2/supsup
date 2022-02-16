@@ -13,7 +13,7 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:id="@+id/btn_default"
-        android:background="@drawable/button_design"
+        android:background="@drawable/button_yellow"
         android:text="기본값"
         app:backgroundTint="@null" />
 
@@ -21,14 +21,14 @@
         android:layout_margin="50dp"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:background="@drawable/button_design"
+        android:background="@drawable/button_yellow"
         android:text="크게 볼게요"
         app:backgroundTint="@null"/>
     <Button
         android:layout_margin="50dp"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:background="@drawable/button_design"
+        android:background="@drawable/button_yellow"
         android:text="소리로 볼게요"
         app:backgroundTint="@null"/>
 

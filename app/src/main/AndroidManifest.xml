@@ -21,6 +21,9 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".select_interface"/>
         <activity android:name=".login"/>
+        <activity android:name=".mypage_myhelpme"/>
+        <activity android:name=".mypage_myhelpyou"/>
+        <activity android:name=".mypage_myinfo"/>
     </application>
 
 </manifest>
