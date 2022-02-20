@@ -60,6 +60,10 @@ public class fragment_mypage extends Fragment {
                         Intent intent3=new Intent(getActivity(),mypage_myinfo.class);
                         startActivity(intent3);
                         break;
+                    case 3:
+                        Intent intent4=new Intent(getActivity(),mypage_keyword.class);
+                        startActivity(intent4);
+                        break;
                     case 4:
                         Intent intent5=new Intent(getActivity(),select_interface.class);
                         startActivity(intent5);

@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_margin="10dp"
+            android:layout_margin="3dp"
             android:layout_weight="1">
             <FrameLayout
                 android:layout_width="match_parent"
@@ -37,51 +37,71 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="시각"
                     android:textColor="#FFFFFF"
                     android:background="@drawable/button_blue"
                     app:backgroundTint="@null"
-                    android:id="@+id/helpme_1_1"/>
+                    android:id="@+id/helpme_1"
+                    android:visibility="invisible"/>
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="2dp">
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="청각"
                     android:textColor="#FFFFFF"
                     android:background="@drawable/button_blue"
                     app:backgroundTint="@null"
-                    android:id="@+id/helpme_1_2"/>
+                    android:id="@+id/helpme_2"
+                    android:visibility="invisible"/>
+
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="2dp">
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="노인"
                     android:textColor="#FFFFFF"
                     android:background="@drawable/button_blue"
                     app:backgroundTint="@null"
-                    android:id="@+id/helpme_1_3"/>
+                    android:id="@+id/helpme_3"
+                    android:visibility="invisible"/>
+
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="2dp">
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="언어"
                     android:textColor="#FFFFFF"
                     android:background="@drawable/button_blue"
                     app:backgroundTint="@null"
-                    android:id="@+id/helpme_1_4"/>
+                    android:id="@+id/helpme_4"
+                    android:visibility="invisible"/>
+
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="2dp">
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="지체"
                     android:textColor="#FFFFFF"
                     android:background="@drawable/button_blue"
                     app:backgroundTint="@null"
-                    android:id="@+id/helpme_1_5"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="지적"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_1_6"/>
+                    android:id="@+id/helpme_5"
+                    android:visibility="invisible"/>
+
             </FrameLayout>
             <FrameLayout
                 android:layout_width="match_parent"
@@ -95,365 +115,68 @@
                     android:textColor="#FFFFFF"
                     android:background="@drawable/button_blue"
                     app:backgroundTint="@null"
-                    android:id="@+id/helpme_2_1"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="청각"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_2_2"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="노인"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_2_3"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="언어"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_2_4"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="지체"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_2_5"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="지적"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_2_6"/>
-            </FrameLayout>
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp">
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="시각"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_3_1"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="청각"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_3_2"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="노인"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_3_3"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="언어"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_3_4"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="지체"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_3_5"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="지적"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_3_6"/>
-            </FrameLayout>
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp">
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="시각"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_4_1"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="청각"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_4_2"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="노인"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_4_3"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="언어"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_4_4"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="지체"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_4_5"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="지적"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_4_6"/>
-            </FrameLayout>
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp">
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="시각"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_5_1"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="청각"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_5_2"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="노인"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_5_3"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="언어"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_5_4"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="지체"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_5_5"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="지적"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_5_6"/>
-            </FrameLayout>
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp">
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="시각"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_6_1"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="청각"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_6_2"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="노인"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_6_3"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="언어"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_6_4"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="지체"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_6_5"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="지적"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_blue"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpme_6_6"/>
+                    android:id="@+id/helpme_6"
+                    android:visibility="invisible"/>
+
             </FrameLayout>
         </LinearLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
+            android:text="해드려요 키워드"
+            android:gravity="center_vertical"
             android:layout_weight="1"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_margin="10dp"
+            android:layout_margin="3dp"
             android:layout_weight="1">
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="5dp">
+                android:layout_margin="2dp">
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="이동"
                     android:textColor="#FFFFFF"
                     android:background="@drawable/button_yellow"
                     app:backgroundTint="@null"
-                    android:id="@+id/helpyou_1_1"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="대화"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_yellow"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpyou_1_2"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="인력"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_yellow"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpyou_1_3"/>
+                    android:id="@+id/helpyou_1"
+                    android:visibility="invisible"/>
+
             </FrameLayout>
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="5dp">
+                android:layout_margin="2dp">
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="이동"
                     android:textColor="#FFFFFF"
                     android:background="@drawable/button_yellow"
                     app:backgroundTint="@null"
-                    android:id="@+id/helpyou_2_1"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="대화"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_yellow"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpyou_2_2"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="인력"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_yellow"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpyou_2_3"/>
+                    android:id="@+id/helpyou_2"
+                    android:visibility="invisible"/>
+
             </FrameLayout>
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="5dp">
+                android:layout_margin="2dp">
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="이동"
                     android:textColor="#FFFFFF"
                     android:background="@drawable/button_yellow"
                     app:backgroundTint="@null"
-                    android:id="@+id/helpyou_3_1"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="대화"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_yellow"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpyou_3_2"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="인력"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/button_yellow"
-                    app:backgroundTint="@null"
-                    android:id="@+id/helpyou_3_3"/>
+                    android:id="@+id/helpyou_3"
+                    android:visibility="invisible"/>
+
             </FrameLayout>
         </LinearLayout>
     </LinearLayout>
@@ -484,36 +207,42 @@
                 android:orientation="horizontal">
                 <Button
                     android:layout_margin="20dp"
+                    android:id="@+id/select_1_1"
                     android:text="시각"
                     android:textColor="#FFFFFF"
                     android:background="@drawable/button_blue"
                     app:backgroundTint="@null"/>
                 <Button
                     android:layout_margin="20dp"
+                    android:id="@+id/select_1_2"
                     android:text="청각"
                     android:textColor="#FFFFFF"
                     android:background="@drawable/button_blue"
                     app:backgroundTint="@null"/>
                 <Button
                     android:layout_margin="20dp"
+                    android:id="@+id/select_1_3"
                     android:text="노인"
                     android:textColor="#FFFFFF"
                     android:background="@drawable/button_blue"
                     app:backgroundTint="@null"/>
                 <Button
                     android:layout_margin="20dp"
+                    android:id="@+id/select_1_4"
                     android:text="언어"
                     android:textColor="#FFFFFF"
                     android:background="@drawable/button_blue"
                     app:backgroundTint="@null"/>
                 <Button
                     android:layout_margin="20dp"
+                    android:id="@+id/select_1_5"
                     android:text="지체"
                     android:textColor="#FFFFFF"
                     android:background="@drawable/button_blue"
                     app:backgroundTint="@null"/>
                 <Button
                     android:layout_margin="20dp"
+                    android:id="@+id/select_1_6"
                     android:text="지적"
                     android:textColor="#FFFFFF"
                     android:background="@drawable/button_blue"
@@ -531,8 +260,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="6"
                 android:gravity="center_vertical"
-                android:background="@drawable/topborder"
-                app:backgroundTint="@null"
                 android:text="해드려요 키워드 선택"/>
             <GridLayout
                 android:layout_width="match_parent"
@@ -542,18 +269,21 @@
                 android:rowCount="1">
                 <Button
                     android:layout_margin="20dp"
+                    android:id="@+id/select_2_1"
                     android:text="이동"
                     android:textColor="#FFFFFF"
                     android:background="@drawable/button_yellow"
                     app:backgroundTint="@null"/>
                 <Button
                     android:layout_margin="20dp"
+                    android:id="@+id/select_2_2"
                     android:text="대화"
                     android:textColor="#FFFFFF"
                     android:background="@drawable/button_yellow"
                     app:backgroundTint="@null"/>
                 <Button
                     android:layout_margin="20dp"
+                    android:id="@+id/select_2_3"
                     android:text="인력"
                     android:textColor="#FFFFFF"
                     android:background="@drawable/button_yellow"

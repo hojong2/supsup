@@ -24,6 +24,7 @@
         <activity android:name=".mypage_myhelpme"/>
         <activity android:name=".mypage_myhelpyou"/>
         <activity android:name=".mypage_myinfo"/>
+        <activity android:name=".mypage_keyword"/>
     </application>
 
 </manifest>
