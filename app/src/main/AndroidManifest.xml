@@ -3,7 +3,12 @@
     package="com.example.supsup">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-    //TEST
+    <uses-permission android:name="com.example.supsup.permission.MAPS_RECIVE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
 
 
 
@@ -15,6 +20,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SUPSUP">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC0H2kEQvslE11BNG2qfEFni3G1H8cnHfc"/>
+
         <activity
             android:name=".intro"
             android:exported="true">

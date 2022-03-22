@@ -12,8 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.pedro.library.AutoPermissions;
+import com.pedro.library.AutoPermissionsListener;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements AutoPermissionsListener {
     Fragment fragment_home;
     Fragment fragment_map;
     Fragment fragment_chat;
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity{
         fragment_chat=new fragment_chat();
         fragment_mypage=new fragment_mypage();
 
+
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_home).commit();
         ab.setTitle("홈");
         BottomNavigationView bottomNavigationView;
@@ -79,6 +82,23 @@ public class MainActivity extends AppCompatActivity{
                     }
                 }
         );
+        AutoPermissions.Companion.loadAllPermissions(this, 101);
     }
 
+    //권한
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        AutoPermissions.Companion.parsePermissions(this, requestCode, permissions, this);
+    }
+
+    @Override
+    public void onDenied(int i, @NonNull String[] strings) {
+
+    }
+
+    @Override
+    public void onGranted(int i, @NonNull String[] strings) {
+
+    }
 }
