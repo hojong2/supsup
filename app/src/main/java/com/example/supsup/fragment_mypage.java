@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import androidx.appcompat.app.ActionBar;
@@ -25,6 +26,7 @@ public class fragment_mypage extends Fragment {
     Fragment fragment_mypage;
     private ListView listview2;
     private adapter2 adapter2;
+    private LinearLayout profilelinear;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,6 +37,7 @@ public class fragment_mypage extends Fragment {
         fragment_mypage_myhelpyou=new fragment_home_helpyou();
         fragment_mypage=new fragment_mypage();
         listview2 = (ListView) v.findViewById(R.id.listview2);
+        profilelinear = (LinearLayout) v.findViewById(R.id.profilelinear);
         listview2.setAdapter(adapter2);
 
         adapter2.addItem2("작성한 해주세요", R.drawable.ic_baseline_arrow_forward_ios_24);
@@ -43,6 +46,14 @@ public class fragment_mypage extends Fragment {
         adapter2.addItem2("관심 키워드 등록", R.drawable.ic_baseline_arrow_forward_ios_24);
         adapter2.addItem2("화면 설정", R.drawable.ic_baseline_arrow_forward_ios_24);
         adapter2.addItem2("로그아웃", R.drawable.ic_baseline_arrow_forward_ios_24);
+
+        profilelinear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(),mypage_profile.class);
+                startActivity(intent);
+            }
+        });
 
         listview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
