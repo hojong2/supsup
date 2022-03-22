@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "152586287468",
+    "firebase_url": "https://supsup-2b463-default-rtdb.firebaseio.com",
+    "project_id": "supsup-2b463",
+    "storage_bucket": "supsup-2b463.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:152586287468:android:183470a5f8e958cea61b49",
+        "android_client_info": {
+          "package_name": "com.example.supsup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "152586287468-aks5dlqn4q1kc4qrbn248lmb5djhidkm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQ73i5zOi_mlg01vi54WjkLjnSjR2NSZE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "152586287468-aks5dlqn4q1kc4qrbn248lmb5djhidkm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -44,6 +44,7 @@
                         android:layout_weight="4"
                         android:src="@drawable/ic_baseline_account_circle_24"></ImageView>
                     <EditText
+                        android:id="@+id/id"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"></EditText>
@@ -59,6 +60,7 @@
                         android:layout_weight="4"
                         android:src="@drawable/ic_baseline_vpn_key_24"></ImageView>
                     <EditText
+                        android:id="@+id/password"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"></EditText>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="정렬">
+        <item>협의</item>
+        <item>금전</item>
+        <item>봉사시간</item>
+        <item>최신 순</item>
+        <item>오래된 순</item>
+    </string-array>
+</resources>

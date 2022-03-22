@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="SUP테고리1">
+        <item>시각</item>
+        <item>청각</item>
+        <item>노인</item>
+        <item>언어</item>
+        <item>지체</item>
+        <item>지적</item>
+    </string-array>
+</resources>

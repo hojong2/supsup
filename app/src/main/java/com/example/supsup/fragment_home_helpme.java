@@ -29,9 +29,9 @@ public class fragment_home_helpme extends Fragment {
         listview = (ListView) v.findViewById(R.id.listview);
         listview.setAdapter(adapter);
 
-        adapter.addItem("해주세요 제목1", R.drawable.intro,"해주세요 작성자1");
-        adapter.addItem("해주세요 제목2", R.drawable.intro,"해주세요 작성자2");
-        adapter.addItem("해주세요 제목3", R.drawable.intro,"해주세요 작성자3");
+        adapter.addItem("해주세요 제목1", R.drawable.logo,"해주세요 작성자1");
+        adapter.addItem("해주세요 제목2", R.drawable.logo,"해주세요 작성자2");
+        adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자3");
         return v;
     }
 }
