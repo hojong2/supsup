@@ -69,6 +69,17 @@ public class fragment_map extends Fragment implements OnMapReadyCallback {
         return layout;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        mapView.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mapView.onStop();
+    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
