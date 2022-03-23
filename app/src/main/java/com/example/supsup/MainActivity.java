@@ -15,7 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.pedro.library.AutoPermissions;
 import com.pedro.library.AutoPermissionsListener;
 
-public class MainActivity extends AppCompatActivity implements AutoPermissionsListener {
+public class MainActivity extends AppCompatActivity {
     Fragment fragment_home;
     Fragment fragment_map;
     Fragment fragment_chat;
@@ -82,23 +82,6 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
                     }
                 }
         );
-        AutoPermissions.Companion.loadAllPermissions(this, 101);
     }
 
-    //권한
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        AutoPermissions.Companion.parsePermissions(this, requestCode, permissions, this);
-    }
-
-    @Override
-    public void onDenied(int i, @NonNull String[] strings) {
-
-    }
-
-    @Override
-    public void onGranted(int i, @NonNull String[] strings) {
-
-    }
 }
