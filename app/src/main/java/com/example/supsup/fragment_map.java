@@ -1,10 +1,6 @@
 package com.example.supsup;
 
-import static androidx.core.content.ContextCompat.getSystemService;
-
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -13,7 +9,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,25 +18,18 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsRequest;
+import com.example.supsup.model.MapDB;
+import com.example.supsup.model.MyItem;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -52,14 +40,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterManager;
+import com.google.maps.android.clustering.view.DefaultClusterRenderer;
 import com.pedro.library.AutoPermissions;
 import com.pedro.library.AutoPermissionsListener;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class fragment_map extends Fragment implements AutoPermissionsListener, OnMapReadyCallback {
     GoogleMap map;
@@ -173,10 +159,6 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
         mapView.onLowMemory();
     }
 
-
-
-
-
     private void showCurrentLocation(double latitude, double longitude) {
         LatLng curPoint = new LatLng(latitude, longitude);
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(curPoint, 15));
@@ -226,10 +208,10 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
         }
         map = googleMap;
         map.setMyLocationEnabled(true);
-
         ClusterManager<MyItem> mclusterManager = new ClusterManager<>(getActivity(),map);
         map.setOnCameraIdleListener(mclusterManager);
         map.setOnMarkerClickListener(mclusterManager);
+        mclusterManager.setRenderer(new MyClusterRenderer(getActivity(),googleMap,mclusterManager));
 
         Geocoder geocoder = new Geocoder(getActivity());
 
@@ -252,7 +234,11 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
                         Address address = list.get(0);
                         double latitude = address.getLatitude();
                         double longitude = address.getLongitude();
-                        mclusterManager.addItem(new MyItem(latitude, longitude, title));
+                        for(int i =0; i < 10; i++){
+                            mclusterManager.addItem(new MyItem(latitude, longitude, title));
+                            latitude += 0.001;
+                            longitude +=0.001;
+                        }
                     }
                 }
             }
@@ -265,8 +251,7 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
         mclusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener<MyItem>() {
             @Override
             public boolean onClusterItemClick(MyItem item) {
-                Toast("test");
-
+                Toast(item.getTitle());
                 return false;
             }
         });
@@ -281,6 +266,7 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
             }
         });
     }
+
 
     public  void Toast(String str){
         Toast myToast = Toast.makeText(getActivity().getApplicationContext(),str, Toast.LENGTH_SHORT);

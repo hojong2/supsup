@@ -1,4 +1,4 @@
-package com.example.supsup;
+package com.example.supsup.model;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.clustering.ClusterItem;

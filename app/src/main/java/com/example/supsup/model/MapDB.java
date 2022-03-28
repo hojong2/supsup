@@ -1,4 +1,4 @@
-package com.example.supsup;
+package com.example.supsup.model;
 
 public class MapDB {
     public String title;
