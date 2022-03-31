@@ -29,7 +29,6 @@ public class DefaultClusterRenderer  extends com.google.maps.android.clustering.
 
     @Override
     protected void onBeforeClusterItemRendered(MyItem item, MarkerOptions markerOptions) {
-
         super.onBeforeClusterItemRendered(item, markerOptions);
         markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.defaultmarker));// for marker size 60*60
 
@@ -38,7 +37,6 @@ public class DefaultClusterRenderer  extends com.google.maps.android.clustering.
     @Override
     protected void onClusterItemRendered(final MyItem clusterItem, Marker marker) {
         super.onClusterItemRendered(clusterItem, marker);
-
 
 
     }
