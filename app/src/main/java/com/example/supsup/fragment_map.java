@@ -40,12 +40,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterManager;
-import com.google.maps.android.clustering.view.DefaultClusterRenderer;
 import com.pedro.library.AutoPermissions;
 import com.pedro.library.AutoPermissionsListener;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class fragment_map extends Fragment implements AutoPermissionsListener, OnMapReadyCallback {
     GoogleMap map;
@@ -69,7 +71,7 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_map, container, false);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("map");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("map_example");
         manager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         gpsListener = new GPSListener();
 
@@ -99,7 +101,7 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
 //                    showCurrentLocation(latitude,longitude);
 //                }
                 manager.requestLocationUpdates(LocationManager.GPS_PROVIDER,minTime,minDistance,gpsListener);
-                manager.removeUpdates(gpsListener);
+//                manager.removeUpdates(gpsListener);
             }else if(manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
                 location = manager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 //                if(location != null){
@@ -109,7 +111,7 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
 //                }
             }
             manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,minTime,minDistance,gpsListener);
-            manager.removeUpdates(gpsListener);
+//            manager.removeUpdates(gpsListener);
         }catch (SecurityException e){
             e.printStackTrace();
         }
@@ -206,40 +208,55 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
+//        final List<MyItem> item_num = new ArrayList<>();
+        final int[] finalI = new int[1];
+        MyItem lastItem =  null;
         map = googleMap;
         map.setMyLocationEnabled(true);
         ClusterManager<MyItem> mclusterManager = new ClusterManager<>(getActivity(),map);
         map.setOnCameraIdleListener(mclusterManager);
         map.setOnMarkerClickListener(mclusterManager);
-        mclusterManager.setRenderer(new MyClusterRenderer(getActivity(),googleMap,mclusterManager));
+        mclusterManager.setRenderer(new DefaultClusterRenderer(getActivity(),googleMap,mclusterManager));
 
         Geocoder geocoder = new Geocoder(getActivity());
-
-        mDatabase.addValueEventListener(new ValueEventListener() {
+//        final Map<Integer,Integer> Item_num = new HashMap<>();
+            mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                MapDB map = snapshot.getValue(MapDB.class);
-                List<Address> list = null;
-                String title = map.getTitle();
-                try{
-                    list = geocoder.getFromLocationName(title,10);
-                }catch (IOException e ){
-                    e.printStackTrace();
-                    Log.e("test","입출력 오류 - 서버에서 주소변환시 에러발생");
-                }
-                if(list != null){
-                    if(list.size() == 0 ){
-                        Toast("해당 주소가 없습니다.");
-                    }else{
-                        Address address = list.get(0);
-                        double latitude = address.getLatitude();
-                        double longitude = address.getLongitude();
-                        for(int i =0; i < 10; i++){
-                            mclusterManager.addItem(new MyItem(latitude, longitude, title));
-                            latitude += 0.001;
-                            longitude +=0.001;
+
+                for(int i = 1; i <= snapshot.getChildrenCount(); i++) {
+                    finalI[0] = i;
+                    mDatabase.child(String.valueOf(i)).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            MapDB map = snapshot.getValue(MapDB.class);
+                            List<Address> list = null;
+                            String title = map.getTitle();
+                            try {
+                                list = geocoder.getFromLocationName(title, 10);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                                Log.e("test", "입출력 오류 - 서버에서 주소변환시 에러발생");
+                            }
+                            if (list != null) {
+                                if (list.size() == 0) {
+                                    Toast("해당 주소가 없습니다.");
+                                } else {
+                                    Address address = list.get(0);
+                                    double latitude = address.getLatitude();
+                                    double longitude = address.getLongitude();
+                                    mclusterManager.addItem(new MyItem(latitude, longitude, title, finalI[0],0));
+//                                    Item_num.put(finalI,0);
+
+                                }
+                            }
                         }
-                    }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }
             }
 
@@ -251,8 +268,34 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
         mclusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener<MyItem>() {
             @Override
             public boolean onClusterItemClick(MyItem item) {
-                Toast(item.getTitle());
-                return false;
+                Toast(String.valueOf(item.getNum()));
+//                if(lastItem!=null){
+//                    lastItem.
+//                }
+//                HashMap<Integer,Integer> temp = new HashMap<>();
+//                for(int i =1; i<=finalI[0]; i++){
+//                    item.setNum(i);
+//                    item.setValue(0);
+//                }
+
+//                temp.put(item.getNum(),1);
+//                for(int i = 1; i<=Item_num.size(); i++){
+//                    Item_num.put(i,0);
+//                }
+//                Item_num.put(item.getNum(),1);
+//                for(Map.Entry<Integer, Integer> clickedItem : Item_num.entrySet()){
+//                   if(clickedItem.getValue()==1){
+//                       mclusterManager.setRenderer(new ClickedClusterRenderer(getActivity(),googleMap,mclusterManager));
+//                   }else{
+//                       mclusterManager.setRenderer(new DefaultClusterRenderer(getActivity(),googleMap,mclusterManager));
+//                   }
+//
+//                }
+                item.setValue(1);
+                if(item.getValue()==1)
+                    mclusterManager.setRenderer(new ClickedClusterRenderer(getActivity(),googleMap,mclusterManager));
+
+                return true;
             }
         });
 
@@ -263,6 +306,12 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
                 CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 15);
                 map.moveCamera(cameraUpdate);
                 return false;
+            }
+        });
+        map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(@NonNull LatLng latLng) {
+                mclusterManager.setRenderer(new DefaultClusterRenderer(getActivity(),googleMap,mclusterManager));
             }
         });
     }
