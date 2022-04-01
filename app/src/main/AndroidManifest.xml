@@ -48,6 +48,7 @@
         <activity android:name=".SignUp"/>
         <activity android:name=".create_text"/>
         <activity android:name=".home_textinfo"/>
+        <activity android:name=".Main_TTS"/>
     </application>
 
 </manifest>
