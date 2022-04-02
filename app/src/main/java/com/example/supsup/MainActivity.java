@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -17,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     Fragment fragment_map;
     Fragment fragment_chat;
     Fragment fragment_mypage;
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         fragment_map=new fragment_map();
         fragment_chat=new fragment_chat();
         fragment_mypage=new fragment_mypage();
+
 
 
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_home).commit();
@@ -77,8 +81,10 @@ public class MainActivity extends AppCompatActivity {
 
                         return false;
                     }
+
                 }
         );
+
     }
 
 }
