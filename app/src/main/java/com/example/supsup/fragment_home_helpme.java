@@ -36,6 +36,13 @@ public class fragment_home_helpme extends Fragment {
         adapter.addItem("해주세요 제목1", R.drawable.logo,"해주세요 작성자1");
         adapter.addItem("해주세요 제목2", R.drawable.logo,"해주세요 작성자2");
         adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자3");
+        adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자3");
+        adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자3");
+        adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자3");
+        adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자3");
+        adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자3");
+        adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자3");
+        adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자3");
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
