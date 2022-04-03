@@ -1,6 +1,6 @@
 package com.example.supsup;
 
-public class data {
+public class data4 {
     private int textimage;
     private String textname;
     private String textperson;

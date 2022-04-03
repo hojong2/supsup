@@ -12,7 +12,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class adapter extends BaseAdapter {
+public class adapter4 extends BaseAdapter {
 
     private ImageView iconImageView;
     private TextView titleTextView;
@@ -20,7 +20,7 @@ public class adapter extends BaseAdapter {
     private TextView locationTextView;
 
     private ArrayList<data> dataList = new ArrayList<data>();
-    public adapter() {
+    public adapter4() {
 
     }
 
@@ -41,13 +41,13 @@ public class adapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-       final int pos = position;
-       final Context context = parent.getContext();
+        final int pos = position;
+        final Context context = parent.getContext();
 
         if(convertView ==null) {
             LayoutInflater mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-           convertView = mLayoutInflater.inflate(R.layout.fragment_home_helpme_resource, parent, false);
-       }
+            convertView = mLayoutInflater.inflate(R.layout.map_bottom_dialog_resource, parent, false);
+        }
 
 
         iconImageView =(ImageView)convertView.findViewById(R.id.image);
@@ -67,7 +67,7 @@ public class adapter extends BaseAdapter {
         return convertView;
     }
 
-    public void addItem(String name, int image, String person, String location) {
+    public void addItem4(String name, int image, String person, String location) {
         data item = new data();
 
         item.setTextname(name);

@@ -29,9 +29,16 @@ public class fragment_home_helpyou extends Fragment {
         listview = (ListView) v.findViewById(R.id.listview2);
         listview.setAdapter(adapter);
 
-        adapter.addItem("해드려요 제목1", R.drawable.logo,"해드려요 작성자1");
-        adapter.addItem("해드려요 제목2", R.drawable.logo,"해드려요 작성자2");
-        adapter.addItem("해드려요 제목3", R.drawable.logo,"해드려요 작성자3");
+        adapter.addItem("해드려요 제목1", R.drawable.logo,"해드려요 작성자1", "해드려요 위치1");
+        adapter.addItem("해드려요 제목2", R.drawable.logo,"해드려요 작성자2", "해드려요 위치2");
+        adapter.addItem("해드려요 제목3", R.drawable.logo,"해드려요 작성자3", "해드려요 위치3");
+        adapter.addItem("해드려요 제목3", R.drawable.logo,"해드려요 작성자4", "해드려요 위치4");
+        adapter.addItem("해드려요 제목3", R.drawable.logo,"해드려요 작성자5", "해드려요 위치5");
+        adapter.addItem("해드려요 제목3", R.drawable.logo,"해드려요 작성자6", "해드려요 위치6");
+        adapter.addItem("해드려요 제목3", R.drawable.logo,"해드려요 작성자7", "해드려요 위치7");
+        adapter.addItem("해드려요 제목3", R.drawable.logo,"해드려요 작성자8", "해드려요 위치8");
+        adapter.addItem("해드려요 제목3", R.drawable.logo,"해드려요 작성자9", "해드려요 위치9");
+        adapter.addItem("해드려요 제목3", R.drawable.logo,"해드려요 작성자10", "해드려요 위치10");
         return v;
     }
 }

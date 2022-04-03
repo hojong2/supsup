@@ -31,7 +31,7 @@ public class MyItem implements ClusterItem {
         return position;
     }
 
-//    public void setLat(double lat){this.lat = lat;}
+    //    public void setLat(double lat){this.lat = lat;}
 //    public double getLat(){return  lat;}
 //
 //    public void setLng(double lng){this.lng = lng;}

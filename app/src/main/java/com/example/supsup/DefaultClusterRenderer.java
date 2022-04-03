@@ -1,24 +1,13 @@
 package com.example.supsup;
 
 import android.content.Context;
-import android.graphics.Color;
 
-import androidx.annotation.NonNull;
-
-import com.bumptech.glide.load.resource.bitmap.BitmapResource;
 import com.example.supsup.model.MyItem;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.maps.android.clustering.ClusterManager;
-
-import java.util.HashMap;
 
 public class DefaultClusterRenderer  extends com.google.maps.android.clustering.view.DefaultClusterRenderer<MyItem> {
 
