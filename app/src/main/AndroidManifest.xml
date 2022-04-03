@@ -49,6 +49,9 @@
         <activity android:name=".create_text"/>
         <activity android:name=".home_textinfo"/>
         <activity android:name=".Main_TTS"/>
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false"/>
     </application>
 
 </manifest>

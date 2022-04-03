@@ -13,12 +13,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.supsup.model.MapDB;
 import com.example.supsup.model.MyItem;
@@ -33,6 +35,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -50,13 +53,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class fragment_map extends Fragment implements AutoPermissionsListener, OnMapReadyCallback {
+public class fragment_map extends Fragment implements AutoPermissionsListener, OnMapReadyCallback{
     GoogleMap map;
     DatabaseReference mDatabase;
     LocationManager manager;
     GPSListener gpsListener;
     Location location;
     private  MapView mapView = null;
+
     public fragment_map(){
 
     }
@@ -73,6 +77,7 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("map_example");
         manager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+
         gpsListener = new GPSListener();
 
         try {
@@ -166,6 +171,7 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(curPoint, 15));
     }
 
+
 //    @Override
 //    public void onMapClick(@NonNull LatLng latLng) {
 //        changeSelectedMarker(null);
@@ -228,7 +234,7 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
             return;
         }
         final int[] finalI = new int[1];
-
+        final map_bottom_dialog map_bottom_dialog = new map_bottom_dialog(getActivity().getApplicationContext());
         map = googleMap;
         map.setMyLocationEnabled(true);
         ClusterManager<MyItem> mclusterManager = new ClusterManager<>(getActivity(),map);
@@ -290,9 +296,11 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
         mclusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener<MyItem>() {
             @Override
             public boolean onClusterItemClick(MyItem item) {
+                map_bottom_dialog.setTitle(item.getTitle());
                 mclusterManager.setRenderer(new DefaultClusterRenderer(getActivity(),googleMap,mclusterManager));
                 item.setClickedCheck(true);
                 mclusterManager.setRenderer(new ClickedClusterRenderer(getActivity(),googleMap,mclusterManager));
+                map_bottom_dialog.show(getActivity().getSupportFragmentManager(),map_bottom_dialog.getTag());
                 return true;
             }
         });
