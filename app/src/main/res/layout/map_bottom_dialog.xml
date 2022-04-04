@@ -30,7 +30,8 @@
             android:layout_height="wrap_content"
             android:text="글 제목"
             android:textSize="40dp"
-            android:background="#00ff0000"/>
+            android:background="#00ff0000"
+            />
         <TextView
             android:id="@+id/TextLocation"
             android:layout_width="match_parent"

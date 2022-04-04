@@ -45,7 +45,7 @@ public class map_bottom_dialog extends BottomSheetDialogFragment {
         btntitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast("글 클릭시 예시");
                 dismiss();
             }
         });
@@ -62,5 +62,8 @@ public class map_bottom_dialog extends BottomSheetDialogFragment {
         this.writer = writer;
     }
 
-
+    public  void Toast(String str){
+        Toast myToast = Toast.makeText(getActivity().getApplicationContext(),str, Toast.LENGTH_SHORT);
+        myToast.show();
+    }
 }
