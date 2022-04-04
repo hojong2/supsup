@@ -6,7 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ListView;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,10 +15,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class map_bottom_dialog extends BottomSheetDialogFragment {
     Context context;
-    String title;
-    private ListView listview2;
-    private adapter4 adapter;
-
+    String location, title, writer;
     public map_bottom_dialog(Context context)
     {
         this.context = context;
@@ -37,24 +35,32 @@ public class map_bottom_dialog extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.map_bottom_dialog, container, false);
-        adapter = new adapter4();
+        TextView textlocation = view.findViewById(R.id.TextLocation);
+        TextView textwriter = view.findViewById(R.id.TextWriter);
+        Button btntitle = view.findViewById(R.id.btnTitle);
+        ImageView imageView = view.findViewById(R.id.image);
 
+        imageView.setImageDrawable(getResources().getDrawable(R.drawable.logo));
+        textlocation.setText(location);
+        btntitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        listview2 = (ListView) view.findViewById(R.id.listview2);
-        listview2.setAdapter(adapter);
-        adapter.addItem4("해주세요 제목1", R.drawable.logo,"해주세요 작성자1", "해주세요 위치1");
-
-        Button btntitle = view.findViewById(R.id.title);
-        if (getArguments() != null)
-        {
-            title = getArguments().getString("Title"); // 프래그먼트1에서 받아온 값 넣기
-            btntitle.setText(title);
-
-        }
+                dismiss();
+            }
+        });
 
         return view;
     }
     public void setTitle(String title){
         this.title = title;
     }
+    public void setLocation(String location){
+        this.location = location;
+
+    }public void setWriter(String writer){
+        this.writer = writer;
+    }
+
+
 }

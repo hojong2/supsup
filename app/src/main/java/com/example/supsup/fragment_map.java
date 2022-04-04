@@ -222,7 +222,6 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        final int[] finalI = new int[1];
         final map_bottom_dialog map_bottom_dialog = new map_bottom_dialog(getActivity().getApplicationContext());
         map = googleMap;
         map.setMyLocationEnabled(true);
@@ -240,15 +239,16 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for(int i = 1; i <= snapshot.getChildrenCount(); i++) {
-                    finalI[0] = i;
                     mDatabase.child(String.valueOf(i)).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             MapDB map = snapshot.getValue(MapDB.class);
                             List<Address> list = null;
                             String title = map.getTitle();
+                            String location = map.getLocation();
+                            String writer = map.getWriter();
                             try {
-                                list = geocoder.getFromLocationName(title, 10);
+                                list = geocoder.getFromLocationName(location, 10);
                             } catch (IOException e) {
                                 e.printStackTrace();
                                 Log.e("test", "입출력 오류 - 서버에서 주소변환시 에러발생");
@@ -258,13 +258,9 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
                                     Toast("해당 주소가 없습니다.");
                                 } else {
                                     Address address = list.get(0);
-
                                     double latitude = address.getLatitude();
                                     double longitude = address.getLongitude();
-                                    mclusterManager.addItem(new MyItem(latitude, longitude, title, finalI[0],false));
-//                                    sampleList.add(new MapDB(latitude,longitude,title));
-//                                    Item_num.put(finalI,0);
-
+                                    mclusterManager.addItem(new MyItem(latitude, longitude,"임시 글 제목",location,"작성자",false));
                                 }
                             }
                         }
@@ -285,7 +281,11 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
         mclusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener<MyItem>() {
             @Override
             public boolean onClusterItemClick(MyItem item) {
-                map_bottom_dialog.setTitle(item.getTitle());
+
+                map_bottom_dialog.setLocation(item.getLocation());
+//                map_bottom_dialog.setTitle(item.getTitle());
+//                map_bottom_dialog.setWriter(item.getWriter());
+
                 mclusterManager.setRenderer(new DefaultClusterRenderer(getActivity(),googleMap,mclusterManager));
                 item.setClickedCheck(true);
                 mclusterManager.setRenderer(new ClickedClusterRenderer(getActivity(),googleMap,mclusterManager));

@@ -9,19 +9,16 @@ import java.util.Map;
 
 public class MyItem implements ClusterItem {
     private LatLng position;
-    private  String title;
-    private  int num;
+    private  String title,location,writer;
     private  boolean clickedCheck;
 
 
-//    private Map<Integer, Integer> hashMap;
-
-    public MyItem(double lat, double lng, String title, int num, boolean clickedCheck) {
+    public MyItem(double lat, double lng, String title, String location, String writer, boolean clickedCheck) {
         position = new LatLng(lat, lng);
         this.title = title;
-        this.num = num;
+        this.location = location;
+        this.writer = writer;
         this.clickedCheck = clickedCheck;
-//        hashMap = new HashMap<>(num, value);
     }
 
     public void setPosition(LatLng position){
@@ -46,23 +43,11 @@ public class MyItem implements ClusterItem {
         return title;
     }
 
-    public  void setNum(int num){
-        this.num = num;
-    }
-    public int getNum() {
-        return num;
-    }
+    public void setLocation(String location){ this.location = location;}
+    public String getLocation(){return  location;}
 
-//    public void setValue(int value){this.value = value;};
-//    public int  getValue(){return value;}
-
-//    public  void setHashMap(HashMap hashMap){
-//        this.hashMap = hashMap;
-//    }
-//    public Map getHashMap() {
-//        return hashMap;
-//    }
-
+    public void setWriter(String writer){ this.writer = writer;}
+    public  String getWriter(){return writer;}
 
     public String getSnippet() {
         return null;
