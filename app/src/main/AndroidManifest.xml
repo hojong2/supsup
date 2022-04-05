@@ -45,6 +45,8 @@
         <activity android:name=".mypage_myinfo"/>
         <activity android:name=".mypage_keyword"/>
         <activity android:name=".mypage_profile"/>
+        <activity android:name=".MessageActivity"/>
+
         <activity android:name=".SignUp"/>
         <activity android:name=".create_text"/>
         <activity android:name=".home_textinfo"/>

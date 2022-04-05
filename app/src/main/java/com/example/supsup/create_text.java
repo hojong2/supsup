@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.supsup.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -42,6 +43,7 @@ public class create_text extends AppCompatActivity {
     public String context;
     public String[] pay_shapeList = {"협의","금전","봉사시간"};
     public String[] suptegoryList = {"이동","대화","인력"};
+
 
 
 
@@ -207,6 +209,9 @@ public class create_text extends AppCompatActivity {
                 title = edit_title.getText().toString();
                 pay = edit_pay.getText().toString();
                 context = edit_context.getText().toString();
+                final String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                databaseReference.child("context_info").child("uid").setValue(myUid);
                 databaseReference.child("context_info").child("text_state").setValue(true); //모집중:true _ 모집완료:false
                 databaseReference.child("context_info").child("help_state").setValue(help_state); //해주세요인지 해드려요인지. true면 해주세요
                 databaseReference.child("context_info").child("title").setValue(title); //제목

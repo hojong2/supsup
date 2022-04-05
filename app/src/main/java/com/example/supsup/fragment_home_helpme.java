@@ -34,15 +34,15 @@ public class fragment_home_helpme extends Fragment {
         listview.setAdapter(adapter);
 
         adapter.addItem("해주세요 제목1", R.drawable.logo,"해주세요 작성자1", "해주세요 위치1");
-        adapter.addItem("해주세요 제목2", R.drawable.logo,"해주세요 작성자2", "해주세요 위치2");
-        adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자3", "해주세요 위치3");
-        adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자4", "해주세요 위치4");
-        adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자5", "해주세요 위치5");
-        adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자6", "해주세요 위치6");
-        adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자7", "해주세요 위치7");
-        adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자8", "해주세요 위치8");
-        adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자9", "해주세요 위치9");
-        adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자10", "해주세요 위치10");
+//        adapter.addItem("해주세요 제목2", R.drawable.logo,"해주세요 작성자2", "해주세요 위치2");
+//        adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자3", "해주세요 위치3");
+//        adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자4", "해주세요 위치4");
+//        adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자5", "해주세요 위치5");
+//        adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자6", "해주세요 위치6");
+//        adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자7", "해주세요 위치7");
+//        adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자8", "해주세요 위치8");
+//        adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자9", "해주세요 위치9");
+//        adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자10", "해주세요 위치10");
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
