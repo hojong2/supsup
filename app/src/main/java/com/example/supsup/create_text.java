@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.textservice.TextInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -15,50 +16,44 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 import java.util.Calendar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.supsup.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class create_text extends AppCompatActivity {
 
-    boolean text_state;
-    boolean help_state; // true=해주세요 false=해드려요
-    public String title;
-    public String pay_shape;
-    public String suptegory;
-    public String pay;
-    public  SimpleDateFormat formatType = new SimpleDateFormat("yyyy-MM-dd");
-    public String end_recruit;
-    public String end_date;
-    public String end_datetime;
-    public String address;
-    public String context;
-    public String[] pay_shapeList = {"협의","금전","봉사시간"};
-    public String[] suptegoryList = {"이동","대화","인력"};
-
-
-
-
-
-
-
-
-
     //파이어베이스 연동
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     //DatabaseReference는 데이터베이스의 특정 위치로 연결하는 거라고 생각하면 된다.
     //현재 연결은 데이터베이스에만 딱 연결해놓고
     //키값(테이블 또는 속성)의 위치 까지는 들어가지는 않은 모습이다.
-    private DatabaseReference databaseReference = database.getReference();
+
+    private FirebaseAuth mAuth;
+    DatabaseReference databaseReference = null;
+    HashMap<String,Object> childUpdates = null;
+
+    Map<String,Object> userValue = null;
+    TextModel textModel = new TextModel();
+
+    public String[] pay_shapeList = {"협의","금전","봉사시간"};
+    public String[] suptegoryList = {"이동","대화","인력"};
+
 
 
 
@@ -70,12 +65,15 @@ public class create_text extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
         ab.setTitle("글 등록");
 
+
+
         Button button_helpMe = (Button) findViewById(R.id.btn_helpme);
         Button button_helpYou = (Button) findViewById(R.id.btn_helpyou);
         EditText edit_title = (EditText) findViewById(R.id.edittext_title);
 
         Spinner pay_shape = (Spinner) findViewById(R.id.pay_shape);
         Spinner suptegory = (Spinner) findViewById(R.id.suptegory);
+
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,pay_shapeList);
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,suptegoryList);
         pay_shape.setAdapter(adapter1);
@@ -96,6 +94,12 @@ public class create_text extends AppCompatActivity {
         EditText edit_context = (EditText) findViewById(R.id.edittext_context);
         Button button_enroll = (Button) findViewById(R.id.btn_enroll);
 
+        // 파이어베이스에서 현재 로그인한 유저 정보 빼오기
+        final String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+
 
 
 
@@ -107,7 +111,7 @@ public class create_text extends AppCompatActivity {
                 if (view.isSelected()) {
                     button_helpMe.setBackgroundColor(Color.parseColor("#FFE400"));
                     button_helpYou.setBackgroundColor(Color.parseColor("#00BFFF"));
-                    help_state=true; // 해주세요 클릭되면 true임
+                    textModel.help_state=true; // 해주세요 클릭되면 true임
                 }
             }
         });
@@ -120,7 +124,7 @@ public class create_text extends AppCompatActivity {
                 if (view.isSelected()) {
                     button_helpYou.setBackgroundColor(Color.parseColor("#FFE400"));
                     button_helpMe.setBackgroundColor(Color.parseColor("#00BFFF"));
-                    help_state=false; // 해드려요 클릭되면 false임
+                    textModel.help_state=false; // 해드려요 클릭되면 false임
                 }
             }
         });
@@ -158,7 +162,7 @@ public class create_text extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 text_date.setText(year+"년 "+(month+1)+"월 "+dayOfMonth+"일");
-                end_date = text_date.getText().toString();
+                textModel.end_date = text_date.getText().toString();
 
             }
         },mYear,mMonth,mDay);
@@ -175,7 +179,7 @@ public class create_text extends AppCompatActivity {
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
                 text_datetime.setText(hour+"시 "+minute+"분");
-                end_datetime = text_datetime.getText().toString();
+                textModel.end_datetime = text_datetime.getText().toString();
             }
         },mhour,mminute,true);
 
@@ -193,7 +197,7 @@ public class create_text extends AppCompatActivity {
         button_changeAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                address = edit_address.getText().toString();
+                textModel.address = edit_address.getText().toString();
             }
         });
 
@@ -201,32 +205,34 @@ public class create_text extends AppCompatActivity {
 
 
         // 등록버튼
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        childUpdates = new HashMap<>();
+
         button_enroll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"등록 완료",Toast.LENGTH_SHORT).show();
-                end_recruit = text_end_recruit.getText().toString();
-                title = edit_title.getText().toString();
-                pay = edit_pay.getText().toString();
-                context = edit_context.getText().toString();
-                final String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                if(myUid.isEmpty()){
+                    Toast.makeText(getApplicationContext(),"로그인부터 처하셈",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    textModel.uid = myUid;
+                    textModel.uid_roomNum = "1";
+                    textModel.text_state = true;
+                    textModel.pay_shape = pay_shape.getSelectedItem().toString();
+                    textModel.suptegory = suptegory.getSelectedItem().toString();
+                    textModel.end_recruit = text_end_recruit.getText().toString();
+                    textModel.title = edit_title.getText().toString();
+                    textModel.pay = edit_pay.getText().toString();
+                    textModel.context = edit_context.getText().toString();
 
-                databaseReference.child("context_info").child("uid").setValue(myUid);
-                databaseReference.child("context_info").child("text_state").setValue(true); //모집중:true _ 모집완료:false
-                databaseReference.child("context_info").child("help_state").setValue(help_state); //해주세요인지 해드려요인지. true면 해주세요
-                databaseReference.child("context_info").child("title").setValue(title); //제목
-                databaseReference.child("context_info").child("pay_shape").setValue("협의");
-                databaseReference.child("context_info").child("suptegory").setValue("입력");
-                databaseReference.child("context_info").child("pay").setValue(pay); // 페이
-                databaseReference.child("context_info").child("end_recruit").setValue(end_recruit); //모집마감일
-                databaseReference.child("context_info").child("end_date").setValue(end_date); // 수행 날짜
-                databaseReference.child("context_info").child("end_datetime").setValue(end_datetime); //수행 시간
-                databaseReference.child("context_info").child("address").setValue(address); //주소
-                databaseReference.child("context_info").child("end_recruit").setValue(help_state);
-                databaseReference.child("context_info").child("context").setValue(context); //내용
+                    userValue = textModel.toMap();
+
+                    childUpdates.put("/context_info/" + textModel.uid, userValue);
+                    databaseReference.updateChildren(childUpdates);
 
 
-
+                    Toast.makeText(getApplicationContext(), "등록이 완료되었습니다", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
