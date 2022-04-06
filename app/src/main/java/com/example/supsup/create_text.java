@@ -2,6 +2,7 @@ package com.example.supsup;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 
 import com.example.supsup.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -102,7 +104,7 @@ public class create_text extends AppCompatActivity {
 
 
 
-
+        // 해주세요
         button_helpMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,7 +117,7 @@ public class create_text extends AppCompatActivity {
                 }
             }
         });
-
+        // 해드려요
         button_helpYou.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -207,16 +209,14 @@ public class create_text extends AppCompatActivity {
         // 등록버튼
         databaseReference = FirebaseDatabase.getInstance().getReference();
         childUpdates = new HashMap<>();
+        Fragment fragment_home;
+        fragment_home=new fragment_home();
 
         button_enroll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(myUid.isEmpty()){
-                    Toast.makeText(getApplicationContext(),"로그인부터 처하셈",Toast.LENGTH_SHORT).show();
-                }
-                else {
+
                     textModel.uid = myUid;
-                    textModel.uid_roomNum = "1";
                     textModel.text_state = true;
                     textModel.pay_shape = pay_shape.getSelectedItem().toString();
                     textModel.suptegory = suptegory.getSelectedItem().toString();
@@ -225,25 +225,14 @@ public class create_text extends AppCompatActivity {
                     textModel.pay = edit_pay.getText().toString();
                     textModel.context = edit_context.getText().toString();
 
-                    userValue = textModel.toMap();
-
-                    childUpdates.put("/context_info/" + textModel.uid, userValue);
-                    databaseReference.updateChildren(childUpdates);
-
+                    databaseReference.child("context_info").child(textModel.uid).push().setValue(textModel);
 
                     Toast.makeText(getApplicationContext(), "등록이 완료되었습니다", Toast.LENGTH_SHORT).show();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_home).commit();
+
                 }
-            }
         });
 
-
-
-
-
-
-
     }
-
-
 
 }

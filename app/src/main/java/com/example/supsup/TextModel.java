@@ -6,7 +6,6 @@ import java.util.Map;
 
 public class TextModel {
     public String uid;
-    public String uid_roomNum;
     boolean text_state;         // 모집 중, 모집완료
     boolean help_state;         // 글 상태 (해주세요, 해드랴요)
     public String title;        // 제목
@@ -33,7 +32,6 @@ public class TextModel {
     , String title, String pay_shape, String suptegory, String pay, String end_recruit
     , String end_date, String end_datetime, String address, String context) {
         this.uid=uid; //o
-        this.uid_roomNum=uid_roomNum; //o
         this.text_state=text_state;  //o
         this.help_state=help_state; //o
         this.title=title; //o
@@ -50,7 +48,6 @@ public class TextModel {
     public Map<String,Object> toMap(){
         HashMap<String,Object> result = new HashMap<>();
         result.put("uid",uid);
-        result.put("uid_roomNum",uid_roomNum);
         result.put("text_state",text_state);
         result.put("help_state",help_state);
         result.put("title",title);
