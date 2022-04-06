@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,43 +25,59 @@ import java.util.List;
 
 public class home_textinfo extends AppCompatActivity {
     private FirebaseAuth mAuth;
-    public String destinationUid;
+    private String destinationUid;
+    private String textId;
+    private DatabaseReference mDatabase;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_textinfo);
-        final String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        ArrayList<TextModel> textModel = new ArrayList<>();
+
+        final String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference destinationUid = database.getReference("uid");
 
-        destinationUid.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+        if (textId == null) {
+            FirebaseDatabase.getInstance().getReference().child("context_info").push().setValue(textModel).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
 
-            }
+                }
+            });
+        }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("상세 내용");
         Button button_chat = (Button) findViewById(R.id.button_chat);
 
+
+
         button_chat.setOnClickListener(new View.OnClickListener() { // 채팅 버튼 클릭 시 화면 전환
             @Override
             public void onClick(View view) {
 
+                mDatabase.child("context_info").child("textId").child("uid").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String value = snapshot.getValue(String.class);
+                        destinationUid = value;
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
                 Intent intent = new Intent(view.getContext(), MessageActivity.class);
-                intent.putExtra("destinationUid", String.valueOf(destinationUid));
+                intent.putExtra("destinationUid",destinationUid);
                 startActivity(intent);
 
 

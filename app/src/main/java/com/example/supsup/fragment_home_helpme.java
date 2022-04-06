@@ -75,6 +75,7 @@ public class fragment_home_helpme extends Fragment {
         listview.setAdapter(adapter);
 
 
+
         adapter.addItem("해주세요 제목1", R.drawable.logo,"해주세요 작성자1", "해주세요 위치1");
 //        adapter.addItem("해주세요 제목2", R.drawable.logo,"해주세요 작성자2", "해주세요 위치2");
 //        adapter.addItem("해주세요 제목3", R.drawable.logo,"해주세요 작성자3", "해주세요 위치3");
