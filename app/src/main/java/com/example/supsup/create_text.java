@@ -225,7 +225,7 @@ public class create_text extends AppCompatActivity {
                     textModel.pay = edit_pay.getText().toString();
                     textModel.context = edit_context.getText().toString();
 
-                    databaseReference.child("context_info").child(textModel.uid).push().setValue(textModel);
+                    databaseReference.child("context_info").push().setValue(textModel);
 
                     Toast.makeText(getApplicationContext(), "등록이 완료되었습니다", Toast.LENGTH_SHORT).show();
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_home).commit();
