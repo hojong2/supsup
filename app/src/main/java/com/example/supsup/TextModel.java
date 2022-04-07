@@ -45,6 +45,7 @@ public class TextModel {
         this.context=context; //o
 
     }
+
     public Map<String,Object> toMap(){
         HashMap<String,Object> result = new HashMap<>();
         result.put("uid",uid);
