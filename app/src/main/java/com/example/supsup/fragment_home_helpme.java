@@ -44,7 +44,6 @@ public class fragment_home_helpme extends Fragment {
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference("context_info");
 
-    private Map<String,Map> map = new HashMap<>();
     private List<TextModel> textModelList = new ArrayList<>();
 
 
@@ -120,7 +119,7 @@ public class fragment_home_helpme extends Fragment {
             }
 
             @Override
-            public int getItemCount() {
+            public int getItemCount() { // 텍스트 모델 리스트의 개수만큼 가져옴
                 return textModelList.size();
             }
             public class CustomTextViewHolder extends RecyclerView.ViewHolder{
@@ -135,7 +134,7 @@ public class fragment_home_helpme extends Fragment {
                     this.imageView = itemView.findViewById(R.id.item_text_imageview);
                     this.textView1 = itemView.findViewById(R.id.item_text_title);
                     this.textView2 = itemView.findViewById(R.id.item_text_location);
-                    this.textView3 = itemView.findViewById(R.id.item_text_location);
+                    this.textView3 = itemView.findViewById(R.id.item_text_name);
 
                     itemView.setOnClickListener(new View.OnClickListener() {
                         @Override
