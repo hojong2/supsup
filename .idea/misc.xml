@@ -77,12 +77,14 @@
         <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/mypage_profile.xml" value="0.1" />
         <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/mypage_profile_resource.xml" value="0.36614583333333334" />
         <entry key="..\:/android studio/supsup/app/src/main/res/layout/activity_main.xml" value="0.33177083333333335" />
+        <entry key="..\:/android studio/supsup/app/src/main/res/layout/fragment_home.xml" value="0.27233860624198375" />
         <entry key="..\:/android studio/supsup/app/src/main/res/layout/fragment_map.xml" value="0.33177083333333335" />
         <entry key="..\:/android studio/supsup/app/src/main/res/layout/map.xml" value="0.33177083333333335" />
+        <entry key="..\:/android studio/supsup/app/src/main/res/layout/map_bottom_dialog.xml" value="0.27233860624198375" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

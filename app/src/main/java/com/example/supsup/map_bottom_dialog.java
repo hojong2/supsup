@@ -41,7 +41,9 @@ public class map_bottom_dialog extends BottomSheetDialogFragment {
         ImageView imageView = view.findViewById(R.id.image);
 
         imageView.setImageDrawable(getResources().getDrawable(R.drawable.logo));
+
         textlocation.setText(location);
+        btntitle.setText(title);
         btntitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
