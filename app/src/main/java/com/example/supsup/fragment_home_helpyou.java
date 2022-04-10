@@ -47,8 +47,9 @@ public class fragment_home_helpyou extends Fragment {
     private List<TextModel> textModelList = new ArrayList<>();
 
 
-
-
+    public static String text_name1; // 글정보로 넘겨줄거임
+    public static String text_title1; // 글정보로 넘겨줄거임
+    public static String help_state1 = "false";
 
 
 
@@ -142,7 +143,11 @@ public class fragment_home_helpyou extends Fragment {
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        text_title1 = textView1.getText().toString();
+                        text_name1 = textView3.getText().toString();
 
+                        Intent intent = new Intent(getActivity(),home_textinfo1.class);
+                        startActivity(intent);
                     }
                 });
             }

@@ -48,16 +48,29 @@ public class fragment_home_helpme extends Fragment {
 
 
 
-    public String text_name;
-    public String text_title;
+    public static String text_name; // 글정보로 넘겨줄거임
+    public static String text_title; // 글정보로 넘겨줄거임
+    public static String help_state = "ture";
 
-    public void set_Data(String text_name, String text_title){
-        this.text_name=text_name;
-        this.text_title=text_title;
-    };
-    public void get_Data(String text_name, String text_title){
+//    public String getText_name(){
+//        return text_name;
+//    }
+//    public String getText_title(){
+//        return text_title;
+//    }
+//
+//    public void setText_name(String text_name){
+//        this.text_name=text_name;
+//    }
+//    public void setText_title(String text_title){
+//        this.text_title=text_title;
+//    }
 
-    };
+
+
+
+
+
 
 
 
@@ -150,9 +163,9 @@ public class fragment_home_helpme extends Fragment {
                     itemView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            text_name = textView1.getText().toString();
                             text_title = textView1.getText().toString();
-                            set_Data(text_name,text_title);
+                            text_name = textView3.getText().toString();
+
                             Intent intent = new Intent(getActivity(),home_textinfo.class);
                             startActivity(intent);
                         }
