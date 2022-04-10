@@ -6,8 +6,8 @@ import java.util.Map;
 
 public class TextModel {
     public String uid;
-    boolean text_state;         // 모집 중, 모집완료
-    boolean help_state;         // 글 상태 (해주세요, 해드랴요)
+    public String text_state;         // 모집 중, 모집완료
+    public String help_state;         // 글 상태 (해주세요, 해드랴요)
     public String title;        // 제목
     public String pay_shape;    // 페이 형태
     public String suptegory;    // 섭테고리
@@ -17,6 +17,7 @@ public class TextModel {
     public String end_datetime; // 일 수행 시간
     public String address;      // 주소
     public String context;      // 글 내용
+    public String name;     // 이름
 
 
 
@@ -28,9 +29,9 @@ public class TextModel {
     }
 
 
-    public TextModel(String uid, String uid_roomNum, boolean text_state, boolean help_state
+    public TextModel(String uid, String uid_roomNum, String text_state, String help_state
     , String title, String pay_shape, String suptegory, String pay, String end_recruit
-    , String end_date, String end_datetime, String address, String context) {
+    , String end_date, String end_datetime, String address, String context, String name) {
         this.uid=uid; //o
         this.text_state=text_state;  //o
         this.help_state=help_state; //o
@@ -43,6 +44,7 @@ public class TextModel {
         this.end_datetime=end_datetime; //o
         this.address=address; //o
         this.context=context; //o
+        this.name=name;
 
     }
 
@@ -60,7 +62,7 @@ public class TextModel {
         result.put("end_datetime",end_datetime);
         result.put("address",address);
         result.put("context",context);
-
+        result.put("name",name);
         return result;
     }
 

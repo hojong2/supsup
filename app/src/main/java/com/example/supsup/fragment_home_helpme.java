@@ -48,8 +48,16 @@ public class fragment_home_helpme extends Fragment {
 
 
 
+    public String text_name;
+    public String text_title;
 
+    public void set_Data(String text_name, String text_title){
+        this.text_name=text_name;
+        this.text_title=text_title;
+    };
+    public void get_Data(String text_name, String text_title){
 
+    };
 
 
 
@@ -78,7 +86,9 @@ public class fragment_home_helpme extends Fragment {
                     textModelList.clear();
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                         TextModel textModel = snapshot.getValue(TextModel.class);
-                        textModelList.add(textModel);
+                        if(textModel.help_state.equals("true")) {
+                            textModelList.add(textModel);
+                        }
                     }
                         customAdaptor.notifyDataSetChanged();
 
@@ -108,13 +118,14 @@ public class fragment_home_helpme extends Fragment {
                 return new CustomTextViewHolder(view);
             }
 
+
             @Override
             public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
                 CustomTextViewHolder customTextViewHolder = ((CustomTextViewHolder)holder);
-                customTextViewHolder.textView1.setText(textModelList.get(position).title);
-                customTextViewHolder.textView2.setText(textModelList.get(position).address);
-                customTextViewHolder.textView3.setText("박기환");
 
+                        customTextViewHolder.textView1.setText(textModelList.get(position).title);
+                        customTextViewHolder.textView2.setText(textModelList.get(position).address);
+                        customTextViewHolder.textView3.setText(textModelList.get(position).name);
 
             }
 
@@ -139,7 +150,11 @@ public class fragment_home_helpme extends Fragment {
                     itemView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-
+                            text_name = textView1.getText().toString();
+                            text_title = textView1.getText().toString();
+                            set_Data(text_name,text_title);
+                            Intent intent = new Intent(getActivity(),home_textinfo.class);
+                            startActivity(intent);
                         }
                     });
                 }

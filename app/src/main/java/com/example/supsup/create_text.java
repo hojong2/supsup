@@ -15,6 +15,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import androidx.annotation.NonNull;
@@ -35,6 +37,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class create_text extends AppCompatActivity {
@@ -51,10 +54,14 @@ public class create_text extends AppCompatActivity {
     HashMap<String,Object> childUpdates = null;
 
     Map<String,Object> userValue = null;
+
     TextModel textModel = new TextModel();
+    UserModel userModel = new UserModel();
 
     public String[] pay_shapeList = {"협의","금전","봉사시간"};
     public String[] suptegoryList = {"이동","대화","인력"};
+    public String name;
+    public String text_state; // 모집중, 모집아님
 
 
 
@@ -102,6 +109,21 @@ public class create_text extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
 
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("users").child(myUid).child("userName").addValueEventListener(new ValueEventListener() { // 참조한 위치에 데이터가 변화가 일어날 때 마다 매번 읽어옴
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String value = dataSnapshot.getValue(String.class);
+                    name = value;
+                }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
 
 
         // 해주세요
@@ -113,7 +135,7 @@ public class create_text extends AppCompatActivity {
                 if (view.isSelected()) {
                     button_helpMe.setBackgroundColor(Color.parseColor("#FFE400"));
                     button_helpYou.setBackgroundColor(Color.parseColor("#00BFFF"));
-                    textModel.help_state=true; // 해주세요 클릭되면 true임
+                    textModel.help_state="true"; // 해주세요 클릭되면 true임
                 }
             }
         });
@@ -126,7 +148,7 @@ public class create_text extends AppCompatActivity {
                 if (view.isSelected()) {
                     button_helpYou.setBackgroundColor(Color.parseColor("#FFE400"));
                     button_helpMe.setBackgroundColor(Color.parseColor("#00BFFF"));
-                    textModel.help_state=false; // 해드려요 클릭되면 false임
+                    textModel.help_state="false"; // 해드려요 클릭되면 false임
                 }
             }
         });
@@ -207,7 +229,7 @@ public class create_text extends AppCompatActivity {
 
 
         // 등록버튼
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+
         childUpdates = new HashMap<>();
         Fragment fragment_home;
         fragment_home=new fragment_home();
@@ -217,13 +239,14 @@ public class create_text extends AppCompatActivity {
             public void onClick(View view) {
 
                     textModel.uid = myUid;
-                    textModel.text_state = true;
+                    textModel.text_state = "true";
                     textModel.pay_shape = pay_shape.getSelectedItem().toString();
                     textModel.suptegory = suptegory.getSelectedItem().toString();
                     textModel.end_recruit = text_end_recruit.getText().toString();
                     textModel.title = edit_title.getText().toString();
                     textModel.pay = edit_pay.getText().toString();
                     textModel.context = edit_context.getText().toString();
+                    textModel.name = name;
 
                     databaseReference.child("context_info").push().setValue(textModel);
 
