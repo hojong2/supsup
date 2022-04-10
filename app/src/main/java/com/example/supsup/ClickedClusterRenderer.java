@@ -2,6 +2,7 @@ package com.example.supsup;
 
 import android.content.Context;
 
+import com.example.supsup.R;
 import com.example.supsup.model.MyItem;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
