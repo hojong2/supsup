@@ -11,8 +11,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     Fragment fragment_home;
@@ -26,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_top, menu);
         return true;
     }
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -48,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         fragment_map=new fragment_map();
         fragment_chat=new fragment_chat();
         fragment_mypage=new fragment_mypage();
+
 
 
 

@@ -55,6 +55,8 @@ public class create_text extends AppCompatActivity {
 
     Map<String,Object> userValue = null;
 
+
+
     TextModel textModel = new TextModel();
     UserModel userModel = new UserModel();
 
@@ -62,6 +64,7 @@ public class create_text extends AppCompatActivity {
     public String[] suptegoryList = {"이동","대화","인력"};
     public String name;
     public String text_state; // 모집중, 모집아님
+
 
 
 
@@ -103,10 +106,15 @@ public class create_text extends AppCompatActivity {
         EditText edit_context = (EditText) findViewById(R.id.edittext_context);
         Button button_enroll = (Button) findViewById(R.id.btn_enroll);
 
+
         // 파이어베이스에서 현재 로그인한 유저 정보 빼오기
-        final String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+
+            final String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            mAuth = FirebaseAuth.getInstance();
+            FirebaseUser currentUser = mAuth.getCurrentUser();
+
+
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -251,7 +259,9 @@ public class create_text extends AppCompatActivity {
                     databaseReference.child("context_info").push().setValue(textModel);
 
                     Toast.makeText(getApplicationContext(), "등록이 완료되었습니다", Toast.LENGTH_SHORT).show();
-//                    getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_home).commit();
+
+                     Intent intent = new Intent(getApplication(),MainActivity.class);
+                     startActivity(intent);
 
                 }
         });

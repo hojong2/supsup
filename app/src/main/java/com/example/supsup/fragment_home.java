@@ -11,10 +11,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -30,6 +33,9 @@ public class fragment_home extends Fragment {
     private static final String[] item2 = new String[]{"이동","대화","인력"};
     private static final String[] item3 = new String[]{"협의","금전","봉사시간","최신 순","오래된 순"};
     Context mContext=getActivity();
+
+    private FirebaseAuth mAuth;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,11 +56,23 @@ public class fragment_home extends Fragment {
         spinner1.setAdapter(adapter1);
         spinner2.setAdapter(adapter3);
 
+
+
         image_enroll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),create_text.class);
-                startActivity(intent);
+
+                try {
+                    final String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    mAuth = FirebaseAuth.getInstance();
+                    FirebaseUser currentUser = mAuth.getCurrentUser();
+                    Intent intent = new Intent(getActivity(),create_text.class);
+                    startActivity(intent);
+
+                }catch (Exception e){
+                    Toast.makeText(getActivity(),"로그인을 먼저 하시길 바랍니다.",Toast.LENGTH_LONG).show();
+                }
+
             }
         });
 

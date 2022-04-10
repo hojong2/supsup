@@ -31,6 +31,7 @@ public class home_textinfo extends AppCompatActivity {
 //    private String destinationUid;
 //    private String textId;
 
+
     public String textUser_name; // 글작성_HelpMe
     public String text_title; // 글제목_HelpYou
 
@@ -48,6 +49,8 @@ public class home_textinfo extends AppCompatActivity {
 //    private DatabaseReference mDatabase;
     fragment_home_helpme Help_Me = new fragment_home_helpme();
     fragment_home_helpyou Help_you = new fragment_home_helpyou();
+
+
 
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -161,6 +164,8 @@ public class home_textinfo extends AppCompatActivity {
         button_chat.setOnClickListener(new View.OnClickListener() { // 채팅 버튼 클릭 시 화면 전환
             @Override
             public void onClick(View view) {
+
+
 
 //                mDatabase.child("context_info").child("textId").child("uid").addValueEventListener(new ValueEventListener() {
 //                    @Override
