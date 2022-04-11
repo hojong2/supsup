@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     Fragment fragment_chat;
     Fragment fragment_mypage;
 
-
+    private FirebaseAuth mAuth;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_top, menu);
@@ -77,13 +77,32 @@ public class MainActivity extends AppCompatActivity {
                                 ab.setTitle("지도");
                                 return true;
                             case R.id.tab_chat:
-                                getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_chat).commit();
-                                ab.setTitle("채팅");
-                                return true;
+                                try {
+                                    final String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                    mAuth = FirebaseAuth.getInstance();
+                                    FirebaseUser currentUser = mAuth.getCurrentUser();
+
+                                    getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_chat).commit();
+                                    ab.setTitle("채팅");
+                                    return true;
+                                }catch (Exception e){
+                                    Toast.makeText(getApplicationContext(),"로그인을 하시길 바랍니다",Toast.LENGTH_SHORT).show();
+                                }
+
                             case R.id.tab_mypage:
-                                getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_mypage).commit();
-                                ab.setTitle("마이페이지");
-                                return true;
+                                try {
+                                    final String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                    mAuth = FirebaseAuth.getInstance();
+                                    FirebaseUser currentUser = mAuth.getCurrentUser();
+
+                                    getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_mypage).commit();
+                                    ab.setTitle("마이페이지");
+                                    return true;
+
+                                }catch (Exception e){
+                                    Toast.makeText(getApplicationContext(),"로그인을 하시길 바랍니다",Toast.LENGTH_SHORT).show();
+                                }
+
                         }
 
                         return false;
