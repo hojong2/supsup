@@ -34,6 +34,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.maps.android.SphericalUtil;
 import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterManager;
 import com.pedro.library.AutoPermissions;
@@ -49,6 +50,8 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
     GPSListener gpsListener;
     Location location;
     SupportMapFragment mapView;
+    LatLng from, to;
+
 
     public fragment_map(){
 
@@ -77,6 +80,7 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
         }
         mapView = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById(R.id.map);
+
         mapView.onResume();
         mapView.getMapAsync(this);
 
@@ -90,6 +94,7 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
         public void onLocationChanged(Location location) {
             double latitude = location.getLatitude();
             double longitude = location.getLongitude();
+            from = new LatLng(latitude,longitude);
             showCurrentLocation(latitude, longitude);
         }
 
@@ -153,7 +158,7 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
     public void showCurrentLocation(double latitude, double longitude) {
 
         LatLng curPoint = new LatLng(latitude, longitude);
-        Log.d("test",String.valueOf(latitude)+" "+String.valueOf(longitude));
+        from = new LatLng(latitude, longitude);
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(curPoint, 15));
     }
 
@@ -175,9 +180,11 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        final map_bottom_dialog map_bottom_dialog = new map_bottom_dialog(getActivity().getApplicationContext());
         map = googleMap;
         map.setMyLocationEnabled(true);
+        map.getUiSettings().setMyLocationButtonEnabled(true);
+        final map_bottom_dialog map_bottom_dialog = new map_bottom_dialog(getActivity().getApplicationContext());
+
         ClusterManager<MyItem> mclusterManager = new ClusterManager<>(getActivity(),map);
 
         map.setOnCameraIdleListener(mclusterManager);
@@ -251,8 +258,11 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
         mclusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener<MyItem>() {
             @Override
             public boolean onClusterItemClick(MyItem item) {
+                to  = new LatLng(item.getLat(),item.getLng());
+                double distance = SphericalUtil.computeDistanceBetween(from,to);
                 map_bottom_dialog.setTitle(item.getTitle());
                 map_bottom_dialog.setLocation(item.getAddress());
+                map_bottom_dialog.setDistance(distance);
                 mclusterManager.setRenderer(new DefaultClusterRenderer(getActivity(),googleMap,mclusterManager));
 
                 item.setClickedCheck(true);

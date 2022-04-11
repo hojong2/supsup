@@ -7,10 +7,13 @@ public class MyItem implements ClusterItem {
     private LatLng position;
     private  String title,address,writer;
     private  boolean clickedCheck;
+    private double lat,lng;
 
 
     public MyItem(double lat, double lng, String title, String address, String writer, boolean clickedCheck) {
         position = new LatLng(lat, lng);
+        this.lat = lat;
+        this.lng = lng;
         this.title = title;
         this.address = address;
         this.writer = writer;
@@ -24,11 +27,12 @@ public class MyItem implements ClusterItem {
         return position;
     }
 
-    //    public void setLat(double lat){this.lat = lat;}
-//    public double getLat(){return  lat;}
-//
-//    public void setLng(double lng){this.lng = lng;}
-//    public double getLng(){return  lng;}
+    public void setLat(double lat){this.lat = lat;}
+    public double getLat(){return  lat;}
+
+    public void setLng(double lng){this.lng = lng;}
+    public double getLng(){return  lng;}
+
     public void setClickedCheck(boolean clickedCheck){this.clickedCheck = clickedCheck;}
     public boolean getClickedCheck(){return clickedCheck;}
 

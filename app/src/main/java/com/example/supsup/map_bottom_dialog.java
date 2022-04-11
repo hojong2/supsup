@@ -11,11 +11,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class map_bottom_dialog extends BottomSheetDialogFragment {
     Context context;
-    String location, title, writer;
+    String location, title;
+    double distance;
     public map_bottom_dialog(Context context)
     {
         this.context = context;
@@ -36,14 +39,18 @@ public class map_bottom_dialog extends BottomSheetDialogFragment {
     {
         View view = inflater.inflate(R.layout.map_bottom_dialog, container, false);
         TextView textlocation = view.findViewById(R.id.TextLocation);
-        TextView textwriter = view.findViewById(R.id.TextWriter);
+        TextView textdistance = view.findViewById(R.id.TextDistance);
+        TextView textwalk = view.findViewById(R.id.TextWalk);
         Button btntitle = view.findViewById(R.id.btnTitle);
         ImageView imageView = view.findViewById(R.id.image);
+        Glide.with(this).load(R.drawable.logo).circleCrop().into(imageView);
 
-        imageView.setImageDrawable(getResources().getDrawable(R.drawable.logo));
+
 
         textlocation.setText(location);
         btntitle.setText(title);
+        textdistance.setText("약"+String.valueOf((int)distance)+"M");
+        textwalk.setText("약 "+ String.valueOf(Math.round(distance*1.6))+"걸음");
         btntitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,8 +67,8 @@ public class map_bottom_dialog extends BottomSheetDialogFragment {
     public void setLocation(String location){
         this.location = location;
 
-    }public void setWriter(String writer){
-        this.writer = writer;
+    }public void setDistance(double distance){
+        this.distance = Math.round(distance);
     }
 
     public  void Toast(String str){
