@@ -18,7 +18,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 public class map_bottom_dialog extends BottomSheetDialogFragment {
     Context context;
     String location, title;
-    double distance;
+    int distance;
     public map_bottom_dialog(Context context)
     {
         this.context = context;
@@ -49,7 +49,10 @@ public class map_bottom_dialog extends BottomSheetDialogFragment {
 
         textlocation.setText(location);
         btntitle.setText(title);
-        textdistance.setText("약"+String.valueOf((int)distance)+"M");
+        if(distance/1000 >= 1) {
+            textdistance.setText("약" + String.valueOf(distance/1000)+"."+String.valueOf(distance%1000) + "KM");
+        }else textdistance.setText("약" + String.valueOf(distance) + "M");
+
         textwalk.setText("약 "+ String.valueOf(Math.round(distance*1.6))+"걸음");
         btntitle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +71,7 @@ public class map_bottom_dialog extends BottomSheetDialogFragment {
         this.location = location;
 
     }public void setDistance(double distance){
-        this.distance = Math.round(distance);
+        this.distance = (int) Math.round(distance);
     }
 
     public  void Toast(String str){
