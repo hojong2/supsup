@@ -45,7 +45,6 @@ public class fragment_home_helpme extends Fragment {
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference("context_info");
-
     private List<TextModel> textModelList = new ArrayList<>();
 
 

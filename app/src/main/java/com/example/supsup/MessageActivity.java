@@ -39,10 +39,8 @@ public class MessageActivity extends AppCompatActivity {
     private String destinatonUid;
     private Button button;
     private EditText editText;
-
     private String uid;
     private String chatRoomUid;
-
     private RecyclerView recyclerView;
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm");
 
