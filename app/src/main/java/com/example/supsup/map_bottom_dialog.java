@@ -43,6 +43,7 @@ public class map_bottom_dialog extends BottomSheetDialogFragment {
         TextView textwalk = view.findViewById(R.id.TextWalk);
         Button btntitle = view.findViewById(R.id.btnTitle);
         ImageView imageView = view.findViewById(R.id.image);
+
         Glide.with(this).load(R.drawable.logo).circleCrop().into(imageView);
 
 

@@ -1,6 +1,8 @@
 package com.example.supsup.model;
 
-public class MapDB {
+import androidx.lifecycle.ViewModel;
+
+public class MapDB extends ViewModel {
     public String title,address,writer,context_info;
     public double latitude;
     public double longitude;

@@ -67,7 +67,7 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_map, container, false);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("map_example");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("context_info");
         manager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
         gpsListener = new GPSListener();
@@ -158,6 +158,7 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
     public void showCurrentLocation(double latitude, double longitude) {
 
         LatLng curPoint = new LatLng(latitude, longitude);
+        Log.d("test",String.valueOf(latitude)+" "+String.valueOf(longitude));
         from = new LatLng(latitude, longitude);
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(curPoint, 15));
     }
@@ -180,10 +181,11 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
+        final map_bottom_dialog map_bottom_dialog = new map_bottom_dialog(getActivity().getApplicationContext());
         map = googleMap;
         map.setMyLocationEnabled(true);
         map.getUiSettings().setMyLocationButtonEnabled(true);
-        final map_bottom_dialog map_bottom_dialog = new map_bottom_dialog(getActivity().getApplicationContext());
+
 
         ClusterManager<MyItem> mclusterManager = new ClusterManager<>(getActivity(),map);
 
@@ -191,7 +193,7 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
         map.setOnMarkerClickListener(mclusterManager);
 
         try {
-            long minTime = 10000;
+            long minTime = 30000;
             float minDistance = 0;
 
             if(manager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
@@ -209,7 +211,8 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
                 if(location != null){
                     double latitude = location.getLatitude();
                     double longitude = location.getLongitude();
-                    showCurrentLocation(latitude,longitude);
+                    LatLng lastKnown = new LatLng(latitude,longitude);
+                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(lastKnown,15));
                 }
             }
             manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,minTime,minDistance,gpsListener);
@@ -221,7 +224,7 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
         mclusterManager.setRenderer(new DefaultClusterRenderer(getActivity(),googleMap,mclusterManager));
 
         Geocoder geocoder = new Geocoder(getActivity());
-            mDatabase.addValueEventListener(new ValueEventListener() {
+        mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot context_info : snapshot.getChildren()) {
@@ -312,3 +315,4 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
 
     }
 }
+
