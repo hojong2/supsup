@@ -30,11 +30,6 @@ public class DefaultClusterRenderer  extends com.google.maps.android.clustering.
 
 
     }
-////    클러스터 색상 변경
-//    @Override
-//    protected int getColor(int clusterSize) {
-//        return Color.parseColor("blue");
-//    }
 
 
 }

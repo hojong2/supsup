@@ -31,10 +31,6 @@ public class ClickedClusterRenderer  extends DefaultClusterRenderer<MyItem> {
         super.onClusterItemRendered(clusterItem, marker);
         clusterItem.setClickedCheck(false);
     }
-    //클러스터 색상 변경
-//    @Override
-//    protected int getColor(int clusterSize) {
-//        return Color.parseColor("#567238");
-//    }
+
 
 }

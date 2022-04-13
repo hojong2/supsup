@@ -75,10 +75,6 @@ public class MainActivity extends AppCompatActivity {
                                 ab.setTitle("홈");
                                 return true;
                             case R.id.tab_map:
-//                                Intent intent = getIntent();
-//                                int count  = Integer.parseInt(intent.getExtras().getString("count"));
-//                                Bundle bundle = new Bundle();
-
                                 getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_map).commit();
                                 ab.setTitle("지도");
                                 return true;
