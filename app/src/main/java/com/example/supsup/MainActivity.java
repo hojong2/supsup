@@ -15,19 +15,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.supsup.model.MapDB;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     Fragment fragment_home;
     Fragment fragment_map;
     Fragment fragment_chat;
     Fragment fragment_mypage;
-
 
     private FirebaseAuth mAuth;
     @Override
@@ -63,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-//        ArrayList<MapDB> mapDBArrayList = (ArrayList<MapDB>) intent.getSerializableExtra("mapDB");
 
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_home).commit();
         ab.setTitle("홈");
@@ -80,10 +75,12 @@ public class MainActivity extends AppCompatActivity {
                                 ab.setTitle("홈");
                                 return true;
                             case R.id.tab_map:
+//                                Intent intent = getIntent();
+//                                int count  = Integer.parseInt(intent.getExtras().getString("count"));
+//                                Bundle bundle = new Bundle();
+
                                 getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_map).commit();
-
                                 ab.setTitle("지도");
-
                                 return true;
                             case R.id.tab_chat:
                                 try {

@@ -242,7 +242,8 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
                     }
                     if (list != null) {
                         if (list.size() == 0) {
-                            Toast("해당 주소가 없습니다.");
+
+                            Toast(title+"의 주소를 찾을 수 없습니다");
                         } else {
                             Address address = list.get(0);
                             double latitude = address.getLatitude();
