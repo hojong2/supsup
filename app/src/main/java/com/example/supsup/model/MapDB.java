@@ -1,5 +1,10 @@
 package com.example.supsup.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
 public class MapDB {
     public String title,address,writer,context_info;
     public double latitude;
@@ -9,7 +14,7 @@ public class MapDB {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public MapDB(double latitude, double longitude, String title, String address, String writer) {
+    public MapDB(String title, String address) {
         this.title = title;
         this.address = address;
         this.writer = writer;
@@ -47,5 +52,6 @@ public class MapDB {
 
     public void setContext_info(String context_info){this.context_info = context_info;}
     public String getContext_info(){return  context_info;}
+
 
 }

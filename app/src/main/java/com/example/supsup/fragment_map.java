@@ -51,6 +51,7 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
     Location location;
     SupportMapFragment mapView;
     LatLng from, to;
+    MapDB mapDB;
 
 
     public fragment_map(){
