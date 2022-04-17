@@ -30,8 +30,8 @@ public class TextModel {
 
 
     public TextModel(String uid, String uid_roomNum, String text_state, String help_state
-    , String title, String pay_shape, String suptegory, String pay, String end_recruit
-    , String end_date, String end_datetime, String address, String context, String name) {
+            , String title, String pay_shape, String suptegory, String pay, String end_recruit
+            , String end_date, String end_datetime, String address, String context, String name) {
         this.uid=uid; //o
         this.text_state=text_state;  //o
         this.help_state=help_state; //o

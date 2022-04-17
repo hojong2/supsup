@@ -23,6 +23,7 @@
         android:layout_height="50dp"
         android:background="@drawable/button_yellow"
         android:text="크게 볼게요"
+        android:id="@+id/btn_wide"
         app:backgroundTint="@null"/>
     <Button
         android:layout_margin="50dp"

@@ -121,9 +121,9 @@ public class create_text extends AppCompatActivity {
         databaseReference.child("users").child(myUid).child("userName").addValueEventListener(new ValueEventListener() { // 참조한 위치에 데이터가 변화가 일어날 때 마다 매번 읽어옴
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    String value = dataSnapshot.getValue(String.class);
-                    name = value;
-                }
+                String value = dataSnapshot.getValue(String.class);
+                name = value;
+            }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -246,24 +246,24 @@ public class create_text extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                    textModel.uid = myUid;
-                    textModel.text_state = "true";
-                    textModel.pay_shape = pay_shape.getSelectedItem().toString();
-                    textModel.suptegory = suptegory.getSelectedItem().toString();
-                    textModel.end_recruit = text_end_recruit.getText().toString();
-                    textModel.title = edit_title.getText().toString();
-                    textModel.pay = edit_pay.getText().toString();
-                    textModel.context = edit_context.getText().toString();
-                    textModel.name = name;
+                textModel.uid = myUid;
+                textModel.text_state = "true";
+                textModel.pay_shape = pay_shape.getSelectedItem().toString();
+                textModel.suptegory = suptegory.getSelectedItem().toString();
+                textModel.end_recruit = text_end_recruit.getText().toString();
+                textModel.title = edit_title.getText().toString();
+                textModel.pay = edit_pay.getText().toString();
+                textModel.context = edit_context.getText().toString();
+                textModel.name = name;
 
-                    databaseReference.child("context_info").push().setValue(textModel);
+                databaseReference.child("context_info").push().setValue(textModel);
 
-                    Toast.makeText(getApplicationContext(), "등록이 완료되었습니다", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "등록이 완료되었습니다", Toast.LENGTH_SHORT).show();
 
                      Intent intent = new Intent(getApplication(),MainActivity.class);
                      startActivity(intent);
 
-                }
+            }
         });
 
     }

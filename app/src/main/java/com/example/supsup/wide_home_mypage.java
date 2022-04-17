@@ -41,13 +41,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.ArrayList;
 import java.util.List;
 
-public class fragment_mypage extends Fragment {
+public class wide_home_mypage extends Fragment {
 
     Fragment fragment_mypage_myhelpme;
     Fragment fragment_mypage_myhelpyou;
     Fragment fragment_mypage;
     private ListView listview2;
-    private adapter2 adapter2;
+    private wide_adapter2 adapter2;
     private LinearLayout profilelinear;
     TextView textView_name;
     TextView textView_address;
@@ -64,8 +64,8 @@ public class fragment_mypage extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_mypage, container, false);
-        adapter2 = new adapter2();
+        View v = inflater.inflate(R.layout.wide_home_mypage, container, false);
+        adapter2 = new wide_adapter2();
         fragment_mypage_myhelpme=new fragment_home_helpme();
         fragment_mypage_myhelpyou=new fragment_home_helpyou();
         fragment_mypage=new fragment_mypage();
@@ -101,9 +101,9 @@ public class fragment_mypage extends Fragment {
             databaseReference.child("users").child(myUid).child("userName").addValueEventListener(new ValueEventListener() { // 참조한 위치에 데이터가 변화가 일어날 때 마다 매번 읽어옴
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        String value1 = dataSnapshot.getValue(String.class);
-                        textView_name.setText(value1);
-                    }
+                    String value1 = dataSnapshot.getValue(String.class);
+                    textView_name.setText(value1);
+                }
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
                 }

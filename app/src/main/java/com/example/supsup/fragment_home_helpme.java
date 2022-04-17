@@ -45,7 +45,6 @@ public class fragment_home_helpme extends Fragment {
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference("context_info");
-
     private List<TextModel> textModelList = new ArrayList<>();
 
 
@@ -97,14 +96,14 @@ public class fragment_home_helpme extends Fragment {
         databaseReference.addValueEventListener(new ValueEventListener() { // 참조한 위치에 데이터가 변화가 일어날 때 마다 매번 읽어옴
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                textModelList.clear();
-                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    TextModel textModel = snapshot.getValue(TextModel.class);
-                    if(textModel.help_state.equals("true")) {
-                        textModelList.add(textModel);
+                    textModelList.clear();
+                    for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                        TextModel textModel = snapshot.getValue(TextModel.class);
+                        if(textModel.help_state.equals("true")) {
+                            textModelList.add(textModel);
+                        }
                     }
-                }
-                customAdaptor.notifyDataSetChanged();
+                        customAdaptor.notifyDataSetChanged();
 
             }
 
@@ -122,62 +121,61 @@ public class fragment_home_helpme extends Fragment {
 
         return v;
     }
-    class CustomAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+        class CustomAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_text,parent,false);
-            return new CustomTextViewHolder(view);
-        }
+            @NonNull
+            @Override
+            public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_text,parent,false);
+                return new CustomTextViewHolder(view);
+            }
 
 
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            CustomTextViewHolder customTextViewHolder = ((CustomTextViewHolder)holder);
+            @Override
+            public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+                CustomTextViewHolder customTextViewHolder = ((CustomTextViewHolder)holder);
 
-            customTextViewHolder.textView1.setText(textModelList.get(position).title);
-            customTextViewHolder.textView2.setText(textModelList.get(position).address);
-            customTextViewHolder.textView3.setText(textModelList.get(position).name);
+                        customTextViewHolder.textView1.setText(textModelList.get(position).title);
+                        customTextViewHolder.textView2.setText(textModelList.get(position).address);
+                        customTextViewHolder.textView3.setText(textModelList.get(position).name);
 
-        }
+            }
 
-        @Override
-        public int getItemCount() { // 텍스트 모델 리스트의 개수만큼 가져옴
-            return textModelList.size();
-        }
-        public class CustomTextViewHolder extends RecyclerView.ViewHolder{
+            @Override
+            public int getItemCount() { // 텍스트 모델 리스트의 개수만큼 가져옴
+                return textModelList.size();
+            }
+            public class CustomTextViewHolder extends RecyclerView.ViewHolder{
 
-            ImageView imageView;
-            TextView textView1;
-            TextView textView2;
-            TextView textView3;
+                ImageView imageView;
+                TextView textView1;
+                TextView textView2;
+                TextView textView3;
 
-            public CustomTextViewHolder(@NonNull View itemView) {
-                super(itemView);
-                this.imageView = itemView.findViewById(R.id.item_text_imageview);
-                this.textView1 = itemView.findViewById(R.id.item_text_title);
-                this.textView2 = itemView.findViewById(R.id.item_text_location);
-                this.textView3 = itemView.findViewById(R.id.item_text_name);
+                public CustomTextViewHolder(@NonNull View itemView) {
+                    super(itemView);
+                    this.imageView = itemView.findViewById(R.id.item_text_imageview);
+                    this.textView1 = itemView.findViewById(R.id.item_text_title);
+                    this.textView2 = itemView.findViewById(R.id.item_text_location);
+                    this.textView3 = itemView.findViewById(R.id.item_text_name);
 
-                itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        text_title = textView1.getText().toString();
-                        text_name = textView3.getText().toString();
+                    itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            text_title = textView1.getText().toString();
+                            text_name = textView3.getText().toString();
 
-                        Intent intent = new Intent(getActivity(),home_textinfo.class);
-                        startActivity(intent);
-                    }
-                });
+                            Intent intent = new Intent(getActivity(),home_textinfo.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
             }
         }
-    }
 
 
 
 }
-
 
 
