@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.supsup.model.MapDB;
@@ -43,7 +44,7 @@ import com.pedro.library.AutoPermissionsListener;
 import java.io.IOException;
 import java.util.List;
 
-public class fragment_map extends Fragment implements AutoPermissionsListener, OnMapReadyCallback{
+public class fragment_map extends Fragment implements OnMapReadyCallback{
     GoogleMap map;
     DatabaseReference mDatabase;
     LocationManager manager;
@@ -51,6 +52,7 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
     Location location;
     SupportMapFragment mapView;
     LatLng from, to;
+    MapDB mapDB;
 
 
     public fragment_map(){
@@ -60,14 +62,14 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_map, container, false);
-
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("map_example");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("context_info");
         manager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
         gpsListener = new GPSListener();
@@ -78,12 +80,12 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         mapView = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById(R.id.map);
 
         mapView.onResume();
         mapView.getMapAsync(this);
-
         AutoPermissions.Companion.loadAllPermissions(getActivity(),101);
         return view;
     }
@@ -134,7 +136,24 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
     @Override
     public void onResume() {
         super.onResume();
-        mapView.onResume();
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            Toast("접근 권한이 없습니다.");
+            return;
+        } else {
+            if (manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, gpsListener);
+                //manager.removeUpdates(gpsListener);
+            } else if (manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+                manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, gpsListener);
+                //manager.removeUpdates(gpsListener);
+            }
+
+            if (map != null) {
+                map.setMyLocationEnabled(true);
+            }
+            Log.i("MyLocTest","onResume에서 requestLocationUpdates() 되었습니다.");
+        }
     }
 
     @Override
@@ -158,6 +177,7 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
     public void showCurrentLocation(double latitude, double longitude) {
 
         LatLng curPoint = new LatLng(latitude, longitude);
+        Log.d("test",String.valueOf(latitude)+" "+String.valueOf(longitude));
         from = new LatLng(latitude, longitude);
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(curPoint, 15));
     }
@@ -177,12 +197,13 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
         map = googleMap;
         map.setMyLocationEnabled(true);
         map.getUiSettings().setMyLocationButtonEnabled(true);
+
         final map_bottom_dialog map_bottom_dialog = new map_bottom_dialog(getActivity().getApplicationContext());
 
         ClusterManager<MyItem> mclusterManager = new ClusterManager<>(getActivity(),map);
@@ -191,7 +212,7 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
         map.setOnMarkerClickListener(mclusterManager);
 
         try {
-            long minTime = 10000;
+            long minTime = 30000;
             float minDistance = 0;
 
             if(manager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
@@ -209,7 +230,8 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
                 if(location != null){
                     double latitude = location.getLatitude();
                     double longitude = location.getLongitude();
-                    showCurrentLocation(latitude,longitude);
+                    LatLng lastKnown = new LatLng(latitude,longitude);
+                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(lastKnown,15));
                 }
             }
             manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,minTime,minDistance,gpsListener);
@@ -221,7 +243,7 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
         mclusterManager.setRenderer(new DefaultClusterRenderer(getActivity(),googleMap,mclusterManager));
 
         Geocoder geocoder = new Geocoder(getActivity());
-            mDatabase.addValueEventListener(new ValueEventListener() {
+        mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot context_info : snapshot.getChildren()) {
@@ -239,6 +261,8 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
                     if (list != null) {
                         if (list.size() == 0) {
                             Toast("해당 주소가 없습니다.");
+
+                            Toast(title+"의 주소를 찾을 수 없습니다");
                         } else {
                             Address address = list.get(0);
                             double latitude = address.getLatitude();
@@ -248,7 +272,6 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
                     }
                 }
             }
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -295,20 +318,6 @@ public class fragment_map extends Fragment implements AutoPermissionsListener, O
         Toast myToast = Toast.makeText(getActivity().getApplicationContext(),str, Toast.LENGTH_SHORT);
         myToast.show();
     }
-    //권한
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        AutoPermissions.Companion.parsePermissions(getActivity(), requestCode, permissions, this);
-    }
-
-    @Override
-    public void onDenied(int i, @NonNull String[] strings) {
-
-    }
-
-    @Override
-    public void onGranted(int i, @NonNull String[] strings) {
-
-    }
 }
+
+

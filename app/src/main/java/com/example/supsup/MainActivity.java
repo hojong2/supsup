@@ -18,8 +18,10 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.pedro.library.AutoPermissions;
+import com.pedro.library.AutoPermissionsListener;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AutoPermissionsListener {
     Fragment fragment_home;
     Fragment fragment_map;
     Fragment fragment_chat;
@@ -75,10 +77,6 @@ public class MainActivity extends AppCompatActivity {
                                 ab.setTitle("홈");
                                 return true;
                             case R.id.tab_map:
-//                                Intent intent = getIntent();
-//                                int count  = Integer.parseInt(intent.getExtras().getString("count"));
-//                                Bundle bundle = new Bundle();
-
                                 getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_map).commit();
                                 ab.setTitle("지도");
                                 return true;
@@ -118,5 +116,19 @@ public class MainActivity extends AppCompatActivity {
         );
 
     }
+//위치 권한
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        AutoPermissions.Companion.parsePermissions(this, requestCode, permissions, this);
+    }
+    @Override
+    public void onDenied(int i, @NonNull String[] strings) {
 
+    }
+
+    @Override
+    public void onGranted(int i, @NonNull String[] strings) {
+
+    }
 }
