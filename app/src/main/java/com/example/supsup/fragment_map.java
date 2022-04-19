@@ -44,7 +44,7 @@ import com.pedro.library.AutoPermissionsListener;
 import java.io.IOException;
 import java.util.List;
 
-public class fragment_map extends Fragment implements OnMapReadyCallback{
+public class fragment_map extends Fragment{
     GoogleMap map;
     DatabaseReference mDatabase;
     LocationManager manager;
@@ -84,8 +84,15 @@ public class fragment_map extends Fragment implements OnMapReadyCallback{
         mapView = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById(R.id.map);
 
-        mapView.onResume();
-        mapView.getMapAsync(this);
+
+        mapView.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(@NonNull GoogleMap googleMap) {
+                map = googleMap;
+                addData(googleMap);
+
+            }
+        });
         AutoPermissions.Companion.loadAllPermissions(getActivity(),101);
         return view;
     }
@@ -138,15 +145,14 @@ public class fragment_map extends Fragment implements OnMapReadyCallback{
         super.onResume();
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-            Toast("접근 권한이 없습니다.");
             return;
         } else {
             if (manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, gpsListener);
-                //manager.removeUpdates(gpsListener);
+                manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 30000, 0, gpsListener);
+
             } else if (manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-                manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, gpsListener);
-                //manager.removeUpdates(gpsListener);
+                manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 30000, 0, gpsListener);
+
             }
 
             if (map != null) {
@@ -195,15 +201,8 @@ public class fragment_map extends Fragment implements OnMapReadyCallback{
         }
     }
 
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        map = googleMap;
-        map.setMyLocationEnabled(true);
-        map.getUiSettings().setMyLocationButtonEnabled(true);
 
+    public void addData(GoogleMap googleMap) {
         final map_bottom_dialog map_bottom_dialog = new map_bottom_dialog(getActivity().getApplicationContext());
 
         ClusterManager<MyItem> mclusterManager = new ClusterManager<>(getActivity(),map);
