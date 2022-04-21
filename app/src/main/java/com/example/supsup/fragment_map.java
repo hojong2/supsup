@@ -52,7 +52,6 @@ public class fragment_map extends Fragment{
     Location location;
     SupportMapFragment mapView;
     LatLng from, to;
-    MapDB mapDB;
 
 
     public fragment_map(){
@@ -247,26 +246,27 @@ public class fragment_map extends Fragment{
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot context_info : snapshot.getChildren()) {
                     MapDB map = context_info.getValue(MapDB.class);
+                    TextModel textModel = context_info.getValue(TextModel.class);
                     List<Address> list = null;
-                    String title = map.getTitle();
-                    String location = map.getAddress();
-                    String writer = map.getWriter();
-                    try {
-                        list = geocoder.getFromLocationName(location, 10);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        Log.e("test", "입출력 오류 - 서버에서 주소변환시 에러발생");
-                    }
-                    if (list != null) {
-                        if (list.size() == 0) {
-                            Toast("해당 주소가 없습니다.");
-
-                            Toast(title+"의 주소를 찾을 수 없습니다");
-                        } else {
-                            Address address = list.get(0);
-                            double latitude = address.getLatitude();
-                            double longitude = address.getLongitude();
-                            mclusterManager.addItem(new MyItem(latitude, longitude, title, location, "작성자", false));
+                    if(textModel.help_state.equals("true")) {
+                        String title = map.getTitle();
+                        String location = map.getAddress();
+                        String name = map.getName();
+                        try {
+                            list = geocoder.getFromLocationName(location, 10);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            Log.e("test", "입출력 오류 - 서버에서 주소변환시 에러발생");
+                        }
+                        if (list != null) {
+                            if (list.size() == 0) {
+                                Toast(title+"의 주소를 찾을 수 없습니다");
+                            } else {
+                                Address address = list.get(0);
+                                double latitude = address.getLatitude();
+                                double longitude = address.getLongitude();
+                                mclusterManager.addItem(new MyItem(latitude, longitude, title, location, "작성자", false));
+                            }
                         }
                     }
                 }
@@ -313,10 +313,6 @@ public class fragment_map extends Fragment{
 
     }
 
-
-    public void printContext(){
-
-    }
 
     public  void Toast(String str){
         Toast myToast = Toast.makeText(getActivity().getApplicationContext(),str, Toast.LENGTH_SHORT);

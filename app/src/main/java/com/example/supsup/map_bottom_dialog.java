@@ -1,6 +1,7 @@
 package com.example.supsup;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +18,11 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class map_bottom_dialog extends BottomSheetDialogFragment {
     Context context;
-    String location, title;
+    String location, title,name;
     int distance;
+    public static String map_name; // 글정보로 넘겨줄거임
+    public static String map_title; // 글정보로 넘겨줄거임
+
     public map_bottom_dialog(Context context)
     {
         this.context = context;
@@ -42,6 +46,7 @@ public class map_bottom_dialog extends BottomSheetDialogFragment {
         TextView textdistance = view.findViewById(R.id.TextDistance);
         TextView textwalk = view.findViewById(R.id.TextWalk);
         Button btntitle = view.findViewById(R.id.btnTitle);
+        TextView textName = view.findViewById(R.id.textName);
         ImageView imageView = view.findViewById(R.id.image);
 
         Glide.with(this).load(R.drawable.logo).circleCrop().into(imageView);
@@ -50,6 +55,7 @@ public class map_bottom_dialog extends BottomSheetDialogFragment {
 
         textlocation.setText(location);
         btntitle.setText(title);
+        textName.setText(name);
         if(distance/1000 >= 1) {
             textdistance.setText("약" + String.valueOf(distance/1000)+"."+String.valueOf(distance%1000) + "KM");
         }else textdistance.setText("약" + String.valueOf(distance) + "M");
@@ -58,7 +64,11 @@ public class map_bottom_dialog extends BottomSheetDialogFragment {
         btntitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast("글 클릭시 예시");
+                map_title = btntitle.getText().toString();
+                map_name = textName.getText().toString();
+
+                Intent intent = new Intent(getActivity(),home_textinfo.class);
+                startActivity(intent);
                 dismiss();
             }
         });
@@ -68,10 +78,9 @@ public class map_bottom_dialog extends BottomSheetDialogFragment {
     public void setTitle(String title){
         this.title = title;
     }
-    public void setLocation(String location){
-        this.location = location;
-
-    }public void setDistance(double distance){
+    public void setLocation(String location){ this.location = location; }
+    public  void setName(String name){this.name = name;}
+    public void setDistance(double distance){
         this.distance = (int) Math.round(distance);
     }
 

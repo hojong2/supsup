@@ -50,7 +50,7 @@ public class home_textinfo extends AppCompatActivity {
 //    private DatabaseReference mDatabase;
     fragment_home_helpme Help_Me = new fragment_home_helpme();
     fragment_home_helpyou Help_you = new fragment_home_helpyou();
-
+    map_bottom_dialog map = new map_bottom_dialog();
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference("context_info");
@@ -118,6 +118,32 @@ public class home_textinfo extends AppCompatActivity {
                             textView_user_name.setText(textUser_name);
                             textView_title.setText(text_title);
                         }
+
+                        if (textModel.name.equals(map.map_name) && textModel.title.equals(map.map_title)) {    //지도
+                            textView_address.setText(textModel.address);
+                            textView_money.setText(textModel.pay);
+                            textView_date.setText(textModel.end_recruit);
+                            textView_time1.setText(textModel.end_datetime);
+                            textView_time2.setText(textModel.end_datetime);
+                            destinationUid = textModel.uid;
+
+
+                            if (textModel.text_state.equals("true")) {
+                                textView_text_state.setText("모집 중");
+                            } else
+                                textView_text_state.setText("모집 완료");
+
+                            textView_pay_shape.setText(textModel.pay_shape);
+                            textView_address1.setText(textModel.address);
+                            textView_context.setText(textModel.context);
+
+                            textUser_name = map.map_name;  // map_bottom_dialog 의 변수 여기다가 설정
+                            text_title = map.map_title;    // map_bottom_dialog 의 변수 여기다가 설정
+
+                            textView_user_name.setText(textUser_name);
+                            textView_title.setText(text_title);
+                        }
+
                     }
                 }
 
