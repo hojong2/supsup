@@ -313,6 +313,11 @@ public class fragment_map extends Fragment{
 
     }
 
+
+    public void printContext(){
+
+    }
+
     public  void Toast(String str){
         Toast myToast = Toast.makeText(getActivity().getApplicationContext(),str, Toast.LENGTH_SHORT);
         myToast.show();
