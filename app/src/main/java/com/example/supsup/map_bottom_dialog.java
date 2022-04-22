@@ -73,8 +73,8 @@ public class map_bottom_dialog extends BottomSheetDialogFragment {
         btntitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                map_title = btntitle.getText().toString();
-                map_name = textName.getText().toString();
+                map_title = title;
+                map_name = name;
 
                 Intent intent = new Intent(getActivity(),map_textinfo.class);
                 startActivity(intent);
@@ -85,14 +85,10 @@ public class map_bottom_dialog extends BottomSheetDialogFragment {
 
         return view;
     }
-    public void setTitle(String title){
-        this.title = title;
-    }
+    public void setTitle(String title){ this.title = title; }
     public void setLocation(String location){ this.location = location; }
     public  void setName(String name){this.name = name;}
-    public void setDistance(double distance){
-        this.distance = (int) Math.round(distance);
-    }
+    public void setDistance(double distance){ this.distance = (int) Math.round(distance); }
 
     public  void Toast(String str){
         Toast myToast = Toast.makeText(getActivity().getApplicationContext(),str, Toast.LENGTH_SHORT);
