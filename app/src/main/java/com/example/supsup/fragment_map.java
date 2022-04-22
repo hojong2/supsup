@@ -265,7 +265,7 @@ public class fragment_map extends Fragment{
                                 Address address = list.get(0);
                                 double latitude = address.getLatitude();
                                 double longitude = address.getLongitude();
-                                mclusterManager.addItem(new MyItem(latitude, longitude, title, location, "작성자", false));
+                                mclusterManager.addItem(new MyItem(latitude, longitude, title, location, name, false));
                             }
                         }
                     }
@@ -285,6 +285,7 @@ public class fragment_map extends Fragment{
                 map_bottom_dialog.setTitle(item.getTitle());
                 map_bottom_dialog.setLocation(item.getAddress());
                 map_bottom_dialog.setDistance(distance);
+                map_bottom_dialog.setName(item.getName());
                 mclusterManager.setRenderer(new DefaultClusterRenderer(getActivity(),googleMap,mclusterManager));
 
                 item.setClickedCheck(true);

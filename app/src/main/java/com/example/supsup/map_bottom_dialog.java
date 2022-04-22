@@ -55,20 +55,30 @@ public class map_bottom_dialog extends BottomSheetDialogFragment {
 
         textlocation.setText(location);
         btntitle.setText(title);
-        textName.setText(name);
+        textName.setText("작성자 :"+name);
         if(distance/1000 >= 1) {
             textdistance.setText("약" + String.valueOf(distance/1000)+"."+String.valueOf(distance%1000) + "KM");
         }else textdistance.setText("약" + String.valueOf(distance) + "M");
 
-        textwalk.setText("약 "+ String.valueOf(Math.round(distance*1.6))+"걸음");
+
+        if(Math.round(distance*1.6) > 10000){
+            textwalk.setText("10000걸음 이상");
+        }else if(Math.round(distance*1.6) < 50) {
+            textwalk.setText("약 " + String.valueOf(Math.round(distance * 1.6)) + "걸음");
+        }else{
+            textwalk.setText("약 " + String.valueOf((Math.round(distance * 1.6)+5/10*10)) + "걸음");
+        }
+
+
         btntitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 map_title = btntitle.getText().toString();
                 map_name = textName.getText().toString();
 
-                Intent intent = new Intent(getActivity(),home_textinfo.class);
+                Intent intent = new Intent(getActivity(),map_textinfo.class);
                 startActivity(intent);
+
                 dismiss();
             }
         });

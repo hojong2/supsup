@@ -5,18 +5,18 @@ import com.google.maps.android.clustering.ClusterItem;
 
 public class MyItem implements ClusterItem {
     private LatLng position;
-    private  String title,address,writer;
+    private  String title,address,name;
     private  boolean clickedCheck;
     private double lat,lng;
 
 
-    public MyItem(double lat, double lng, String title, String address, String writer, boolean clickedCheck) {
+    public MyItem(double lat, double lng, String title, String address, String name, boolean clickedCheck) {
         position = new LatLng(lat, lng);
         this.lat = lat;
         this.lng = lng;
         this.title = title;
         this.address = address;
-        this.writer = writer;
+        this.name = name;
         this.clickedCheck = clickedCheck;
     }
 
@@ -46,8 +46,8 @@ public class MyItem implements ClusterItem {
     public void setAddress(String address){ this.address = address;}
     public String getAddress(){return  address;}
 
-    public void setWriter(String writer){ this.writer = writer;}
-    public  String getWriter(){return writer;}
+    public void setName(String writer){ this.name = writer;}
+    public  String getName(){return name;}
 
     public String getSnippet() {
         return null;

@@ -1,18 +1,15 @@
 package com.example.supsup;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -21,12 +18,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class home_textinfo extends AppCompatActivity {
+public class map_textinfo extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private String destinationUid;
 
@@ -48,9 +43,8 @@ public class home_textinfo extends AppCompatActivity {
 
 
 //    private DatabaseReference mDatabase;
-    fragment_home_helpme Help_Me = new fragment_home_helpme();
-    fragment_home_helpyou Help_you = new fragment_home_helpyou();
 
+    map_bottom_dialog map = new map_bottom_dialog();
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference("context_info");
@@ -93,8 +87,7 @@ public class home_textinfo extends AppCompatActivity {
                     textModelList.clear();
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         TextModel textModel = snapshot.getValue(TextModel.class);
-
-                        if (textModel.name.equals(Help_Me.text_name) && textModel.title.equals(Help_Me.text_title)) {    //해주세요
+                        if (textModel.name.equals(map.map_name) && textModel.title.equals(map.map_title)) {    //지도
                             textView_address.setText(textModel.address);
                             textView_money.setText(textModel.pay);
                             textView_date.setText(textModel.end_recruit);
@@ -112,12 +105,13 @@ public class home_textinfo extends AppCompatActivity {
                             textView_address1.setText(textModel.address);
                             textView_context.setText(textModel.context);
 
-                            textUser_name = Help_Me.text_name;  // frag_home_helpme 의 변수 여기다가 설정
-                            text_title = Help_Me.text_title;    // frag_home_helpme 의 변수 여기다가 설정
+                            textUser_name = map.map_name;  // map_bottom_dialog 의 변수 여기다가 설정
+                            text_title = map.map_title;    // map_bottom_dialog 의 변수 여기다가 설정
 
                             textView_user_name.setText(textUser_name);
                             textView_title.setText(text_title);
                         }
+
                     }
                 }
 
