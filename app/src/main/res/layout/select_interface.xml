@@ -18,6 +18,7 @@
         app:backgroundTint="@null" />
 
     <Button
+
         android:layout_margin="50dp"
         android:layout_width="300dp"
         android:layout_height="50dp"
@@ -25,15 +26,6 @@
         android:text="크게 볼게요"
         android:id="@+id/btn_wide"
         app:backgroundTint="@null"/>
-    <Button
-        android:layout_margin="50dp"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:id="@+id/btn_tts"
-        android:background="@drawable/button_yellow"
-        android:text="소리로 볼게요"
-        app:backgroundTint="@null"/>
-
 
 
 </LinearLayout>
