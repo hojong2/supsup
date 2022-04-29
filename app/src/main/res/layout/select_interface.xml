@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:focusable="true"
     >
 
     <Button
@@ -15,7 +16,7 @@
         android:id="@+id/btn_default"
         android:background="@drawable/button_yellow"
         android:text="기본값"
-        app:backgroundTint="@null" />
+        app:backgroundTint="@null"/>
 
     <Button
 
@@ -27,5 +28,12 @@
         android:id="@+id/btn_wide"
         app:backgroundTint="@null"/>
 
+
+    <ImageButton
+        android:id="@+id/btn_ttsSetting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:src="@drawable/texttospeech" />
 
 </LinearLayout>

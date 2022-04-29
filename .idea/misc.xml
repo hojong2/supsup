@@ -80,6 +80,8 @@
         <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/mypage_myinfo.xml" value="0.1" />
         <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/mypage_profile.xml" value="0.1" />
         <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/mypage_profile_resource.xml" value="0.36614583333333334" />
+        <entry key="..\:/android studio/supsup/app/src/main/res/drawable-v24/text_to_speech-48px.xml" value="0.3405" />
+        <entry key="..\:/android studio/supsup/app/src/main/res/drawable/text_to_speech-48px.xml" value="0.3405" />
         <entry key="..\:/android studio/supsup/app/src/main/res/layout/activity_main.xml" value="0.33177083333333335" />
         <entry key="..\:/android studio/supsup/app/src/main/res/layout/fragment_home_helpme.xml" value="0.29713552800342025" />
         <entry key="..\:/android studio/supsup/app/src/main/res/layout/fragment_home_helpme_resource.xml" value="0.29713552800342025" />
@@ -93,12 +95,16 @@
         <entry key="..\:/android studio/supsup/app/src/main/res/layout/tts_main.xml" value="0.29713552800342025" />
         <entry key="..\:/android studio/supsup/app/src/main/res/layout/wide_helpsort_resource.xml" value="0.2497733454215775" />
         <entry key="..\:/android studio/supsup/app/src/main/res/layout/wide_home.xml" value="0.29713552800342025" />
+        <entry key="..\:/android studio/supsup/app/src/main/res/layout/wide_home_createtext.xml" value="0.29713552800342025" />
+        <entry key="..\:/android studio/supsup/app/src/main/res/layout/wide_home_helpme.xml" value="0.29713552800342025" />
+        <entry key="..\:/android studio/supsup/app/src/main/res/layout/wide_home_helpyou.xml" value="0.29713552800342025" />
+        <entry key="..\:/android studio/supsup/app/src/main/res/layout/wide_home_mypage.xml" value="0.29713552800342025" />
         <entry key="..\:/android studio/supsup/app/src/main/res/layout/wide_home_mypage_resource.xml" value="0.29713552800342025" />
         <entry key="..\:/android studio/supsup/app/src/main/res/layout/wide_home_resource.xml" value="0.29713552800342025" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

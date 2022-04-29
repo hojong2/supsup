@@ -48,9 +48,7 @@ public class Main_TTS extends AppCompatActivity {
         btnsetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //접근성 메뉴로 이동
-                Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
-                startActivity(intent);
+
             }
         });
         btnspeakout.setOnClickListener(new View.OnClickListener() {

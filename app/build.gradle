@@ -71,6 +71,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-core:17.2.3'
     implementation 'com.google.firebase:firebase-database:19.2.1'
+
     implementation 'com.tbuonomo:dotsindicator:4.2'
     implementation 'me.relex:circleindicator:2.1.6'
     implementation 'com.sothree.slidinguppanel:library:3.4.0'
