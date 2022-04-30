@@ -28,7 +28,6 @@ public class select_interface extends AppCompatActivity {
     Button btndefault, btnwide;
     ImageButton btnTts;
     TextToSpeech tts;
-    private static final String TALKBACK_SETTING_ACTIVITY_NAME = "com.android.talkback.TalkBackPreferencesActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

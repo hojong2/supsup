@@ -52,7 +52,6 @@
         <activity android:name=".home_textinfo1"/>
         <activity android:name=".home_textinfo"/>
         <activity android:name=".map_textinfo"/>
-        <activity android:name=".Main_TTS"/>
         <activity android:name=".wide_home"/>
         <uses-library
             android:name="org.apache.http.legacy"
