@@ -34,8 +34,8 @@ public class select_interface extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_interface);
         AccessibilityManager am = (AccessibilityManager) getSystemService(ACCESSIBILITY_SERVICE);
-        ActionBar ab = getSupportActionBar();
-        ab.setTitle("화면 선택");
+//        ActionBar ab = getSupportActionBar();
+//        ab.setTitle("화면 선택");
         btnwide=(Button) findViewById(R.id.btn_wide);
         btndefault=(Button) findViewById(R.id.btn_default);
         btnTts = (ImageButton) findViewById(R.id.btn_ttsSetting);
