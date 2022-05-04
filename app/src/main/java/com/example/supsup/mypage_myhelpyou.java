@@ -18,8 +18,7 @@ public class mypage_myhelpyou extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mypage_myhelpyou);
-        ActionBar ab = getSupportActionBar();
-        ab.setTitle("작성한 해드려요");
+
         adapter = new adapter();
 
         listview = (ListView) findViewById(R.id.listview4);

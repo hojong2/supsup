@@ -20,8 +20,6 @@ public class mypage_keyword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mypage_keyword);
 
-        ActionBar ab = getSupportActionBar();
-        ab.setTitle("관심 키워드 등록");
         Button helpme_1 = (Button) findViewById(R.id.helpme_1);
         Button helpme_2 = (Button) findViewById(R.id.helpme_2);
         Button helpme_3 = (Button) findViewById(R.id.helpme_3);

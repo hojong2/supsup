@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ActionBar ab = getSupportActionBar();
+
         fragment_home=new fragment_home();
         fragment_map=new fragment_map();
         fragment_chat=new fragment_chat();
@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
 
 
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_home).commit();
-        ab.setTitle("홈");
         BottomNavigationView bottomNavigationView;
         bottomNavigationView = findViewById(R.id.bottom);
         bottomNavigationView.setOnNavigationItemSelectedListener(
@@ -74,11 +73,9 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
 
                             case R.id.tab_home:
                                 getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_home).commit();
-                                ab.setTitle("홈");
                                 return true;
                             case R.id.tab_map:
                                 getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_map).commit();
-                                ab.setTitle("지도");
                                 return true;
                             case R.id.tab_chat:
                                 try {
@@ -87,7 +84,6 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
                                     FirebaseUser currentUser = mAuth.getCurrentUser();
 
                                     getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_chat).commit();
-                                    ab.setTitle("채팅");
                                     return true;
                                 }catch (Exception e){
                                     Toast.makeText(getApplicationContext(),"로그인을 하시길 바랍니다",Toast.LENGTH_SHORT).show();
@@ -100,7 +96,6 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
                                     FirebaseUser currentUser = mAuth.getCurrentUser();
 
                                     getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_mypage).commit();
-                                    ab.setTitle("마이페이지");
                                     return true;
 
                                 }catch (Exception e){

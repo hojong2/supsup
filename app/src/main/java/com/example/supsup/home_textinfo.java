@@ -131,8 +131,8 @@ public class home_textinfo extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
 
-        ActionBar ab = getSupportActionBar();
-        ab.setTitle("상세 내용");
+
+
         Button button_chat = (Button) findViewById(R.id.button_chat);
 
         button_chat.setOnClickListener(new View.OnClickListener() { // 채팅 버튼 클릭 시 화면 전환

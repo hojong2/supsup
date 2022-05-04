@@ -23,8 +23,7 @@ public class mypage_profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mypage_profile);
 
-        ActionBar ab = getSupportActionBar();
-        ab.setTitle("프로필");
+
 
         firstInit();
         secondInit();

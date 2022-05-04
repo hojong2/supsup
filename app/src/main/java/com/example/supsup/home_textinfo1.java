@@ -150,8 +150,7 @@ public class home_textinfo1 extends AppCompatActivity {
 //        }
 
 
-        ActionBar ab = getSupportActionBar();
-        ab.setTitle("상세 내용");
+
         Button button_chat = (Button) findViewById(R.id.button_chat);
 
 

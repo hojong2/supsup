@@ -15,8 +15,7 @@ public class mypage_myinfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mypage_myinfo);
 
-        ActionBar ab = getSupportActionBar();
-        ab.setTitle("내 정보 수정");
+
         btnendinfo=(Button) findViewById(R.id.btn_endinfo);
         btnendinfo.setOnClickListener(new View.OnClickListener() {
             @Override
