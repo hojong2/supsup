@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.TextView;
 import static android.speech.tts.TextToSpeech.ERROR;
+
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -26,6 +28,9 @@ public class wide_home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         TextView textview = findViewById(R.id.wide_category);
         setContentView(R.layout.wide_home);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         ViewPager viewPager = (ViewPager) findViewById(R.id.wide_container);
         setupViewPager(viewPager);
         CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicator);
