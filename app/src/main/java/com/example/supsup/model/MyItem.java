@@ -5,12 +5,12 @@ import com.google.maps.android.clustering.ClusterItem;
 
 public class MyItem implements ClusterItem {
     private LatLng position;
-    private  String title,address,name;
+    private  String title,address,name, category;
     private  boolean clickedCheck;
     private double lat,lng;
 
 
-    public MyItem(double lat, double lng, String title, String address, String name, boolean clickedCheck) {
+    public MyItem(double lat, double lng, String title, String address, String name, boolean clickedCheck, String category) {
         position = new LatLng(lat, lng);
         this.lat = lat;
         this.lng = lng;
@@ -18,6 +18,7 @@ public class MyItem implements ClusterItem {
         this.address = address;
         this.name = name;
         this.clickedCheck = clickedCheck;
+        this.category = category;
     }
 
     public void setPosition(LatLng position){
@@ -48,6 +49,14 @@ public class MyItem implements ClusterItem {
 
     public void setName(String writer){ this.name = writer;}
     public  String getName(){return name;}
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public String getSnippet() {
         return null;

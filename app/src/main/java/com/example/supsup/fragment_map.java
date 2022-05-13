@@ -252,6 +252,7 @@ public class fragment_map extends Fragment{
                         String title = map.getTitle();
                         String location = map.getAddress();
                         String name = map.getName();
+                        String category = map.getSuptegory();
                         try {
                             list = geocoder.getFromLocationName(location, 10);
                         } catch (IOException e) {
@@ -265,7 +266,7 @@ public class fragment_map extends Fragment{
                                 Address address = list.get(0);
                                 double latitude = address.getLatitude();
                                 double longitude = address.getLongitude();
-                                mclusterManager.addItem(new MyItem(latitude, longitude, title, location, name, false));
+                                mclusterManager.addItem(new MyItem(latitude, longitude, title, location, name, false, category));
                             }
                         }
                     }
@@ -286,6 +287,7 @@ public class fragment_map extends Fragment{
                 map_bottom_dialog.setLocation(item.getAddress());
                 map_bottom_dialog.setDistance(distance);
                 map_bottom_dialog.setName(item.getName());
+                map_bottom_dialog.setCategory(item.getCategory());
                 mclusterManager.setRenderer(new DefaultClusterRenderer(getActivity(),googleMap,mclusterManager));
 
                 item.setClickedCheck(true);

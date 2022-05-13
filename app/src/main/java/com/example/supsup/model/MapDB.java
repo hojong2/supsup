@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.io.Serializable;
 
 public class MapDB {
-    public String title,address,name,context_info;
+    public String title,address,name,context_info, suptegory;
     public double latitude;
     public double longitude;
 
@@ -49,6 +49,14 @@ public class MapDB {
 
     public void setName(String name){ this.name = name;}
     public String getName(){return name;}
+
+    public String getSuptegory() {
+        return suptegory;
+    }
+
+    public void setSuptegory(String suptegory) {
+        this.suptegory = suptegory;
+    }
 
     public void setContext_info(String context_info){this.context_info = context_info;}
     public String getContext_info(){return  context_info;}
