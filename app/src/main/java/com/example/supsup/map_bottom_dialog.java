@@ -50,9 +50,20 @@ public class map_bottom_dialog extends BottomSheetDialogFragment {
         TextView textName = view.findViewById(R.id.textName);
         ImageView imageView = view.findViewById(R.id.image);
 
-
-        Glide.with(this).load(R.drawable.blind).circleCrop().into(imageView);
-
+        Log.e("test",category);
+        if(category.equals("시각")){
+            Glide.with(this).load(R.drawable.blind).circleCrop().into(imageView);
+        }else if(category.equals("언어")){
+            Glide.with(this).load(R.drawable.language).circleCrop().into(imageView);
+        }else if(category.equals("노인")){
+            Glide.with(this).load(R.drawable.oldman).circleCrop().into(imageView);
+        }else if(category.equals("청각")){
+            Glide.with(this).load(R.drawable.defect).circleCrop().into(imageView);
+        }else if(category.equals("지체")||category.equals("지적")){
+            Glide.with(this).load(R.drawable.disability).circleCrop().into(imageView);
+        }else if(category.equals("인력")){
+            Glide.with(this).load(R.drawable.manpower).circleCrop().into(imageView);
+        }else Glide.with(this).load(R.drawable.logo).circleCrop().into(imageView);
 
         textlocation.setText(location);
         btntitle.setText(title);

@@ -58,6 +58,7 @@ public class MapDB {
         this.suptegory = suptegory;
     }
 
+
     public void setContext_info(String context_info){this.context_info = context_info;}
     public String getContext_info(){return  context_info;}
 
