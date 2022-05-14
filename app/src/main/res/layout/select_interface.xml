@@ -29,12 +29,12 @@
         app:backgroundTint="@null"/>
 
 
-    <ImageButton
-        android:id="@+id/btn_ttsSetting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:src="@drawable/texttospeech"
-        android:importantForAccessibility="no"/>
+<!--    <ImageButton-->
+<!--        android:id="@+id/btn_ttsSetting"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        android:src="@drawable/texttospeech"-->
+<!--        android:importantForAccessibility="no"/>-->
 
 </LinearLayout>
