@@ -29,7 +29,7 @@ import java.util.Locale;
 public class select_interface extends AppCompatActivity {
     Button btndefault, btnwide;
 //    ImageButton btnTts;
-//    TextToSpeech tts;
+    TextToSpeech tts;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -53,23 +53,22 @@ public class select_interface extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_interface);
-//        AccessibilityManager am = (AccessibilityManager) getSystemService(ACCESSIBILITY_SERVICE);
-//        ActionBar ab = getSupportActionBar();
-//        ab.setTitle("화면 선택");
+        AccessibilityManager am = (AccessibilityManager) getSystemService(ACCESSIBILITY_SERVICE);
+        ActionBar ab = getSupportActionBar();
         btnwide=(Button) findViewById(R.id.btn_wide);
         btndefault=(Button) findViewById(R.id.btn_default);
 //        btnTts = (ImageButton) findViewById(R.id.btn_ttsSetting);
 
-//        //TTS 생성
-//        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
-//            @Override
-//            public void onInit(int status) {
-//                if(status != ERROR) {
-//                    // 언어를 선택한다.
-//                    tts.setLanguage(Locale.KOREAN);
-//                }
-//            }
-//        });
+        //TTS 생성
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != ERROR) {
+                    // 언어를 선택한다.
+                    tts.setLanguage(Locale.KOREAN);
+                }
+            }
+        });
 
 
         btndefault.setOnClickListener(new View.OnClickListener() {
@@ -95,16 +94,17 @@ public class select_interface extends AppCompatActivity {
 //                startActivity(intent);
 //            }
 //        });
-//        if(am.isTouchExplorationEnabled()){
-//            final Handler handler = new Handler();
-//            handler.postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    tts.speak("TTS 기능을 사용하려면 크게 보기 버튼을 눌러주세요",TextToSpeech.QUEUE_FLUSH,null);
-//                    tts.speak("버튼 위치는 화면 중앙에 있습니다.",TextToSpeech.QUEUE_ADD,null);
-//                }
-//            },3000);
-//        }
+        if(am.isTouchExplorationEnabled()){
+            ab.hide();
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    tts.speak("TTS 기능을 사용하려면 크게 보기 버튼을 눌러주세요",TextToSpeech.QUEUE_FLUSH,null);
+                    tts.speak("버튼 위치는 화면 중앙에 있습니다.",TextToSpeech.QUEUE_ADD,null);
+                }
+            },3000);
+        }
     }
 //
 //

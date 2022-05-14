@@ -52,7 +52,7 @@ public class wide_home extends AppCompatActivity {
                 public void run() {
                     tts.speak("화면 중앙부분을 오른쪽에서 왼쪽으로 드래그 하시면 페이지 이동이 가능합니다.",TextToSpeech.QUEUE_FLUSH,null);
                     tts.speak("페이지 순서는 해주세요, 해드려요, 마이페이지 순입니다.",TextToSpeech.QUEUE_ADD,null);
-                    tts.speak("가장 밑 부분을 누르시면 정렬 방법을 선택 할 수 있습니다.",TextToSpeech.QUEUE_ADD,null);
+                    tts.speak("가장 밑 부분을 두 손가락으로 쓸어 올리시면 정렬 방법을 선택 할 수 있습니다.",TextToSpeech.QUEUE_ADD,null);
 
                 }
             },2000);
