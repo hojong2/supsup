@@ -202,7 +202,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="10dp"
-            android:text="위치변경"
+            android:text="현재 위치"
             android:textSize="15dp"
             android:textStyle="bold" />
 

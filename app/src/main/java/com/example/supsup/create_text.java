@@ -2,9 +2,16 @@ package com.example.supsup;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.textservice.TextInfo;
 import android.widget.ArrayAdapter;
@@ -16,6 +23,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -26,6 +34,9 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import com.example.supsup.R;
+import com.example.supsup.model.MyItem;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -33,6 +44,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.pedro.library.AutoPermissions;
+import com.pedro.library.AutoPermissionsListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -40,11 +53,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class create_text extends AppCompatActivity {
+public class create_text extends AppCompatActivity implements AutoPermissionsListener {
 
     //파이어베이스 연동
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-
+    String curaddress;
+    LocationManager manager;
+    GPSListener gpsListener;
     //DatabaseReference는 데이터베이스의 특정 위치로 연결하는 거라고 생각하면 된다.
     //현재 연결은 데이터베이스에만 딱 연결해놓고
     //키값(테이블 또는 속성)의 위치 까지는 들어가지는 않은 모습이다.
@@ -74,6 +89,9 @@ public class create_text extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_text);
 
+        manager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+        gpsListener = new GPSListener();
         ActionBar ab = getSupportActionBar();
         ab.setTitle("글 등록");
 
@@ -229,7 +247,8 @@ public class create_text extends AppCompatActivity {
         button_changeAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                textModel.address = edit_address.getText().toString();
+                edit_address.setText(curaddress);
+                Log.d("address",curaddress);
             }
         });
 
@@ -266,6 +285,70 @@ public class create_text extends AppCompatActivity {
             }
         });
 
+        AutoPermissions.Companion.loadAllPermissions(this,101);
+
     }
 
+    class GPSListener implements LocationListener {
+
+        // 위치 확인되었을때 자동으로 호출됨 (일정시간 and 일정거리)
+        @Override
+        public void onLocationChanged(Location location) {
+            double latitude = location.getLatitude();
+            double longitude = location.getLongitude();
+           showCurrentLocation(latitude,longitude);
+
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
+    }
+    public void showCurrentLocation(double latitude, double longitude) {
+
+        LatLng curPoint = new LatLng(latitude, longitude);
+        Geocoder geocoder = new Geocoder(this);
+        List<Address> list = null;
+        try {
+            list = geocoder.getFromLocation(latitude,longitude,10);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("test", "입출력 오류 - 서버에서 주소변환시 에러발생");
+        }
+        if (list != null) {
+            if (list.size() == 0) {
+                Log.e("address error","위치를 찾을 수 없습니다.");
+            } else {
+                curaddress=list.get(0).getAdminArea();
+
+            }
+        }
+
+    }
+    //위치 권한
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        AutoPermissions.Companion.parsePermissions(this, requestCode, permissions, this);
+    }
+    @Override
+    public void onDenied(int i, @NonNull String[] strings) {
+
+    }
+
+    @Override
+    public void onGranted(int i, @NonNull String[] strings) {
+
+    }
 }
