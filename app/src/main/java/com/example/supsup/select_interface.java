@@ -85,15 +85,7 @@ public class select_interface extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        btnTts.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                tts.speak("TalkBack 활성화를 위해 접근성 메뉴로 이동합니다.",TextToSpeech.QUEUE_FLUSH,null);
-//                //접근성 메뉴로 이동
-//                Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
-//                startActivity(intent);
-//            }
-//        });
+
         if(am.isTouchExplorationEnabled()){
             ab.hide();
             final Handler handler = new Handler();
@@ -106,17 +98,17 @@ public class select_interface extends AppCompatActivity {
             },2000);
         }
     }
-//
-//
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        //TTS 객체 제거
-//        if(tts != null) {
-//            tts.stop();
-//            tts.shutdown();
-//            tts = null;
-//        }
-//    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //TTS 객체 제거
+        if(tts != null) {
+            tts.stop();
+            tts.shutdown();
+            tts = null;
+        }
+    }
 }
 

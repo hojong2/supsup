@@ -1,15 +1,18 @@
 package com.example.supsup;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +33,8 @@ import java.util.Calendar;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
@@ -58,44 +63,36 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
     //파이어베이스 연동
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     String curaddress;
-    LocationManager manager;
-    GPSListener gpsListener;
+    Geocoder geocoder;
     //DatabaseReference는 데이터베이스의 특정 위치로 연결하는 거라고 생각하면 된다.
     //현재 연결은 데이터베이스에만 딱 연결해놓고
     //키값(테이블 또는 속성)의 위치 까지는 들어가지는 않은 모습이다.
 
     private FirebaseAuth mAuth;
     DatabaseReference databaseReference = null;
-    HashMap<String,Object> childUpdates = null;
+    HashMap<String, Object> childUpdates = null;
 
-    Map<String,Object> userValue = null;
-
+    Map<String, Object> userValue = null;
 
 
     TextModel textModel = new TextModel();
     UserModel userModel = new UserModel();
-
-    public String[] pay_shapeList = {"협의","금전","봉사시간"};
-    public String[] suptegoryList = {"이동","대화","인력"};
+    EditText edit_address;
+    public String[] pay_shapeList = {"협의", "금전", "봉사시간"};
+    public String[] suptegoryList = {"이동", "대화", "인력"};
     public String name;
     public String text_state; // 모집중, 모집아님
 
 
-
-
-
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_text);
 
-        manager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
-        gpsListener = new GPSListener();
         ActionBar ab = getSupportActionBar();
         ab.setTitle("글 등록");
-
-
+        geocoder = new Geocoder(this);
 
         Button button_helpMe = (Button) findViewById(R.id.btn_helpme);
         Button button_helpYou = (Button) findViewById(R.id.btn_helpyou);
@@ -104,8 +101,8 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
         Spinner pay_shape = (Spinner) findViewById(R.id.pay_shape);
         Spinner suptegory = (Spinner) findViewById(R.id.suptegory);
 
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,pay_shapeList);
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,suptegoryList);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, pay_shapeList);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, suptegoryList);
         pay_shape.setAdapter(adapter1);
         suptegory.setAdapter(adapter2);
         pay_shape.setSelection(0);
@@ -117,9 +114,9 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
         Button button_end_recruit = (Button) findViewById(R.id.btn_endRecruitment);
         TextView text_date = (TextView) findViewById(R.id.text_date);
         TextView text_datetime = (TextView) findViewById(R.id.text_datetime);
-        Button button_end_date = (Button)  findViewById(R.id.btn_date);
+        Button button_end_date = (Button) findViewById(R.id.btn_date);
         Button button_end_datetime = (Button) findViewById(R.id.btn_datetime);
-        EditText edit_address = (EditText) findViewById(R.id.address);
+        edit_address = (EditText) findViewById(R.id.address);
         Button button_changeAddress = (Button) findViewById(R.id.btn_changeAddress);
         EditText edit_context = (EditText) findViewById(R.id.edittext_context);
         Button button_enroll = (Button) findViewById(R.id.btn_enroll);
@@ -128,11 +125,9 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
         // 파이어베이스에서 현재 로그인한 유저 정보 빼오기
 
 
-            final String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            mAuth = FirebaseAuth.getInstance();
-            FirebaseUser currentUser = mAuth.getCurrentUser();
-
-
+        final String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -150,8 +145,6 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
         });
 
 
-
-
         // 해주세요
         button_helpMe.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,7 +154,7 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
                 if (view.isSelected()) {
                     button_helpMe.setBackgroundColor(Color.parseColor("#FFE400"));
                     button_helpYou.setBackgroundColor(Color.parseColor("#00BFFF"));
-                    textModel.help_state="true"; // 해주세요 클릭되면 true임
+                    textModel.help_state = "true"; // 해주세요 클릭되면 true임
                 }
             }
         });
@@ -174,11 +167,10 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
                 if (view.isSelected()) {
                     button_helpYou.setBackgroundColor(Color.parseColor("#FFE400"));
                     button_helpMe.setBackgroundColor(Color.parseColor("#00BFFF"));
-                    textModel.help_state="false"; // 해드려요 클릭되면 false임
+                    textModel.help_state = "false"; // 해드려요 클릭되면 false임
                 }
             }
         });
-
 
 
         // 모집 마감일 설정하는 구간
@@ -189,12 +181,12 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
         int mhour = calendar.get(Calendar.HOUR);//시간
         int mminute = calendar.get(Calendar.MINUTE);//분
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this,new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                text_end_recruit.setText(year+"년 "+(month+1)+"월 "+dayOfMonth+"일");
+                text_end_recruit.setText(year + "년 " + (month + 1) + "월 " + dayOfMonth + "일");
             }
-        },mYear,mMonth,mDay);
+        }, mYear, mMonth, mDay);
 
 
         button_end_recruit.setOnClickListener(new View.OnClickListener() {
@@ -208,14 +200,14 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
         // 모집 마감일 설정 끝
 
         // 날짜
-        DatePickerDialog datePickerDialog1 = new DatePickerDialog(this,new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog datePickerDialog1 = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                text_date.setText(year+"년 "+(month+1)+"월 "+dayOfMonth+"일");
+                text_date.setText(year + "년 " + (month + 1) + "월 " + dayOfMonth + "일");
                 textModel.end_date = text_date.getText().toString();
 
             }
-        },mYear,mMonth,mDay);
+        }, mYear, mMonth, mDay);
 
         button_end_date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -228,10 +220,10 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-                text_datetime.setText(hour+"시 "+minute+"분");
+                text_datetime.setText(hour + "시 " + minute + "분");
                 textModel.end_datetime = text_datetime.getText().toString();
             }
-        },mhour,mminute,true);
+        }, mhour, mminute, true);
 
         button_end_datetime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -244,14 +236,24 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
 
 
         // 위치변경
+        final LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
         button_changeAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                edit_address.setText(curaddress);
-                Log.d("address",curaddress);
+                if(Build.VERSION.SDK_INT >= 23 &&
+                        ContextCompat.checkSelfPermission( getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(create_text.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                            0);
+                }
+                else{
+                    Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                    double longitude = location.getLongitude();
+                    double latitude = location.getLatitude();
+                    reverseCoding(latitude,longitude);
+                }
             }
         });
-
 
 
 
@@ -289,54 +291,45 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
 
     }
 
-    class GPSListener implements LocationListener {
 
-        // 위치 확인되었을때 자동으로 호출됨 (일정시간 and 일정거리)
-        @Override
-        public void onLocationChanged(Location location) {
-            double latitude = location.getLatitude();
-            double longitude = location.getLongitude();
-           showCurrentLocation(latitude,longitude);
+    //위치 권한
+//    final LocationListener gpsLocationListener = new LocationListener() {
+//        public void onLocationChanged(Location location) {
+//            String provider = location.getProvider();
+//            double longitude = location.getLongitude();
+//            double latitude = location.getLatitude();
+//            double altitude = location.getAltitude();
+//            edit_address.setText(String.valueOf(latitude));
+//
+//        }
+//        public void onStatusChanged(String provider, int status, Bundle extras) { }
+//        public void onProviderEnabled(String provider) { } public void onProviderDisabled(String provider) { } };
 
-        }
-
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-
-        }
-
-        @Override
-        public void onProviderEnabled(String provider) {
-
-        }
-
-        @Override
-        public void onProviderDisabled(String provider) {
-
-        }
-    }
-    public void showCurrentLocation(double latitude, double longitude) {
-
-        LatLng curPoint = new LatLng(latitude, longitude);
-        Geocoder geocoder = new Geocoder(this);
+    public void reverseCoding(double latitude, double longitube) {
         List<Address> list = null;
         try {
-            list = geocoder.getFromLocation(latitude,longitude,10);
+            list = geocoder.getFromLocation(latitude, longitube, 10);
         } catch (IOException e) {
             e.printStackTrace();
             Log.e("test", "입출력 오류 - 서버에서 주소변환시 에러발생");
         }
         if (list != null) {
             if (list.size() == 0) {
-                Log.e("address error","위치를 찾을 수 없습니다.");
+                Log.e("Error", "지역을 찾지 못했습니다.");
             } else {
-                curaddress=list.get(0).getAdminArea();
+                // onWhere.setText(list.get(0).toString()); 원래 통으로 나오는 주소값 문자열
 
+                // 문자열을 자르자!
+                String cut[] = list.get(0).toString().split(" ");
+                for (int i = 0; i < cut.length; i++) {
+                    System.out.println("cut[" + i + "] : " + cut[i]);
+                } // cut[0] : Address[addressLines=[0:"대한민국
+                // cut[1] : 서울특별시  cut[2] : 송파구  cut[3] : 오금동
+                // cut[4] : cut[4] : 41-26"],feature=41-26,admin=null ~~~~
+                edit_address.setText(cut[1] + " " + cut[2] + " " + cut[3]); // 내가 원하는 구의 값을 뽑아내 출력
             }
         }
-
     }
-    //위치 권한
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
