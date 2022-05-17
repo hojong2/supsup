@@ -241,10 +241,11 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
         button_changeAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(Build.VERSION.SDK_INT >= 23 &&
-                        ContextCompat.checkSelfPermission( getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(create_text.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                            0);
+                if(ContextCompat.checkSelfPermission(create_text.this, Manifest.permission.ACCESS_FINE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(create_text.this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED) {
+
+                    return;
                 }
                 else{
                     Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -290,20 +291,6 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
         AutoPermissions.Companion.loadAllPermissions(this,101);
 
     }
-
-
-    //위치 권한
-//    final LocationListener gpsLocationListener = new LocationListener() {
-//        public void onLocationChanged(Location location) {
-//            String provider = location.getProvider();
-//            double longitude = location.getLongitude();
-//            double latitude = location.getLatitude();
-//            double altitude = location.getAltitude();
-//            edit_address.setText(String.valueOf(latitude));
-//
-//        }
-//        public void onStatusChanged(String provider, int status, Bundle extras) { }
-//        public void onProviderEnabled(String provider) { } public void onProviderDisabled(String provider) { } };
 
     public void reverseCoding(double latitude, double longitube) {
         List<Address> list = null;
