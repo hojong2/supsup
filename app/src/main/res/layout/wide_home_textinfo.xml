@@ -348,8 +348,7 @@
                     android:gravity="center"
                     android:text="서울시 구로구 구로2동"
                     android:textColor="#000000"
-                    android:textSize="25dp"
-                " />
+                    android:textSize="25dp" />
             </LinearLayout>
 
             //내용 라인 시작
@@ -394,7 +393,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
 
         </LinearLayout>
