@@ -27,9 +27,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class home_textinfo1 extends AppCompatActivity {
-//    private FirebaseAuth mAuth;
-//    private String destinationUid;
-//    private String textId;
+    private FirebaseAuth mAuth;
+    private String destinationUid;
 
     public String textUser_name; // 글작성_HelpMe
     public String text_title; // 글제목_HelpYou
@@ -78,12 +77,10 @@ public class home_textinfo1 extends AppCompatActivity {
 
 
 
-//        ArrayList<TextModel> textModel = new ArrayList<>();
-//
-//        final String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//        mAuth = FirebaseAuth.getInstance();
-//        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        ArrayList<TextModel> textModel = new ArrayList<>();
+        final String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
 
 
 
@@ -101,6 +98,8 @@ public class home_textinfo1 extends AppCompatActivity {
                         textView_date.setText(textModel.end_recruit);
                         textView_time1.setText(textModel.end_datetime);
                         textView_time2.setText(textModel.end_datetime);
+                        destinationUid = textModel.uid;
+
 
                         if (textModel.text_state.equals("true")) {
                             textView_text_state.setText("모집 중");
@@ -130,52 +129,19 @@ public class home_textinfo1 extends AppCompatActivity {
         });
 
 
-
-
-
-
-
-
-
-//
-//
-//
-//        if (textId == null) {
-//            FirebaseDatabase.getInstance().getReference().child("context_info").push().setValue(textModel).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                @Override
-//                public void onSuccess(Void aVoid) {
-//
-//                }
-//            });
-//        }
-
-
+        databaseReference = FirebaseDatabase.getInstance().getReference();
 
         Button button_chat = (Button) findViewById(R.id.button_chat);
-
-
 
         button_chat.setOnClickListener(new View.OnClickListener() { // 채팅 버튼 클릭 시 화면 전환
             @Override
             public void onClick(View view) {
 
-//                mDatabase.child("context_info").child("textId").child("uid").addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        String value = snapshot.getValue(String.class);
-//                        destinationUid = value;
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//
-//                    }
-//                });
-//
-//
-//                Intent intent = new Intent(view.getContext(), MessageActivity.class);
-//                intent.putExtra("destinationUid",destinationUid);
-//                startActivity(intent);
+
+
+                Intent intent = new Intent(view.getContext(), MessageActivity.class);
+                intent.putExtra("destinationUid",destinationUid);
+                startActivity(intent);
 
 
             } // 채팅 프래그먼트로 가는거 오류남. 채팅 창 액티비티로 바로 이동시키면 될듯

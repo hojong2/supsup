@@ -184,7 +184,7 @@ public class MessageActivity extends AppCompatActivity {
                         .into(messageViewHolder.imageView_profile);
                 messageViewHolder.textview_name.setText(userModel.userName);
                 messageViewHolder.linearLayout_destination.setVisibility(View.VISIBLE);
-                messageViewHolder.textView_message.setBackgroundResource(R.drawable.leftbubble);
+                messageViewHolder.textView_message.setBackgroundResource(R.drawable.yellowleft2);
                 messageViewHolder.textView_message.setText(comments.get(position).message);
                 messageViewHolder.textView_message.setTextSize(15);
                 messageViewHolder.linearLayout_main.setGravity(Gravity.LEFT);
