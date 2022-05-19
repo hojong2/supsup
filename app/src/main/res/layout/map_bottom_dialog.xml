@@ -19,8 +19,8 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_weight="1"
-        android:scaleType="fitXY"
-        android:layout_marginLeft="10dp"/>
+        android:scaleType="centerInside"
+        android:layout_marginLeft="10dp" />
 
         <LinearLayout
             android:layout_marginLeft="5dp"
