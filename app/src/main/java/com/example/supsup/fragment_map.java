@@ -282,6 +282,7 @@ public class fragment_map extends Fragment{
             @Override
             public boolean onClusterItemClick(MyItem item) {
                 to  = new LatLng(item.getLat(),item.getLng());
+                //TODO : 설치 후 처음 동작할때 item 클릭시 오류 발생
                 double distance = SphericalUtil.computeDistanceBetween(from,to);
                 map_bottom_dialog.setTitle(item.getTitle());
                 map_bottom_dialog.setLocation(item.getAddress());
