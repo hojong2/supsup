@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+  >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         //제목, 주소 시작
 
@@ -38,7 +40,7 @@
             <!--                android:textColor="#000000"-->
             <!--                android:textSize="30dp" />-->
         </LinearLayout>
-        //제목, 주소 끝
+        <!--        //제목, 주소 끝-->
 
 
         <!--                //코인, 달력, 알람 시작-->
@@ -145,7 +147,7 @@
                 android:fontFamily="@font/tway_air"
                 android:gravity="center"
                 android:text="상세 정보"
-                android:textColor="#000000"
+                android:textColor="@color/blue"
                 android:textSize="30dp"
 
                 />
@@ -167,7 +169,7 @@
                     android:fontFamily="@font/tway_air"
                     android:gravity="center"
                     android:text="작성자"
-                    android:textColor="#000000"
+                    android:textColor="@color/gold"
                     android:textSize="35dp"
                     android:textStyle="bold" />
 
@@ -199,7 +201,7 @@
                     android:fontFamily="@font/tway_air"
                     android:gravity="center"
                     android:text="전화번호"
-                    android:textColor="#000000"
+                    android:textColor="@color/gold"
                     android:textSize="35dp"
                     android:textStyle="bold" />
 
@@ -230,7 +232,7 @@
                     android:fontFamily="@font/tway_air"
                     android:gravity="center"
                     android:text="시작시간"
-                    android:textColor="#000000"
+                    android:textColor="@color/gold"
                     android:textSize="35dp"
                     android:textStyle="bold" />
 
@@ -249,36 +251,36 @@
 
             //페이 형태 라인 시작
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="7dp"
-                android:orientation="horizontal">
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="match_parent"-->
+            <!--                android:layout_margin="7dp"-->
+            <!--                android:orientation="horizontal">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:fontFamily="@font/tway_air"
-                    android:gravity="center"
-                    android:text="지불 방식"
-                    android:textColor="#000000"
-                    android:textSize="35dp"
-                    android:textStyle="bold" />
+            <!--                <TextView-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:layout_marginLeft="20dp"-->
+            <!--                    android:fontFamily="@font/tway_air"-->
+            <!--                    android:gravity="center"-->
+            <!--                    android:text="지불 방식"-->
+            <!--                    android:textColor="#000000"-->
+            <!--                    android:textSize="35dp"-->
+            <!--                    android:textStyle="bold" />-->
 
-                <TextView
-                    android:id="@+id/pay_shape"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/tway_air"
-                    android:gravity="center"
-                    android:text="금전"
-                    android:textColor="#000000"
-                    android:textSize="35dp"
+            <!--                <TextView-->
+            <!--                    android:id="@+id/pay_shape"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:layout_marginLeft="30dp"-->
+            <!--                    android:fontFamily="@font/tway_air"-->
+            <!--                    android:gravity="center"-->
+            <!--                    android:text="금전"-->
+            <!--                    android:textColor="#000000"-->
+            <!--                    android:textSize="35dp"-->
 
-                    />
-            </LinearLayout>
+            <!--                    />-->
+            <!--            </LinearLayout>-->
 
 
             <!--            //섭테고리 라인 시작-->
@@ -335,7 +337,7 @@
                     android:fontFamily="@font/tway_air"
                     android:gravity="center"
                     android:text="위치"
-                    android:textColor="#000000"
+                    android:textColor="@color/gold"
                     android:textSize="35dp"
                     android:textStyle="bold" />
 
@@ -351,37 +353,7 @@
                     android:textSize="25dp" />
             </LinearLayout>
 
-            //내용 라인 시작
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="7dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:fontFamily="@font/tway_air"
-                    android:gravity="center"
-                    android:text="내용"
-                    android:textColor="#000000"
-                    android:textSize="35dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/context"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="68dp"
-                    android:fontFamily="@font/tway_air"
-                    android:gravity="left"
-                    android:text="구로역에서 성결대학교 까지 동행 해주실 분 구합니다."
-                    android:textColor="#000000"
-                    android:textSize="30dp" />
-            </LinearLayout>
-            // 내용 라인 끝
 
 
         </LinearLayout>
@@ -397,6 +369,48 @@
 
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="7dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/tway_air"
+                android:gravity="center"
+                android:text="내용"
+                android:textColor="@color/gold"
+                android:textSize="35dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/context"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="68dp"
+                android:fontFamily="@font/tway_air"
+                android:gravity="center"
+                android:text="형광등 좀 교체 해주세요ㅠㅠ"
+                android:textColor="#000000"
+                android:textSize="25dp" />
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:text="채팅"
+            android:textSize="40dp"
+            android:fontFamily="@font/tway_air"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
