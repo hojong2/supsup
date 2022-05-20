@@ -1,6 +1,7 @@
 package com.example.supsup;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +19,7 @@ public class TextModel {
     public String address;      // 주소
     public String context;      // 글 내용
     public String name;     // 이름
+    public String timestamp; // 시간
 
 
 
@@ -31,7 +33,7 @@ public class TextModel {
 
     public TextModel(String uid, String uid_roomNum, String text_state, String help_state
             , String title, String pay_shape, String suptegory, String pay, String end_recruit
-            , String end_date, String end_datetime, String address, String context, String name) {
+            , String end_date, String end_datetime, String address, String context, String name,String timestamp) {
         this.uid=uid; //o
         this.text_state=text_state;  //o
         this.help_state=help_state; //o
@@ -45,6 +47,7 @@ public class TextModel {
         this.address=address; //o
         this.context=context; //o
         this.name=name;
+        this.timestamp=timestamp;
 
     }
 
@@ -63,6 +66,7 @@ public class TextModel {
         result.put("address",address);
         result.put("context",context);
         result.put("name",name);
+        result.put("timestamp",timestamp);
         return result;
     }
 

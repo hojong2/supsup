@@ -15,12 +15,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:textStyle="bold"
             android:text="이름"/>
         <EditText
+            android:id="@+id/text_birth"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textStyle="bold"
+            android:text="박기환"
             android:layout_weight="1"/>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -31,28 +36,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="생년월일"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_weight="1">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:textStyle="bold"
             android:layout_weight="1"
             android:text="휴대폰 번호"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textStyle="bold"
+            android:text="010-8545-6065"
             android:layout_weight="1"/>
     </LinearLayout>
     <LinearLayout
@@ -65,10 +56,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textStyle="bold"
             android:layout_weight="1"
             android:text="지역 정보"/>
         <EditText
             android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:text="다산 2동"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
     </LinearLayout>
@@ -81,6 +75,7 @@
         android:layout_weight="1">
         <TextView
             android:layout_width="match_parent"
+            android:textStyle="bold"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="이메일"/>
@@ -91,16 +86,10 @@
             android:layout_weight="1">
         <EditText
             android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:text="qkrrlghks20@naver.com"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:textColor="#FFFFFF"
-                android:text="변경"
-                android:background="@drawable/button_yellow"
-                app:backgroundTint="@null"></Button>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout

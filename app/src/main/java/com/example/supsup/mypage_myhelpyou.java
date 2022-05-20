@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class mypage_myhelpyou extends AppCompatActivity {
     private ListView listview;
     private adapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +24,7 @@ public class mypage_myhelpyou extends AppCompatActivity {
 
         listview = (ListView) findViewById(R.id.listview4);
         listview.setAdapter(adapter);
+
 
         adapter.addItem("내 해드려요 제목1", R.drawable.intro,"내 해드려요 작성자1", "내 해드려요 위치1");
         adapter.addItem("내 해드려요 제목2", R.drawable.intro,"내 해드려요 작성자2", "내 해드려요 위치2");

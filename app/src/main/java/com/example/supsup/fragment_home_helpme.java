@@ -12,15 +12,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.Collections;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,17 +41,32 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.*;
 
 public class fragment_home_helpme extends Fragment {
     public RecyclerView recyclerView;
+
+    public Spinner spinner1;
+    public Spinner spinner2;
+
+
+    private static final String[] item1 = new String[]{"전체","시각","청각","노인","언어","지체","지적"};
+    private static final String[] item2 = new String[]{"전체","협의","금전","봉사시간","최신 순","오래된 순"};
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference("context_info");
     private List<TextModel> textModelList = new ArrayList<>();
 
+    public String cartegory1;
+    public String cartegory2;
+    public Button button;
+
+    public Collections collections;
 
 
     public static String text_name; // 글정보로 넘겨줄거임
@@ -64,6 +84,18 @@ public class fragment_home_helpme extends Fragment {
         View v = inflater.inflate(R.layout.fragment_home_helpme, container, false);
 
 
+
+        spinner1=(Spinner)v.findViewById(R.id.spinner1);
+        spinner2=(Spinner)v.findViewById(R.id.spinner2);
+        button=(Button)v.findViewById(R.id.btn_assort);
+
+
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item,item1);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item,item2);
+
+        spinner1.setAdapter(adapter1);
+        spinner2.setAdapter(adapter2);
+
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerview1);
         recyclerView.setHasFixedSize(true);
 
@@ -73,6 +105,31 @@ public class fragment_home_helpme extends Fragment {
 
 
 
+        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                cartegory1 = spinner1.getSelectedItem().toString();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                cartegory2 = spinner2.getSelectedItem().toString();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
 
         databaseReference.addValueEventListener(new ValueEventListener() { // 참조한 위치에 데이터가 변화가 일어날 때 마다 매번 읽어옴
@@ -81,7 +138,7 @@ public class fragment_home_helpme extends Fragment {
                     textModelList.clear();
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                         TextModel textModel = snapshot.getValue(TextModel.class);
-                        if(textModel.help_state.equals("true")) {
+                        if(textModel.help_state.equals("true"))  {
                             textModelList.add(textModel);
                         }
                     }
@@ -97,7 +154,41 @@ public class fragment_home_helpme extends Fragment {
 
 
 
+        button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                databaseReference.addValueEventListener(new ValueEventListener() { // 참조한 위치에 데이터가 변화가 일어날 때 마다 매번 읽어옴
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        textModelList.clear();
+                        for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            TextModel textModel = snapshot.getValue(TextModel.class);
 
+                            if(textModel.help_state.equals("true") && cartegory1=="전체" && cartegory2=="전체"){
+                                textModelList.add(textModel);
+                            }
+                            else if(textModel.help_state.equals("true") && textModel.suptegory.equals(cartegory1)){
+                                textModelList.add(textModel);
+                            }
+                            else if(textModel.help_state.equals("true") && textModel.pay_shape.equals(cartegory2)){
+                                textModelList.add(textModel);
+                            }
+                            else if(textModel.help_state.equals("true")&&textModel.suptegory.equals(cartegory1)&&textModel.pay_shape.equals(cartegory2)) {
+                                textModelList.add(textModel);
+                            }
+
+                        }
+                        customAdaptor.notifyDataSetChanged();
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
 
 
 

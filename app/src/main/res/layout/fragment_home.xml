@@ -20,21 +20,7 @@
                 android:layout_height="wrap_content"
                 android:text="해드려요"/>
         </com.google.android.material.tabs.TabLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
-    <Spinner
-        android:id="@+id/spinner1"
-        android:layout_width="120dp"
-        android:layout_height="match_parent"
-        android:spinnerMode="dropdown"/>
-    <Spinner
-        android:id="@+id/spinner2"
-        android:layout_width="120dp"
-        android:layout_height="match_parent"
-        android:spinnerMode="dropdown"/>
-    </LinearLayout>
+
 
     <FrameLayout
         android:layout_width="match_parent"

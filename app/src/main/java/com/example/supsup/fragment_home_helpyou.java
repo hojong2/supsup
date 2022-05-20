@@ -12,8 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,13 +38,24 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class fragment_home_helpyou extends Fragment {
     public RecyclerView recyclerView;
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd hh:mm");
+
+    public Spinner spinner3;
+    public Spinner spinner4;
+    public Button button;
+
+    private static final String[] item1 = new String[]{"전체","이동","대화","인력"};
+    private static final String[] item2 = new String[]{"전체","협의","금전","봉사시간","최신 순","오래된 순"};
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference("context_info");
@@ -53,6 +67,10 @@ public class fragment_home_helpyou extends Fragment {
     public static String text_title1; // 글정보로 넘겨줄거임
     public static String help_state1 = "false";
 
+    public String cartegory3;
+    public String cartegory4;
+
+
 
 
 
@@ -63,6 +81,16 @@ public class fragment_home_helpyou extends Fragment {
         View v = inflater.inflate(R.layout.fragment_home_helpyou, container, false);
 
 
+        spinner3=(Spinner)v.findViewById(R.id.spinner3);
+        spinner4=(Spinner)v.findViewById(R.id.spinner4);
+        button=(Button)v.findViewById(R.id.btn_assort1);
+
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item,item1);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item,item2);
+
+        spinner3.setAdapter(adapter1);
+        spinner4.setAdapter(adapter2);
+
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerview2);
         recyclerView.setHasFixedSize(true);
 
@@ -70,8 +98,31 @@ public class fragment_home_helpyou extends Fragment {
         CustomAdaptor customAdaptor = new CustomAdaptor();
         recyclerView.setAdapter(customAdaptor);
 
+        spinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                cartegory3 = spinner3.getSelectedItem().toString();
 
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        spinner4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                cartegory4 = spinner4.getSelectedItem().toString();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
 
 
@@ -85,7 +136,9 @@ public class fragment_home_helpyou extends Fragment {
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     TextModel textModel = snapshot.getValue(TextModel.class);
                     if(textModel.help_state.equals("false")) {
-                        textModelList.add(textModel);
+
+                            textModelList.add(textModel);
+
                     }
                 }
                 customAdaptor.notifyDataSetChanged();
@@ -101,11 +154,50 @@ public class fragment_home_helpyou extends Fragment {
 
 
 
+        button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                databaseReference.addValueEventListener(new ValueEventListener() { // 참조한 위치에 데이터가 변화가 일어날 때 마다 매번 읽어옴
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        textModelList.clear();
+
+                        for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            TextModel textModel = snapshot.getValue(TextModel.class);
+
+                            if(textModel.help_state.equals("false") && cartegory3=="전체" && cartegory4 == "전체"){
+                                textModelList.add(textModel);
+                            }
+                            else if(textModel.help_state.equals("false") && textModel.suptegory.equals(cartegory3)){
+                                textModelList.add(textModel);
+                            }
+                            else if(textModel.help_state.equals("false") && textModel.pay_shape.equals(cartegory4)){
+                                textModelList.add(textModel);
+                            }
+                            else if(textModel.help_state.equals("false") && textModel.suptegory.equals(cartegory3) && textModel.pay_shape.equals(cartegory4)) {
+                                textModelList.add(textModel);
+                            }
+
+                        }
+                        customAdaptor.notifyDataSetChanged();
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
+
 
 
 
         return v;
     }
+
     class CustomAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 

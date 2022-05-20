@@ -14,6 +14,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.view.textservice.TextInfo;
@@ -54,12 +55,16 @@ import com.pedro.library.AutoPermissionsListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 public class create_text extends AppCompatActivity implements AutoPermissionsListener {
 
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd hh:mm");
+    private Date nowDate = new Date();
     //파이어베이스 연동
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     String curaddress;
@@ -80,6 +85,8 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
     EditText edit_address;
     public String[] pay_shapeList = {"협의", "금전", "봉사시간"};
     public String[] suptegoryList = {"이동", "대화", "인력"};
+    public String[] suptegoryList1 = {"시각","청각","노인","언어","지체","지적"};
+
     public String name;
     public String text_state; // 모집중, 모집아님
 
@@ -102,9 +109,7 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
         Spinner suptegory = (Spinner) findViewById(R.id.suptegory);
 
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, pay_shapeList);
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, suptegoryList);
         pay_shape.setAdapter(adapter1);
-        suptegory.setAdapter(adapter2);
         pay_shape.setSelection(0);
         suptegory.setSelection(0);
 
@@ -155,6 +160,8 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
                     button_helpMe.setBackgroundColor(Color.parseColor("#FFE400"));
                     button_helpYou.setBackgroundColor(Color.parseColor("#00BFFF"));
                     textModel.help_state = "true"; // 해주세요 클릭되면 true임
+                    ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, suptegoryList1);
+                    suptegory.setAdapter(adapter2);
                 }
             }
         });
@@ -168,6 +175,8 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
                     button_helpYou.setBackgroundColor(Color.parseColor("#FFE400"));
                     button_helpMe.setBackgroundColor(Color.parseColor("#00BFFF"));
                     textModel.help_state = "false"; // 해드려요 클릭되면 false임
+                    ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, suptegoryList);
+                    suptegory.setAdapter(adapter2);
                 }
             }
         });
@@ -259,7 +268,7 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
 
 
         // 등록버튼
-
+        String date = simpleDateFormat.format(nowDate);
         childUpdates = new HashMap<>();
         Fragment fragment_home;
         fragment_home=new fragment_home();
@@ -277,7 +286,7 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
                 textModel.pay = edit_pay.getText().toString();
                 textModel.context = edit_context.getText().toString();
                 textModel.name = name;
-
+                textModel.timestamp = date;
                 databaseReference.child("context_info").push().setValue(textModel);
 
                 Toast.makeText(getApplicationContext(), "등록이 완료되었습니다", Toast.LENGTH_SHORT).show();

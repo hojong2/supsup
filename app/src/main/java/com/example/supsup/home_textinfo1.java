@@ -109,6 +109,7 @@ public class home_textinfo1 extends AppCompatActivity {
                         textView_pay_shape.setText(textModel.pay_shape);
                         textView_address1.setText(textModel.address);
                         textView_context.setText(textModel.context);
+                        textView_suptegory.setText(textModel.suptegory);
 
                         textUser_name = Help_you.text_name1;  // frag_home_helpme 의 변수 여기다가 설정
                         text_title = Help_you.text_title1;    // frag_home_helpme 의 변수 여기다가 설정

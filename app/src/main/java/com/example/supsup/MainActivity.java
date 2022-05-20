@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
     Fragment fragment_chat;
     Fragment fragment_mypage;
 
+
     private FirebaseAuth mAuth;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -111,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
         );
 
     }
-//위치 권한
+    //위치 권한
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
