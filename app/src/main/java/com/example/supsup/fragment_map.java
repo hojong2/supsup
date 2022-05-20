@@ -248,7 +248,7 @@ public class fragment_map extends Fragment{
                     MapDB map = context_info.getValue(MapDB.class);
                     TextModel textModel = context_info.getValue(TextModel.class);
                     List<Address> list = null;
-                    if(textModel.help_state.equals("true")) {
+                    if(textModel.help_state.equals("true") && textModel.address!=null) {
                         String title = map.getTitle();
                         String location = map.getAddress();
                         String name = map.getName();

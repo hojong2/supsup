@@ -67,8 +67,7 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
     private Date nowDate = new Date();
     //파이어베이스 연동
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    String curaddress;
-    Geocoder geocoder;
+
     //DatabaseReference는 데이터베이스의 특정 위치로 연결하는 거라고 생각하면 된다.
     //현재 연결은 데이터베이스에만 딱 연결해놓고
     //키값(테이블 또는 속성)의 위치 까지는 들어가지는 않은 모습이다.
@@ -99,7 +98,7 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("글 등록");
-        geocoder = new Geocoder(this);
+
 
         Button button_helpMe = (Button) findViewById(R.id.btn_helpme);
         Button button_helpYou = (Button) findViewById(R.id.btn_helpyou);
@@ -303,6 +302,7 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
 
     public void reverseCoding(double latitude, double longitube) {
         List<Address> list = null;
+        Geocoder geocoder = new Geocoder(this);
         try {
             list = geocoder.getFromLocation(latitude, longitube, 10);
         } catch (IOException e) {
