@@ -73,7 +73,11 @@ public class map_textinfo extends AppCompatActivity {
 
 
         ArrayList<TextModel> textModel = new ArrayList<>();
-        final String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        try {
+
+        }catch (Exception e){
+
+        }
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
@@ -121,7 +125,7 @@ public class map_textinfo extends AppCompatActivity {
                 }
             });
 
-//
+
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
 
@@ -139,7 +143,7 @@ public class map_textinfo extends AppCompatActivity {
                 startActivity(intent);
 
 
-            } // 채팅 프래그먼트로 가는거 오류남. 채팅 창 액티비티로 바로 이동시키면 될듯
+            }
         });
     }
 }
