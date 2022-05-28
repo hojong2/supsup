@@ -73,11 +73,7 @@ public class map_textinfo extends AppCompatActivity {
 
 
         ArrayList<TextModel> textModel = new ArrayList<>();
-        try {
-
-        }catch (Exception e){
-
-        }
+        final String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 

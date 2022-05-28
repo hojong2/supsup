@@ -16,13 +16,15 @@ import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class map_bottom_dialog extends BottomSheetDialogFragment {
     Context context;
     String location, title,name,category;
     int distance;
-    public static String map_name; // 글정보로 넘겨줄거임
-    public static String map_title; // 글정보로 넘겨줄거임
+    public static String map_name;
+    public static String map_title;
+    private FirebaseAuth mAuth;
 
     public map_bottom_dialog(Context context)
     {
@@ -88,9 +90,12 @@ public class map_bottom_dialog extends BottomSheetDialogFragment {
                 map_title = title;
                 map_name = name;
 
-                Intent intent = new Intent(getActivity(),map_textinfo.class);
-                startActivity(intent);
-
+                try {
+                    Intent intent = new Intent(getActivity(), map_textinfo.class);
+                    startActivity(intent);
+                }catch (Exception e){
+                    //로그인 여부 확인
+                }
                 dismiss();
             }
         });
