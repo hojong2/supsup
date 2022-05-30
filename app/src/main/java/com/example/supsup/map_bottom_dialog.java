@@ -26,8 +26,7 @@ public class map_bottom_dialog extends BottomSheetDialogFragment {
     int distance;
     public static String map_name;
     public static String map_title;
-    private FirebaseAuth mAuth;
-    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+
 
     public map_bottom_dialog(Context context)
     {
@@ -86,22 +85,15 @@ public class map_bottom_dialog extends BottomSheetDialogFragment {
             textwalk.setText("약 " + String.valueOf((Math.round(distance * 1.6)+5/10*10)) + "걸음");
         }
 
-        final String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+
         btntitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 map_title = title;
                 map_name = name;
 
-                try {
-                    Intent intent = new Intent(getActivity(), map_textinfo.class);
-                    startActivity(intent);
-                }catch (Exception e){
-                    //로그인 여부 확인
-
-                }
+                Intent intent = new Intent(getActivity(), map_textinfo.class);
+                startActivity(intent);
                 dismiss();
             }
         });

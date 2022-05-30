@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -73,11 +74,18 @@ public class map_textinfo extends AppCompatActivity {
 
 
         ArrayList<TextModel> textModel = new ArrayList<>();
-        final String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
 
+        try {
+            final String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            mAuth = FirebaseAuth.getInstance();
+            FirebaseUser currentUser = mAuth.getCurrentUser();
+        }catch (Exception e){
+            //로그인 여부 확인
+            Intent intent = new Intent(this,login.class);
+            Toast.makeText(getApplicationContext(),"로그인이 필요합니다!",Toast.LENGTH_SHORT);
+            startActivity(intent);
 
+        }
 
 
 
