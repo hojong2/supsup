@@ -55,7 +55,7 @@ public class fragment_home_helpyou extends Fragment {
     public Button button;
 
     private static final String[] item1 = new String[]{"전체","이동","대화","인력"};
-    private static final String[] item2 = new String[]{"전체","협의","금전","봉사시간","최신 순","오래된 순"};
+    private static final String[] item2 = new String[]{"전체","협의","금전","봉사시간"};
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference("context_info");
@@ -166,17 +166,19 @@ public class fragment_home_helpyou extends Fragment {
                         for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                             TextModel textModel = snapshot.getValue(TextModel.class);
 
-                            if(textModel.help_state.equals("false") && cartegory3=="전체" && cartegory4 == "전체"){
-                                textModelList.add(textModel);
-                            }
-                            else if(textModel.help_state.equals("false") && textModel.suptegory.equals(cartegory3)){
-                                textModelList.add(textModel);
-                            }
-                            else if(textModel.help_state.equals("false") && textModel.pay_shape.equals(cartegory4)){
-                                textModelList.add(textModel);
-                            }
-                            else if(textModel.help_state.equals("false") && textModel.suptegory.equals(cartegory3) && textModel.pay_shape.equals(cartegory4)) {
-                                textModelList.add(textModel);
+                            if(textModel.help_state.equals("false")){
+
+                                if(cartegory3.equals(textModel.suptegory) && cartegory4.equals(textModel.pay_shape)){
+                                    textModelList.add(textModel);}
+                                else if(cartegory3.equals("전체")&&cartegory4.equals(textModel.pay_shape)){
+                                    textModelList.add(textModel);
+                                }
+                                else if(cartegory3.equals(textModel.suptegory) && cartegory4.equals("전체")){
+                                    textModelList.add(textModel);
+                                }
+                                else if(cartegory3.equals("전체")&&cartegory4.equals("전체")){
+                                    textModelList.add(textModel);
+                                }
                             }
 
                         }
