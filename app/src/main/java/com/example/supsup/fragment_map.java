@@ -80,6 +80,11 @@ public class fragment_map extends Fragment{
             e.printStackTrace();
         }
 
+        if(mapView != null)
+        {
+            mapView.onCreate(savedInstanceState);
+        }
+
         mapView = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById(R.id.map);
 
@@ -186,20 +191,6 @@ public class fragment_map extends Fragment{
         from = new LatLng(latitude, longitude);
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(curPoint, 15));
     }
-
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        //액티비티가 처음 생성될 때 실행되는 함수
-
-        if(mapView != null)
-        {
-            mapView.onCreate(savedInstanceState);
-        }
-    }
-
 
     public void addData(GoogleMap googleMap) {
         final map_bottom_dialog map_bottom_dialog = new map_bottom_dialog(getActivity().getApplicationContext());
