@@ -272,12 +272,11 @@ public class fragment_map extends Fragment{
         mclusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener<MyItem>() {
             @Override
             public boolean onClusterItemClick(MyItem item) {
-                to  = new LatLng(item.getLat(),item.getLng());
+//                to  = new LatLng(item.getLat(),item.getLng());
                 //TODO : 설치 후 처음 동작할때 item 클릭시 오류 발생
-                double distance = SphericalUtil.computeDistanceBetween(from,to);
                 map_bottom_dialog.setTitle(item.getTitle());
                 map_bottom_dialog.setLocation(item.getAddress());
-                map_bottom_dialog.setDistance(distance);
+                map_bottom_dialog.setDistance(new LatLng(item.getLat(),item.getLng()));
                 map_bottom_dialog.setName(item.getName());
                 map_bottom_dialog.setCategory(item.getCategory());
                 mclusterManager.setRenderer(new DefaultClusterRenderer(getActivity(),googleMap,mclusterManager));

@@ -1,7 +1,11 @@
 package com.example.supsup;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,19 +17,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.maps.android.SphericalUtil;
+import com.pedro.library.AutoPermissionsListener;
 
-public class map_bottom_dialog extends BottomSheetDialogFragment {
+public class map_bottom_dialog extends BottomSheetDialogFragment implements AutoPermissionsListener {
     Context context;
     String location, title,name,category;
     int distance;
+    LatLng to;
     public static String map_name;
     public static String map_title;
+    LocationManager lm;
 
 
     public map_bottom_dialog(Context context)
@@ -53,6 +61,8 @@ public class map_bottom_dialog extends BottomSheetDialogFragment {
         Button btntitle = view.findViewById(R.id.btnTitle);
         TextView textName = view.findViewById(R.id.textName);
         ImageView imageView = view.findViewById(R.id.image);
+        lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        chkdistance();
 
         Log.e("test",category);
         if(category.equals("시각")){
@@ -69,9 +79,11 @@ public class map_bottom_dialog extends BottomSheetDialogFragment {
             Glide.with(this).load(R.drawable.manpower).circleCrop().into(imageView);
         }else Glide.with(this).load(R.drawable.logo).circleCrop().into(imageView);
 
-        textlocation.setText(location);
+
         btntitle.setText(title);
         textName.setText("작성자 :"+name);
+        textlocation.setText(distance);
+
         if(distance/1000 >= 1) {
             textdistance.setText("약" + String.valueOf(distance/1000)+"."+String.valueOf(distance%1000) + "KM");
         }else textdistance.setText("약" + String.valueOf(distance) + "M");
@@ -103,11 +115,39 @@ public class map_bottom_dialog extends BottomSheetDialogFragment {
     public void setTitle(String title){ this.title = title; }
     public void setLocation(String location){ this.location = location; }
     public  void setName(String name){this.name = name;}
-    public void setDistance(double distance){ this.distance = (int) Math.round(distance); }
+    public void setDistance(LatLng to){ this.to = to; }
+//    public void setDistance(double distance){ this.distance = (int) Math.round(distance); }
     public void setCategory(String category){this.category = category;}
 
     public  void Toast(String str){
         Toast myToast = Toast.makeText(getActivity().getApplicationContext(),str, Toast.LENGTH_SHORT);
         myToast.show();
+    }
+
+    public double chkdistance(){
+        if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            return 0;
+        }else{
+            if(to!=null){
+                Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                double longitude = location.getLongitude();
+                double latitude = location.getLatitude();
+                distance = (int) Math.round(SphericalUtil.computeDistanceBetween(new LatLng(latitude,longitude),to));
+
+
+            }
+        }
+        return 0;
+    }
+    @Override
+    public void onDenied(int i, @NonNull String[] strings) {
+
+    }
+
+    @Override
+    public void onGranted(int i, @NonNull String[] strings) {
+
     }
 }

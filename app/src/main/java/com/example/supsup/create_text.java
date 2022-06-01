@@ -252,7 +252,6 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
                 if(ContextCompat.checkSelfPermission(create_text.this, Manifest.permission.ACCESS_FINE_LOCATION)
                         != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(create_text.this, Manifest.permission.ACCESS_COARSE_LOCATION)
                         != PackageManager.PERMISSION_GRANTED) {
-
                     return;
                 }
                 else{
@@ -314,8 +313,6 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
                 Log.e("Error", "지역을 찾지 못했습니다.");
             } else {
                 // onWhere.setText(list.get(0).toString()); 원래 통으로 나오는 주소값 문자열
-
-                // 문자열을 자르자!
                 String cut[] = list.get(0).toString().split(" ");
                 for (int i = 0; i < cut.length; i++) {
                     System.out.println("cut[" + i + "] : " + cut[i]);
