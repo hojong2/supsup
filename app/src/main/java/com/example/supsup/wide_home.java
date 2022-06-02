@@ -65,6 +65,7 @@ public class wide_home extends AppCompatActivity {
         adapter.addFragment(new wide_home_helpme(), "1");
         adapter.addFragment(new wide_home_helpyou(),"2");
         adapter.addFragment(new wide_home_mypage(), "3");
+        adapter.addFragment(new wide_home_createtext(), "4");
         viewPager.setAdapter(adapter);
 
     }

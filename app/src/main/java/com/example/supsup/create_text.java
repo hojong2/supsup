@@ -285,6 +285,7 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
                 textModel.context = edit_context.getText().toString();
                 textModel.name = name;
                 textModel.timestamp = date;
+                textModel.address = edit_address.getText().toString();
                 databaseReference.child("context_info").push().setValue(textModel);
 
                 Toast.makeText(getApplicationContext(), "등록이 완료되었습니다", Toast.LENGTH_SHORT).show();

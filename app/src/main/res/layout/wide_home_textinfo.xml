@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-  >
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
 
         //제목, 주소 시작
 
@@ -23,112 +22,154 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:fontFamily="@font/tway_air"
                 android:gravity="center_vertical"
                 android:text="같이 동행해 주실 분"
                 android:textColor="#000000"
-                android:textSize="45dp"
+                android:textSize="30dp"
                 android:textStyle="bold" />
 
-            <!--            <TextView-->
-            <!--                android:id="@+id/address"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_margin="5dp"-->
-            <!--                android:gravity="center_vertical"-->
-            <!--                android:text="서울시 구로구 구로2동"-->
-            <!--                android:textColor="#000000"-->
-            <!--                android:textSize="30dp" />-->
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center_vertical"
+                android:text="서울시 구로구 구로2동"
+                android:textSize="15dp" />
         </LinearLayout>
-        <!--        //제목, 주소 끝-->
+        //제목, 주소 끝
 
 
-        <!--                //코인, 달력, 알람 시작-->
+        //코인, 달력, 알람 시작
 
-        <!--                <LinearLayout-->
-        <!--                    android:layout_width="match_parent"-->
-        <!--                    android:layout_height="match_parent"-->
-        <!--                    android:layout_weight="3"-->
-        <!--                    android:background="@drawable/topborder"-->
-        <!--                    android:orientation="horizontal">-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@drawable/topborder"
+            android:orientation="horizontal">
 
-        <!--                    <LinearLayout-->
-        <!--                        android:layout_width="match_parent"-->
-        <!--                        android:layout_height="match_parent"-->
-        <!--                        android:layout_marginTop="5dp"-->
-        <!--                        android:layout_weight="1"-->
-        <!--                        android:orientation="vertical">-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-        <!--                        <ImageView-->
-        <!--                            android:layout_width="80dp"-->
-        <!--                            android:layout_height="60dp"-->
-        <!--                            android:layout_gravity="center_horizontal"-->
-        <!--                            android:layout_margin="10dp"-->
-        <!--                            android:src="@drawable/coin" />-->
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/coin" />
 
-        <!--                        <TextView-->
-        <!--                            android:id="@+id/money"-->
-        <!--                            android:layout_width="match_parent"-->
-        <!--                            android:layout_height="match_parent"-->
-        <!--                            android:gravity="center"-->
-        <!--                            android:text="10000원"-->
-        <!--                            android:textSize="20dp"-->
-        <!--                            android:textColor="#000000"-->
-        <!--                            android:textStyle="bold" />-->
-        <!--                    </LinearLayout>-->
+                <TextView
+                    android:id="@+id/money"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="10000원"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-        <!--                    <LinearLayout-->
-        <!--                        android:layout_width="match_parent"-->
-        <!--                        android:layout_height="match_parent"-->
-        <!--                        android:layout_weight="1"-->
-        <!--                        android:layout_marginTop="5dp"-->
-        <!--                        android:orientation="vertical">-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-        <!--                        <ImageView-->
-        <!--                            android:layout_width="80dp"-->
-        <!--                            android:layout_height="60dp"-->
-        <!--                            android:layout_gravity="center_horizontal"-->
-        <!--                            android:layout_margin="10dp"-->
-        <!--                            android:src="@drawable/calendar" />-->
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/calendar" />
 
-        <!--                        // 마감날짜만 보이게 변경-->
-        <!--                        <TextView-->
-        <!--                            android:id="@+id/date"-->
-        <!--                            android:layout_width="match_parent"-->
-        <!--                            android:layout_height="match_parent"-->
-        <!--                            android:gravity="center"-->
-        <!--                            android:text="~ 2022.03.26"-->
-        <!--                            android:textSize="20dp"-->
-        <!--                            android:textColor="#000000"-->
-        <!--                            android:textStyle="bold" />-->
-        <!--                    </LinearLayout>-->
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="2022.03.23 ~ 2022.03.26"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-        <!--                    <LinearLayout-->
-        <!--                        android:layout_width="match_parent"-->
-        <!--                        android:layout_height="match_parent"-->
-        <!--                        android:layout_weight="1"-->
-        <!--                        android:layout_marginTop="5dp"-->
-        <!--                        android:orientation="vertical">-->
-        <!--                        <ImageView-->
-        <!--                            android:layout_width="80dp"-->
-        <!--                            android:layout_height="60dp"-->
-        <!--                            android:layout_gravity="center_horizontal"-->
-        <!--                            android:layout_margin="10dp"-->
-        <!--                            android:src="@drawable/time" />-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-        <!--                        <TextView-->
-        <!--                            android:id="@+id/time1"-->
-        <!--                            android:layout_width="match_parent"-->
-        <!--                            android:layout_height="match_parent"-->
-        <!--                            android:gravity="center"-->
-        <!--                            android:text="14:00~15:00"-->
-        <!--                            android:textSize="20dp"-->
-        <!--                            android:textColor="#000000"-->
-        <!--                            android:textStyle="bold" />-->
-        <!--                    </LinearLayout>-->
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/time" />
 
-        <!--                </LinearLayout>-->
-        <!--                //코인, 달력, 알람 끝-->
+                <TextView
+                    android:id="@+id/time1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="14:00~15:00"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+        //코인,달력,알람 끝
+
+        //신뢰도 라인 시작
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:background="@drawable/topborder"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_baseline_account_circle_24" />
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="fill_vertical"
+                android:text="박종호"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="40dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="신뢰도"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/reliability"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="4.5"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        // 신뢰도 라인 끝
 
 
         //상세내용 시작
@@ -136,87 +177,18 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="55dp"
             android:background="@drawable/topborder"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="15dp"
-                android:fontFamily="@font/tway_air"
+                android:layout_margin="5dp"
                 android:gravity="center"
                 android:text="상세 정보"
-                android:textColor="@color/blue"
-                android:textSize="30dp"
-
-                />
-
-            //작성자 라인 시작
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="7dp"
-                android:orientation="horizontal"
-
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:fontFamily="@font/tway_air"
-                    android:gravity="center"
-                    android:text="작성자"
-                    android:textColor="@color/gold"
-                    android:textSize="35dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/writer_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/tway_air"
-                    android:gravity="center"
-                    android:text="홍길동"
-                    android:textColor="#000000"
-                    android:textSize="35dp"
-
-                    />
-            </LinearLayout>
-            // 전화번호
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="7dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:fontFamily="@font/tway_air"
-                    android:gravity="center"
-                    android:text="전화번호"
-                    android:textColor="@color/gold"
-                    android:textSize="35dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/writer_phone_number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/tway_air"
-                    android:gravity="center"
-                    android:text="010-1111-1111"
-                    android:textColor="#000000"
-                    android:textSize="30dp" />
-            </LinearLayout>
-
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:textStyle="bold" />
             //소요시간 라인
 
             <LinearLayout
@@ -229,11 +201,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="20dp"
-                    android:fontFamily="@font/tway_air"
                     android:gravity="center"
                     android:text="시작시간"
-                    android:textColor="@color/gold"
-                    android:textSize="35dp"
+                    android:textColor="#000000"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -241,86 +212,112 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/tway_air"
                     android:gravity="center"
                     android:text="14:00 ~ 15:00"
                     android:textColor="#000000"
-                    android:textSize="30dp" />
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
             </LinearLayout>
             // 소요시간 라인 끝
 
+            //상태 라인 시작
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="7dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center"
+                    android:text="상태"
+                    android:textColor="#000000"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/statement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="65dp"
+                    android:gravity="center"
+                    android:text="모집 중"
+                    android:textColor="#000000"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
             //페이 형태 라인 시작
 
-            <!--            <LinearLayout-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="match_parent"-->
-            <!--                android:layout_margin="7dp"-->
-            <!--                android:orientation="horizontal">-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="7dp"
+                android:orientation="horizontal">
 
-            <!--                <TextView-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="match_parent"-->
-            <!--                    android:layout_marginLeft="20dp"-->
-            <!--                    android:fontFamily="@font/tway_air"-->
-            <!--                    android:gravity="center"-->
-            <!--                    android:text="지불 방식"-->
-            <!--                    android:textColor="#000000"-->
-            <!--                    android:textSize="35dp"-->
-            <!--                    android:textStyle="bold" />-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center"
+                    android:text="페이 형태"
+                    android:textColor="#000000"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
-            <!--                <TextView-->
-            <!--                    android:id="@+id/pay_shape"-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="match_parent"-->
-            <!--                    android:layout_marginLeft="30dp"-->
-            <!--                    android:fontFamily="@font/tway_air"-->
-            <!--                    android:gravity="center"-->
-            <!--                    android:text="금전"-->
-            <!--                    android:textColor="#000000"-->
-            <!--                    android:textSize="35dp"-->
+                <TextView
+                    android:id="@+id/pay_shape"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="30dp"
+                    android:gravity="center"
+                    android:text="금전"
+                    android:textColor="#000000"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-            <!--                    />-->
-            <!--            </LinearLayout>-->
+            //섭테고리 라인 시작
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="7dp"
+                android:orientation="horizontal">
 
-            <!--            //섭테고리 라인 시작-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center"
+                    android:text="SUP"
+                    android:textColor="#489CFF"
+                    android:textSize="19dp"
+                    android:textStyle="bold" />
 
-            <!--            <LinearLayout-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="match_parent"-->
-            <!--                android:layout_margin="7dp"-->
-            <!--                android:orientation="horizontal">-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="테고리"
+                    android:textColor="#000000"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
-            <!--                <TextView-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="match_parent"-->
-            <!--                    android:layout_marginLeft="20dp"-->
-            <!--                    android:gravity="center"-->
-            <!--                    android:text="SUP"-->
-            <!--                    android:textColor="#489CFF"-->
-            <!--                    android:textSize="35dp"-->
-            <!--                    android:textStyle="bold" />-->
-
-            <!--                <TextView-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="match_parent"-->
-            <!--                    android:gravity="center"-->
-            <!--                    android:text="테고리"-->
-            <!--                    android:textColor="#000000"-->
-            <!--                    android:textSize="35dp"-->
-            <!--                    android:textStyle="bold" />-->
-
-            <!--                <TextView-->
-            <!--                    android:id="@+id/suptegory"-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="match_parent"-->
-            <!--                    android:layout_marginLeft="15dp"-->
-            <!--                    android:gravity="center"-->
-            <!--                    android:text="시각"-->
-            <!--                    android:textColor="#000000"-->
-            <!--                    android:textSize="35dp"-->
-            <!--                    android:textStyle="bold" />-->
-            <!--            </LinearLayout>-->
+                <TextView
+                    android:id="@+id/suptegory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center"
+                    android:text="시각"
+                    android:textColor="#000000"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             //위치 라인 시작
 
@@ -334,11 +331,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="20dp"
-                    android:fontFamily="@font/tway_air"
                     android:gravity="center"
                     android:text="위치"
-                    android:textColor="@color/gold"
-                    android:textSize="35dp"
+                    android:textColor="#000000"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -346,73 +342,56 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="68dp"
-                    android:fontFamily="@font/tway_air"
                     android:gravity="center"
                     android:text="서울시 구로구 구로2동"
                     android:textColor="#000000"
-                    android:textSize="25dp" />
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
+            //내용 라인 시작
 
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/topborder">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="7dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:fontFamily="@font/tway_air"
-                android:gravity="center"
-                android:text="내용"
-                android:textColor="@color/gold"
-                android:textSize="35dp"
+                android:layout_margin="7dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center"
+                    android:text="내용"
+                    android:textColor="#000000"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/context"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="68dp"
+                    android:gravity="left"
+                    android:text="구로역에서 성결대학교 까지 동행 해주실 분 구합니다."
+                    android:textColor="#000000"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            // 내용 라인 끝
+
+            <Button
+                android:id="@+id/button_chat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:text="채팅하기"
+                android:textSize="20dp"
                 android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/context"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="68dp"
-                android:fontFamily="@font/tway_air"
-                android:gravity="center"
-                android:text="형광등 좀 교체 해주세요ㅠㅠ"
-                android:textColor="#000000"
-                android:textSize="25dp" />
-
-
         </LinearLayout>
-
-        <Button
-            android:id="@+id/button_chat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:text="채팅"
-            android:textSize="40dp"
-            android:fontFamily="@font/tway_air"
-            android:textStyle="bold" />
+        //채팅하기 라인 끝
 
     </LinearLayout>
-
 
 </LinearLayout>

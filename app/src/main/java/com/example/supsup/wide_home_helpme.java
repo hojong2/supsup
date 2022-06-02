@@ -157,7 +157,7 @@ public class wide_home_helpme extends Fragment {
                         text_title = textView1.getText().toString();
                         text_name = textView3.getText().toString();
 
-                        Intent intent = new Intent(getActivity(),home_textinfo.class);
+                        Intent intent = new Intent(getActivity(),wide_home_textinfo.class);
                         startActivity(intent);
                     }
                 });
