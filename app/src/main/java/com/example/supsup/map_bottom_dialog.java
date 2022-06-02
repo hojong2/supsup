@@ -64,7 +64,6 @@ public class map_bottom_dialog extends BottomSheetDialogFragment implements Auto
         lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         chkdistance();
 
-        Log.e("test",category);
         if(category.equals("시각")){
             Glide.with(this).load(R.drawable.blind).circleCrop().into(imageView);
         }else if(category.equals("언어")){
@@ -82,7 +81,7 @@ public class map_bottom_dialog extends BottomSheetDialogFragment implements Auto
 
         btntitle.setText(title);
         textName.setText("작성자 :"+name);
-        textlocation.setText(distance);
+        textlocation.setText(location);
 
         if(distance/1000 >= 1) {
             textdistance.setText("약" + String.valueOf(distance/1000)+"."+String.valueOf(distance%1000) + "KM");
@@ -115,7 +114,7 @@ public class map_bottom_dialog extends BottomSheetDialogFragment implements Auto
     public void setTitle(String title){ this.title = title; }
     public void setLocation(String location){ this.location = location; }
     public  void setName(String name){this.name = name;}
-    public void setDistance(LatLng to){ this.to = to; }
+    public void setDistance(LatLng to){ this.to = to;}
 //    public void setDistance(double distance){ this.distance = (int) Math.round(distance); }
     public void setCategory(String category){this.category = category;}
 
@@ -124,22 +123,20 @@ public class map_bottom_dialog extends BottomSheetDialogFragment implements Auto
         myToast.show();
     }
 
-    public double chkdistance(){
+    public void chkdistance(){
         if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
-            return 0;
+            return;
         }else{
             if(to!=null){
                 Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                 double longitude = location.getLongitude();
                 double latitude = location.getLatitude();
                 distance = (int) Math.round(SphericalUtil.computeDistanceBetween(new LatLng(latitude,longitude),to));
-
-
-            }
+            }else Log.e("e","distance");
         }
-        return 0;
+
     }
     @Override
     public void onDenied(int i, @NonNull String[] strings) {

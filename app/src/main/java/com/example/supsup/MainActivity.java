@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.pedro.library.AutoPermissions;
 import com.pedro.library.AutoPermissionsListener;
 
-public class MainActivity extends AppCompatActivity implements AutoPermissionsListener {
+public class MainActivity extends AppCompatActivity{
     Fragment fragment_home;
     Fragment fragment_map;
     Fragment fragment_chat;
@@ -112,19 +112,5 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
         );
 
     }
-    //위치 권한
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        AutoPermissions.Companion.parsePermissions(this, requestCode, permissions, this);
-    }
-    @Override
-    public void onDenied(int i, @NonNull String[] strings) {
 
-    }
-
-    @Override
-    public void onGranted(int i, @NonNull String[] strings) {
-
-    }
 }
