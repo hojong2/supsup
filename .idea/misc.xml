@@ -111,6 +111,7 @@
         <entry key="..\:/android studio/supsup/app/src/main/res/layout/tts_main.xml" value="0.29713552800342025" />
         <entry key="..\:/android studio/supsup/app/src/main/res/layout/wide1_createtext_title.xml" value="0.15177426250534418" />
         <entry key="..\:/android studio/supsup/app/src/main/res/layout/wide3_createtext_time.xml" value="0.29713552800342025" />
+        <entry key="..\:/android studio/supsup/app/src/main/res/layout/wide4_createtext_detail.xml" value="0.29713552800342025" />
         <entry key="..\:/android studio/supsup/app/src/main/res/layout/wide_helpsort_resource.xml" value="0.2497733454215775" />
         <entry key="..\:/android studio/supsup/app/src/main/res/layout/wide_home.xml" value="0.29713552800342025" />
         <entry key="..\:/android studio/supsup/app/src/main/res/layout/wide_home_createtext.xml" value="0.29713552800342025" />
@@ -119,6 +120,7 @@
         <entry key="..\:/android studio/supsup/app/src/main/res/layout/wide_home_mypage.xml" value="0.29713552800342025" />
         <entry key="..\:/android studio/supsup/app/src/main/res/layout/wide_home_mypage_resource.xml" value="0.29713552800342025" />
         <entry key="..\:/android studio/supsup/app/src/main/res/layout/wide_home_resource.xml" value="0.29713552800342025" />
+        <entry key="..\:/android studio/supsup/app/src/main/res/layout/wide_home_textinfo.xml" value="0.29713552800342025" />
         <entry key="..\:/android studio/supsup/app/src/main/res/menu/menu_ui.xml" value="0.15177426250534418" />
       </map>
     </option>
