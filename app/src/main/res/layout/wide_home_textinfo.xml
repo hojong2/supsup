@@ -19,6 +19,7 @@
 
             <TextView
                 android:id="@+id/title"
+                android:hint="@string/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -30,6 +31,7 @@
 
             <TextView
                 android:id="@+id/address"
+                android:hint="@string/location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -60,7 +62,8 @@
                     android:layout_height="60dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="10dp"
-                    android:src="@drawable/coin" />
+                    android:src="@drawable/coin"
+                    android:importantForAccessibility="no"/>
 
                 <TextView
                     android:id="@+id/money"
@@ -83,7 +86,8 @@
                     android:layout_height="60dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="10dp"
-                    android:src="@drawable/calendar" />
+                    android:src="@drawable/calendar"
+                    android:importantForAccessibility="no"/>
 
                 <TextView
                     android:id="@+id/date"
@@ -106,7 +110,8 @@
                     android:layout_height="60dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="10dp"
-                    android:src="@drawable/time" />
+                    android:src="@drawable/time"
+                    android:importantForAccessibility="no"/>
 
                 <TextView
                     android:id="@+id/time1"

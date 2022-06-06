@@ -7,6 +7,10 @@
     <string name="title">제목</string>
     <string name="writer">작성자</string>
     <string name="location">위치</string>
+    <string name="pay">금액</string>
+    <string name="time">시간</string>
+
+    <string name="period">기간</string>
     <string name="sort1">정렬방법을 선택해주세요 왼쪽은 장애의 종류 오른쪽은 지불방법 및 정렬방법 입니다.</string>
     <string name="helpme">해주세요 페이지입니다.</string>
     <string name="helpyou">해드려요 페이지입니다.</string>
