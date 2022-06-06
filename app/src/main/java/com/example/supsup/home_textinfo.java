@@ -1,18 +1,23 @@
 package com.example.supsup;
 
-import android.app.ActivityOptions;
+import  android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -21,14 +26,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class home_textinfo extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private String destinationUid;
+    public static final int NOTIFICATION_ID = 1;
 
 
 
@@ -150,5 +154,64 @@ public class home_textinfo extends AppCompatActivity {
 
             } // 채팅 프래그먼트로 가는거 오류남. 채팅 창 액티비티로 바로 이동시키면 될듯
         });
+
+//        NotificationCompat.Builder mBuilder =
+//                new NotificationCompat.Builder(home_textinfo.this)
+//                .setSmallIcon(R.drawable.button_blue)
+//                .setContentTitle("키워드 알림!!")
+//                .setContentText("시각");
+
+        Button button_test = (Button) findViewById(R.id.button_test);
+        button_test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bitmap mLargeIconForNoti =
+                        BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+                PendingIntent mPendingIntent = PendingIntent.getActivities(
+                        home_textinfo.this,
+                        0,
+                        new Intent[]{new Intent(getApplicationContext(), home_textinfo.class)},
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                );
+                NotificationCompat.Builder mbuilder =
+                        new NotificationCompat.Builder(home_textinfo.this)
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setContentTitle("키워드 알림!!")
+                        .setContentText("시각")
+                        .setDefaults(Notification.DEFAULT_SOUND)
+                        .setLargeIcon(mLargeIconForNoti)
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                        .setAutoCancel(true)
+                        .setContentIntent(mPendingIntent);
+
+                NotificationManager mNotificationManager =
+                        (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                mNotificationManager.notify(0, mbuilder.build());
+
+                String channelId = "channel";
+                String channelName ="Channel Name";
+                int importance = NotificationManager.IMPORTANCE_LOW;
+
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    NotificationChannel mChannel = new NotificationChannel(channelId, channelName, importance);
+                    mNotificationManager.createNotificationChannel(mChannel);
+                    mbuilder = new NotificationCompat.Builder(view.getContext(), channelId);
+                }
+                else {
+                    mbuilder = new NotificationCompat.Builder(view.getContext());
+
+                }
+
+                Bitmap bitmap=BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher);
+                Log.d("home_textinfo",String.valueOf((bitmap==null)));
+                Log.d("home_textinfo",String.valueOf((mNotificationManager==null)));
+
+
+
+            }
+
+        });
+
+
     }
 }

@@ -389,6 +389,16 @@
                 android:text="채팅하기"
                 android:textSize="20dp"
                 android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:text="알림"
+                android:textSize="20dp"
+                android:textStyle="bold" />
         </LinearLayout>
         //채팅하기 라인 끝
 
