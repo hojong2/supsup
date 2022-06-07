@@ -47,7 +47,9 @@
             android:text="정렬"
             android:textStyle="bold"
             android:textSize="17dp"
-            android:id="@+id/btn_assort"/>
+            android:id="@+id/btn_assort"
+            android:layout_margin="10dp"
+            android:background="@drawable/button_blue"/>
     </LinearLayout>
 
     <LinearLayout
