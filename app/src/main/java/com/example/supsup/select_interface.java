@@ -28,8 +28,6 @@ import java.util.Locale;
 
 public class select_interface extends AppCompatActivity {
     Button btndefault, btnwide;
-//    ImageButton btnTts;
-    TextToSpeech tts;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -4,6 +4,7 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.accessibility.AccessibilityManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,6 +60,7 @@ public class wide_home_textinfo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AccessibilityManager am = (AccessibilityManager) getSystemService(ACCESSIBILITY_SERVICE);
         setContentView(R.layout.wide_home_textinfo);
 
 
@@ -100,8 +102,11 @@ public class wide_home_textinfo extends AppCompatActivity {
 
                         if (textModel.text_state.equals("true")) {
                             textView_text_state.setText("모집 중");
-                        } else
+                            textView_text_state.setContentDescription("모집 중");
+                        } else {
                             textView_text_state.setText("모집 완료");
+                            textView_text_state.setContentDescription("모집 완료");
+                        }
 
                         textView_pay_shape.setText(textModel.pay_shape);
                         textView_address1.setText(textModel.address);
@@ -112,6 +117,19 @@ public class wide_home_textinfo extends AppCompatActivity {
 
                         textView_user_name.setText(textUser_name);
                         textView_title.setText(text_title);
+
+                        //TTS
+                        textView_address.setContentDescription("주소 "+textModel.address);
+                        textView_money.setContentDescription("금액 "+textModel.pay);
+                        textView_date.setContentDescription("기간 " +textModel.end_recruit);
+                        textView_time1.setContentDescription("시간 "+textModel.end_datetime);
+                        textView_time2.setContentDescription("시간 "+textModel.end_datetime);
+                        textView_pay_shape.setContentDescription("페이형태 "+textModel.pay_shape);
+                        textView_address1.setContentDescription("위치 "+textModel.address);
+                        textView_context.setContentDescription("내용 "+textModel.context);
+                        textView_user_name.setContentDescription("작성자 " + textUser_name);
+                        textView_title.setContentDescription(text_title);
+
                     }
                 }
             }
@@ -130,6 +148,10 @@ public class wide_home_textinfo extends AppCompatActivity {
         ab.setTitle("상세 내용");
         Button button_chat = (Button) findViewById(R.id.button_chat);
 
+        if(am.isTouchExplorationEnabled()){
+            ab.hide();
+
+        }
         button_chat.setOnClickListener(new View.OnClickListener() { // 채팅 버튼 클릭 시 화면 전환
             @Override
             public void onClick(View view) {
