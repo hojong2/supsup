@@ -136,12 +136,16 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:importantForAccessibility="no"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
-                android:src="@drawable/ic_baseline_account_circle_24" />
+                android:src="@drawable/ic_baseline_account_circle_24"
+                android:contentDescription="@string/writer"
+                android:labelFor="@+id/user_name"
+                />
 
             <TextView
                 android:id="@+id/user_name"
@@ -154,6 +158,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:importantForAccessibility="no"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="40dp"
@@ -162,7 +167,8 @@
                 android:text="신뢰도"
                 android:textColor="#000000"
                 android:textSize="18dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:labelFor="@+id/reliability"/>
 
             <TextView
                 android:id="@+id/reliability"
@@ -269,6 +275,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:importantForAccessibility="no"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="20dp"
@@ -276,7 +283,8 @@
                     android:text="페이 형태"
                     android:textColor="#000000"
                     android:textSize="18dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:labelFor="@+id/pay_shape"/>
 
                 <TextView
                     android:id="@+id/pay_shape"
@@ -299,6 +307,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:importantForAccessibility="no"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="20dp"
@@ -315,7 +324,9 @@
                     android:text="테고리"
                     android:textColor="#000000"
                     android:textSize="18dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:contentDescription="카테고리"
+                    android:labelFor="@+id/suptegory"/>
 
                 <TextView
                     android:id="@+id/suptegory"
@@ -338,6 +349,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:importantForAccessibility="no"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="20dp"
@@ -345,7 +357,8 @@
                     android:text="위치"
                     android:textColor="#000000"
                     android:textSize="18dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:labelFor="@+id/address1"/>
 
                 <TextView
                     android:id="@+id/address1"
@@ -368,6 +381,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:importantForAccessibility="no"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="20dp"
@@ -375,7 +389,8 @@
                     android:text="내용"
                     android:textColor="#000000"
                     android:textSize="18dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:labelFor="@+id/context"/>
 
                 <TextView
                     android:id="@+id/context"
