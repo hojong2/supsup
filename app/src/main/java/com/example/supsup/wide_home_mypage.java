@@ -55,6 +55,7 @@ public class wide_home_mypage extends Fragment {
     private FirebaseAuth mAuth;
     DatabaseReference databaseReference = null;
     DatabaseReference databaseReference1 = null;
+    String address;
 
 
     private String name;
@@ -78,14 +79,14 @@ public class wide_home_mypage extends Fragment {
 
         adapter2.addItem2("작성한 해주세요", R.drawable.ic_baseline_arrow_forward_ios_24);
         adapter2.addItem2("작성한 해드려요", R.drawable.ic_baseline_arrow_forward_ios_24);
-        adapter2.addItem2("내 정보 수정", R.drawable.ic_baseline_arrow_forward_ios_24);
-        adapter2.addItem2("관심 키워드 등록", R.drawable.ic_baseline_arrow_forward_ios_24);
         adapter2.addItem2("화면 설정", R.drawable.ic_baseline_arrow_forward_ios_24);
         adapter2.addItem2("로그아웃", R.drawable.ic_baseline_arrow_forward_ios_24);
 
-        textView_address.setText("다산 2동");
+
 
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+
+
 
 
 
@@ -149,26 +150,18 @@ public class wide_home_mypage extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 switch(i){
                     case 0:
-                        Intent intent1=new Intent(getActivity(),mypage_myhelpme.class);
+                        Intent intent1=new Intent(getActivity(),wide_mypage_myhelpme.class);
                         startActivity(intent1);
                         break;
                     case 1:
-                        Intent intent2=new Intent(getActivity(),mypage_myhelpyou.class);
+                        Intent intent2=new Intent(getActivity(),wide_mypage_myhelpyou.class);
                         startActivity(intent2);
                         break;
                     case 2:
-                        Intent intent3=new Intent(getActivity(),mypage_myinfo.class);
-                        startActivity(intent3);
-                        break;
-                    case 3:
-                        Intent intent4=new Intent(getActivity(),mypage_keyword.class);
-                        startActivity(intent4);
-                        break;
-                    case 4:
                         Intent intent5=new Intent(getActivity(),select_interface.class);
                         startActivity(intent5);
                         break;
-                    case 5:
+                    case 3:
                         FirebaseAuth.getInstance().signOut();
                         Intent intent6=new Intent(getActivity(),login.class);
                         startActivity(intent6);

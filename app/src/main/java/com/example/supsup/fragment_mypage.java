@@ -1,10 +1,17 @@
 package com.example.supsup;
 
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +24,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -37,7 +46,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.pedro.library.AutoPermissions;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,7 +67,7 @@ public class fragment_mypage extends Fragment {
     DatabaseReference databaseReference = null;
     DatabaseReference databaseReference1 = null;
 
-
+    String address;
     private String name;
     private String ImageUrl;
 
@@ -73,15 +84,16 @@ public class fragment_mypage extends Fragment {
         profilelinear = (LinearLayout) v.findViewById(R.id.profilelinear);
         listview2.setAdapter(adapter2);
         textView_name = (TextView) v.findViewById(R.id.myname);
-        textView_address = (TextView) v.findViewById(R.id.mylocation);
         imageView_user = (ImageView) v.findViewById(R.id.pimage);
+
 
         adapter2.addItem2("작성한 해주세요", R.drawable.ic_baseline_arrow_forward_ios_24);
         adapter2.addItem2("작성한 해드려요", R.drawable.ic_baseline_arrow_forward_ios_24);
         adapter2.addItem2("화면 설정", R.drawable.ic_baseline_arrow_forward_ios_24);
         adapter2.addItem2("로그아웃", R.drawable.ic_baseline_arrow_forward_ios_24);
 
-        textView_address.setText("다산 2동");
+
+
 
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
 
@@ -116,7 +128,7 @@ public class fragment_mypage extends Fragment {
                     storageReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                         @Override
                         public void onComplete(@NonNull Task<Uri> task) {
-                            Glide.with(getContext()).load(ImageUrl).into(imageView_user);
+                            Glide.with(getActivity()).load(ImageUrl).into(imageView_user);
 
                         }
                     });
@@ -171,4 +183,6 @@ public class fragment_mypage extends Fragment {
         });
         return v;
     }
+
+
 }

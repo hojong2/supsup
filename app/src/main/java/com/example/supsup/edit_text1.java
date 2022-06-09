@@ -24,7 +24,6 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -49,12 +48,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class edit_text extends AppCompatActivity implements AutoPermissionsListener {
+public class edit_text1 extends AppCompatActivity implements AutoPermissionsListener {
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference1 = firebaseDatabase.getReference("context_info");
     private List<TextModel> textModelList = new ArrayList<>();
-    mypage_myhelpme MHelp_Me = new mypage_myhelpme();
+    mypage_myhelpyou MHelp_You = new mypage_myhelpyou();
 
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd hh:mm");
     private Date nowDate = new Date();
@@ -81,7 +80,8 @@ public class edit_text extends AppCompatActivity implements AutoPermissionsListe
     private String destinationUid;
     public String name;
     public String text_state; // 모집중, 모집아님
-    public String textuid;
+    String textuid;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,7 +148,7 @@ public class edit_text extends AppCompatActivity implements AutoPermissionsListe
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     TextModel textModel = snapshot.getValue(TextModel.class);
 
-                    if (textModel.name.equals(MHelp_Me.text_name) && textModel.title.equals(MHelp_Me.text_title)) {    //해주세요
+                    if (textModel.name.equals(MHelp_You.text_name) && textModel.title.equals(MHelp_You.text_title)) {    //해주세요
                         edit_address.setText(textModel.address);
                         edit_title.setText(textModel.title);
                         edit_pay.setText(textModel.pay);
@@ -158,22 +158,22 @@ public class edit_text extends AppCompatActivity implements AutoPermissionsListe
                         destinationUid = textModel.uid;
                         address.setText(textModel.address);
                         edit_context.setText(textModel.context);
-                        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, suptegoryList);
+                        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, suptegoryList1);
                         suptegory.setAdapter(adapter2);
-                        button_helpMe.setBackgroundColor(Color.parseColor("#FFE400"));
+                        button_helpYou.setBackgroundColor(Color.parseColor("#FFE400"));
+
+
 
                     }
-
                 }
             }
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-        textModel.help_state = "true";
+        textModel.help_state = "false";
 
         // 해주세요
         button_helpMe.setOnClickListener(new View.OnClickListener() {
@@ -275,8 +275,8 @@ public class edit_text extends AppCompatActivity implements AutoPermissionsListe
         button_changeAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(ContextCompat.checkSelfPermission(edit_text.this, Manifest.permission.ACCESS_FINE_LOCATION)
-                        != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(edit_text.this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                if(ContextCompat.checkSelfPermission(edit_text1.this, Manifest.permission.ACCESS_FINE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(edit_text1.this, Manifest.permission.ACCESS_COARSE_LOCATION)
                         != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }
@@ -302,7 +302,7 @@ public class edit_text extends AppCompatActivity implements AutoPermissionsListe
             public void onClick(View view) {
 
                 textModel.uid = myUid;
-                textModel.text_state = "true";
+                textModel.text_state = "flase";
                 textModel.pay_shape = pay_shape.getSelectedItem().toString();
                 textModel.suptegory = suptegory.getSelectedItem().toString();
                 textModel.end_recruit = text_end_recruit.getText().toString();
@@ -315,10 +315,9 @@ public class edit_text extends AppCompatActivity implements AutoPermissionsListe
                 databaseReference.child("context_info").child(textuid).removeValue();
                 databaseReference.child("context_info").push().setValue(textModel);
 
-
                 Toast.makeText(getApplicationContext(), "수정완료", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(getApplication(),mypage_myhelpme.class);
+                Intent intent = new Intent(getApplication(),mypage_myhelpyou.class);
                 startActivity(intent);
 
             }

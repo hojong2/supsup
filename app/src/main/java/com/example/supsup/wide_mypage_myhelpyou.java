@@ -6,13 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class mypage_myhelpyou extends AppCompatActivity {
+public class wide_mypage_myhelpyou extends AppCompatActivity {
     public RecyclerView recyclerView;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -85,7 +82,7 @@ public class mypage_myhelpyou extends AppCompatActivity {
         @NonNull
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_text,parent,false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.wide_home_resource,parent,false);
             return new CustomTextViewHolder(view);
         }
 
@@ -124,7 +121,7 @@ public class mypage_myhelpyou extends AppCompatActivity {
                         text_title = textView1.getText().toString();
                         text_name = textView3.getText().toString();
 
-                        Intent intent = new Intent(getApplicationContext(), myhelp_textinfo1.class);
+                        Intent intent = new Intent(getApplicationContext(), wide_myhelp_textinfo1.class);
                         intent.putExtra("textuid", uidLists.get(getAdapterPosition()));
                         startActivity(intent);
                     }

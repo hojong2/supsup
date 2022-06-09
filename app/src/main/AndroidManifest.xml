@@ -53,6 +53,13 @@
         <activity android:name=".wide3_createtext_time"/>
         <activity android:name=".wide4_createtext_detail"/>
         <activity android:name=".myhelp_textinfo"/>
+        <activity android:name=".myhelp_textinfo1"/>
+        <activity android:name=".edit_text"/>
+        <activity android:name=".edit_text1"/>
+        <activity android:name=".wide_mypage_myhelpme"/>
+        <activity android:name=".wide_mypage_myhelpyou"/>
+        <activity android:name=".wide_myhelp_textinfo"/>
+        <activity android:name=".wide_myhelp_textinfo1"/>
 
         <uses-library
             android:name="org.apache.http.legacy"

@@ -43,7 +43,8 @@ public class mypage_myhelpme extends AppCompatActivity {
     public static String text_name; // 글정보로 넘겨줄거임
     public static String text_title; // 글정보로 넘겨줄거임
     public static String help_state = "ture";
-
+    private List<String> uidLists = new ArrayList<>();
+    String textuid;
 
 
 
@@ -67,9 +68,11 @@ public class mypage_myhelpme extends AppCompatActivity {
                 textModelList.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     TextModel textModel = snapshot.getValue(TextModel.class);
+                    textuid = snapshot.getKey();
                     if(textModel.help_state.equals("true"))  {
-                        if(myUid.equals(textModel.uid))
+                        if(myUid.equals(textModel.uid)){
                         textModelList.add(textModel);
+                        uidLists.add(textuid);}
                     }
                 }
                 customAdaptor.notifyDataSetChanged();
@@ -81,6 +84,7 @@ public class mypage_myhelpme extends AppCompatActivity {
 
             }
         });
+
 
     }
     class CustomAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
@@ -129,6 +133,7 @@ public class mypage_myhelpme extends AppCompatActivity {
                         text_name = textView3.getText().toString();
 
                         Intent intent = new Intent(getApplicationContext(), myhelp_textinfo.class);
+                        intent.putExtra("textuid", uidLists.get(getAdapterPosition()));
                         startActivity(intent);
                     }
                 });

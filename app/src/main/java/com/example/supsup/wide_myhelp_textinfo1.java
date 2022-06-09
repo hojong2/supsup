@@ -1,9 +1,14 @@
 package com.example.supsup;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -11,7 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.SuccessContinuation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,7 +27,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class myhelp_textinfo extends AppCompatActivity {
+import pl.polidea.view.ZoomView;
+
+public class wide_myhelp_textinfo1 extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private String destinationUid;
 
@@ -49,7 +55,7 @@ public class myhelp_textinfo extends AppCompatActivity {
     fragment_home_helpme Help_Me = new fragment_home_helpme();
     fragment_home_helpyou Help_you = new fragment_home_helpyou();
     wide_home_helpme WHelp_Me = new wide_home_helpme();
-    mypage_myhelpme MHelp_Me = new mypage_myhelpme();
+    wide_mypage_myhelpyou MHelp_You = new wide_mypage_myhelpyou();
 
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -59,10 +65,24 @@ public class myhelp_textinfo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.myhelp_textinfo);
+        setContentView(R.layout.background);
+        View v = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.myhelp_textinfo, null, false);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
+        ZoomView zoomView = new ZoomView(this);
+        zoomView.addView(v);
+        zoomView.setLayoutParams(layoutParams);
+        zoomView.setMiniMapEnabled(false); // 좌측 상단 검은색 미니맵 설정
+        zoomView.setMaxZoom(4f); // 줌 Max 배율 설정  1f 로 설정하면 줌 안됩니다.
+        zoomView.setMiniMapCaption("Mini Map Test"); //미니 맵 내용
+        zoomView.setMiniMapCaptionSize(20); // 미니 맵 내용 글씨 크기 설정
+
+        RelativeLayout container = (RelativeLayout) findViewById(R.id.container);
+        container.addView(zoomView);
 
         Intent secondintent = getIntent();
-        String textuid = secondintent.getStringExtra("textuid");
+        textuid = secondintent.getStringExtra("textuid");
+
         TextView textView_title = findViewById(R.id.title);
         TextView textView_address = findViewById(R.id.address);
         TextView textView_money = findViewById(R.id.money);
@@ -94,7 +114,8 @@ public class myhelp_textinfo extends AppCompatActivity {
                 textModelList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     TextModel textModel = snapshot.getValue(TextModel.class);
-                    if (textModel.name.equals(MHelp_Me.text_name) && textModel.title.equals(MHelp_Me.text_title)) {    //해주세요
+
+                    if (textModel.name.equals(MHelp_You.text_name) && textModel.title.equals(MHelp_You.text_title)) {    //해주세요
                         textView_address.setText(textModel.address);
                         textView_money.setText(textModel.pay);
                         textView_date.setText(textModel.end_recruit);
@@ -113,8 +134,8 @@ public class myhelp_textinfo extends AppCompatActivity {
                         textView_context.setText(textModel.context);
                         textView_suptegory.setText(textModel.suptegory);
 
-                        textUser_name = MHelp_Me.text_name;  // frag_home_helpme 의 변수 여기다가 설정
-                        text_title = MHelp_Me.text_title;    // frag_home_helpme 의 변수 여기다가 설정
+                        textUser_name = MHelp_You.text_name;  // frag_home_helpme 의 변수 여기다가 설정
+                        text_title = MHelp_You.text_title;    // frag_home_helpme 의 변수 여기다가 설정
 
                         textView_user_name.setText(textUser_name);
                         textView_title.setText(text_title);
@@ -141,7 +162,7 @@ public class myhelp_textinfo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(view.getContext(), edit_text.class);
+                Intent intent = new Intent(view.getContext(), edit_text1.class);
                 intent.putExtra("textuid",textuid);
                 startActivity(intent);
 
@@ -152,13 +173,15 @@ public class myhelp_textinfo extends AppCompatActivity {
         button_delete.setOnClickListener(new View.OnClickListener() { // 수정 버튼 클릭 시 화면 전환
             @Override
             public void onClick(View view) {
+
                 System.out.println(textuid);
                 databaseReference.child("context_info").child(textuid).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(myhelp_textinfo.this, "삭제 완료", Toast.LENGTH_LONG).show();
+                        Toast.makeText(wide_myhelp_textinfo1.this, "삭제 완료", Toast.LENGTH_LONG).show();
                     }
                 });
+
             }
         });
     }

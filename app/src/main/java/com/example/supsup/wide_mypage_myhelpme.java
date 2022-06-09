@@ -6,13 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class mypage_myhelpyou extends AppCompatActivity {
+public class wide_mypage_myhelpme extends AppCompatActivity {
     public RecyclerView recyclerView;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -35,7 +32,7 @@ public class mypage_myhelpyou extends AppCompatActivity {
 
     public static String text_name; // 글정보로 넘겨줄거임
     public static String text_title; // 글정보로 넘겨줄거임
-    public static String help_state = "false";
+    public static String help_state = "ture";
     private List<String> uidLists = new ArrayList<>();
     String textuid;
 
@@ -44,7 +41,7 @@ public class mypage_myhelpyou extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mypage_myhelpyou);
+        setContentView(R.layout.mypage_myhelpme);
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
@@ -62,7 +59,7 @@ public class mypage_myhelpyou extends AppCompatActivity {
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     TextModel textModel = snapshot.getValue(TextModel.class);
                     textuid = snapshot.getKey();
-                    if(textModel.help_state.equals("false"))  {
+                    if(textModel.help_state.equals("true"))  {
                         if(myUid.equals(textModel.uid)){
                             textModelList.add(textModel);
                             uidLists.add(textuid);}
@@ -78,6 +75,7 @@ public class mypage_myhelpyou extends AppCompatActivity {
             }
         });
 
+
     }
     class CustomAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
@@ -85,7 +83,7 @@ public class mypage_myhelpyou extends AppCompatActivity {
         @NonNull
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_text,parent,false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.wide_home_resource,parent,false);
             return new CustomTextViewHolder(view);
         }
 
@@ -124,7 +122,7 @@ public class mypage_myhelpyou extends AppCompatActivity {
                         text_title = textView1.getText().toString();
                         text_name = textView3.getText().toString();
 
-                        Intent intent = new Intent(getApplicationContext(), myhelp_textinfo1.class);
+                        Intent intent = new Intent(getApplicationContext(), wide_myhelp_textinfo.class);
                         intent.putExtra("textuid", uidLists.get(getAdapterPosition()));
                         startActivity(intent);
                     }

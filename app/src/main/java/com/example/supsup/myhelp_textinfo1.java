@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -39,6 +41,7 @@ public class myhelp_textinfo1 extends AppCompatActivity {
     public String pay_shape;
     public String address;
     public String context;
+    String textuid;
 
 
     //    private DatabaseReference mDatabase;
@@ -57,6 +60,8 @@ public class myhelp_textinfo1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.myhelp_textinfo);
 
+        Intent secondintent = getIntent();
+        textuid = secondintent.getStringExtra("textuid");
 
         TextView textView_title = findViewById(R.id.title);
         TextView textView_address = findViewById(R.id.address);
@@ -137,7 +142,8 @@ public class myhelp_textinfo1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(view.getContext(), edit_text.class);
+                Intent intent = new Intent(view.getContext(), edit_text1.class);
+                intent.putExtra("textuid",textuid);
                 startActivity(intent);
 
 
@@ -148,8 +154,13 @@ public class myhelp_textinfo1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String key = databaseReference.child("context_info").toString();
-                System.out.println(key);
+                System.out.println(textuid);
+                databaseReference.child("context_info").child(textuid).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(myhelp_textinfo1.this, "삭제 완료", Toast.LENGTH_LONG).show();
+                    }
+                });
 
             }
         });

@@ -154,7 +154,6 @@
                 android:layout_marginLeft="40dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="신뢰도"
                 android:textColor="#000000"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -165,7 +164,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="4.5"
                 android:textSize="18dp"
                 android:textStyle="bold" />
         </LinearLayout>

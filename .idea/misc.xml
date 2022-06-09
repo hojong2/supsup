@@ -33,6 +33,7 @@
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/intro.xml" value="0.1" />
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/item_chatlist.xml" value="0.17916666666666667" />
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/item_message.xml" value="0.16458333333333333" />
+        <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/item_text.xml" value="0.1" />
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/login.xml" value="0.1" />
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/map_bottom_dialog.xml" value="0.1" />
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/map_bottom_dialog_resource.xml" value="0.1" />
@@ -53,9 +54,13 @@
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/wide2_createtext_pay.xml" value="0.1" />
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/wide3_createtext_time.xml" value="0.1" />
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/wide4_createtext_detail.xml" value="0.1" />
+        <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/wide_helpsort_resource.xml" value="0.1" />
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/wide_home.xml" value="0.1" />
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/wide_home_helpme.xml" value="0.13333333333333333" />
+        <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/wide_home_mypage.xml" value="0.1" />
+        <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/wide_home_mypage_resource.xml" value="0.1" />
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/wide_home_resource.xml" value="0.1" />
+        <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/wide_home_textinfo.xml" value="0.1" />
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/zoom_item.xml" value="0.1" />
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/menu/menu_bottom.xml" value="0.14666666666666667" />
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/menu/menu_top.xml" value="0.12" />
