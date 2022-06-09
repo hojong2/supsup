@@ -1,15 +1,19 @@
 package com.example.supsup;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.contentcapture.ContentCaptureCondition;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,15 +32,18 @@ import java.util.List;
 
 public class wide_home_helpme extends Fragment {
     public RecyclerView recyclerView;
-    private ListView listview1;
-    private ListView listview2;
-    private wide_adapter3_1 adapter1;
-    private wide_adapter3_2 adapter2;
+
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference("context_info");
     private List<TextModel> textModelList = new ArrayList<>();
     String address;
 
+    public Spinner spinner1;
+    public Spinner spinner2;
+
+
+    private static final String[] item1 = new String[]{"전체","시각","청각","노인","언어","지체","지적"};
+    private static final String[] item2 = new String[]{"전체","협의","금전","봉사시간"};
 
     public String cartegory1;
     public String cartegory2;
@@ -53,50 +60,33 @@ public class wide_home_helpme extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.wide_home_helpme, container, false);
-        adapter1 = new wide_adapter3_1();
-        adapter2 = new wide_adapter3_2();
-        listview1 = (ListView) v.findViewById(R.id.wide_sorting1);
-        listview2 = (ListView) v.findViewById(R.id.wide_sorting2);
+
+
         button = (Button) v.findViewById(R.id.button_array);
 
-        listview1.setAdapter(adapter1);
-        listview2.setAdapter(adapter2);
+        spinner1=(Spinner)v.findViewById(R.id.wide_sorting1);
+        spinner2=(Spinner)v.findViewById(R.id.wide_sorting2);
 
-        adapter1.addItem2("시각");
-        adapter1.addItem2("청각");
-        adapter1.addItem2("노인");
-        adapter1.addItem2("언어");
-        adapter1.addItem2("지체");
-        adapter1.addItem2("지적");
 
-        adapter2.addItem2("협의");
-        adapter2.addItem2("금전");
-        adapter2.addItem2("봉사시간");
-        adapter2.addItem2("최신순");
-        adapter2.addItem2("오래된순");
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item,item1);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item,item2);
+
+        spinner1.setAdapter(adapter1);
+        spinner2.setAdapter(adapter2);
+
+
+
 
         recyclerView = (RecyclerView) v.findViewById(R.id.wide_recyclerview1);
         recyclerView.setHasFixedSize(true);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         CustomAdaptor customAdaptor = new CustomAdaptor();
         recyclerView.setAdapter(customAdaptor);
 
-        listview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                cartegory1 = (String)adapterView.getAdapter().getItem(i);
-
-            }
-        });
 
 
-        listview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                cartegory2 = String.valueOf(adapterView.getItemAtPosition(i));
-            }
-        });
+
+
 
         databaseReference.addValueEventListener(new ValueEventListener() { // 참조한 위치에 데이터가 변화가 일어날 때 마다 매번 읽어옴
             @Override
@@ -159,7 +149,7 @@ public class wide_home_helpme extends Fragment {
 
         return v;
     }
-    class CustomAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+      class CustomAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
         @NonNull
@@ -212,7 +202,11 @@ public class wide_home_helpme extends Fragment {
                 });
             }
         }
+
+
+
     }
+
 
 
 

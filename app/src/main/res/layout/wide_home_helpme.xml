@@ -13,6 +13,7 @@
     app:umanoParallaxOffset="200dp"
     app:umanoShadowHeight="10dp">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,19 +25,19 @@
             android:layout_height="50dp"
             android:background="@color/blue"
             android:contentDescription="@string/helpme">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:gravity="center"
-            android:text="해주세요"
-            android:id="@+id/wide_category"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="80dp"
-            android:layout_marginRight="80dp"
-            android:focusable="true"
-            android:background="@color/white"
-            android:importantForAccessibility="no"
-            />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:text="해주세요"
+                android:id="@+id/wide_category"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="80dp"
+                android:focusable="true"
+                android:background="@color/white"
+                android:importantForAccessibility="no"
+                />
 
         </LinearLayout>
 
@@ -49,11 +50,10 @@
         </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
-
     <LinearLayout
         android:id="@+id/dragview"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -80,24 +80,23 @@
         </LinearLayout>
         <LinearLayout
             android:id="@+id/scrolllinear"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:descendantFocusability="blocksDescendants">
-            <ListView
+            <Spinner
                 android:id="@+id/wide_sorting1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
-            </ListView>
-            <ListView
+            </Spinner>
+            <Spinner
                 android:id="@+id/wide_sorting2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
-            </ListView>
+            </Spinner>
         </LinearLayout>
-
     </LinearLayout>
 
     </com.sothree.slidinguppanel.SlidingUpPanelLayout>

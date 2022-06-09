@@ -47,8 +47,8 @@
 
     <LinearLayout
         android:id="@+id/dragview"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -61,10 +61,12 @@
                 android:text="정렬 방법 선택"
                 android:gravity="center_vertical"
                 android:textSize="30dp"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:contentDescription="@string/sort1">
 
             </TextView>
             <Button
+                android:id="@+id/button_array"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="확인"
@@ -73,24 +75,23 @@
         </LinearLayout>
         <LinearLayout
             android:id="@+id/scrolllinear"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:descendantFocusability="blocksDescendants">
-            <ListView
+            <Spinner
                 android:id="@+id/wide_sorting1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
-            </ListView>
-            <ListView
+            </Spinner>
+            <Spinner
                 android:id="@+id/wide_sorting2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
-            </ListView>
+            </Spinner>
         </LinearLayout>
-
     </LinearLayout>
 
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>

@@ -67,21 +67,7 @@ public class wide_home_helpyou extends Fragment {
 
         adapter1 = new wide_adapter3_1();
         adapter2 = new wide_adapter3_2();
-        listview1 = (ListView) v.findViewById(R.id.wide_sorting1);
-        listview2 = (ListView) v.findViewById(R.id.wide_sorting2);
 
-        listview1.setAdapter(adapter1);
-        listview2.setAdapter(adapter2);
-
-        adapter1.addItem2("이동");
-        adapter1.addItem2("대화");
-        adapter1.addItem2("인력");
-
-        adapter2.addItem2("협의");
-        adapter2.addItem2("금전");
-        adapter2.addItem2("봉사시간");
-        adapter2.addItem2("최신순");
-        adapter2.addItem2("오래된순");
 
         recyclerView = (RecyclerView) v.findViewById(R.id.wide_recyclerview2);
         recyclerView.setHasFixedSize(true);
