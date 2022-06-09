@@ -22,7 +22,6 @@
             android:id="@+id/item_text_title"
             android:layout_width="wrap_content"
             android:layout_height="70dp"
-            android:layout_marginTop="30dp"
             android:hint="@string/title"
             android:text="테스트 텍스트"
             android:textColor="#000000"
@@ -32,7 +31,8 @@
         <TextView
             android:id="@+id/item_text_location"
             android:layout_width="wrap_content"
-            android:layout_height="70dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="20dp"
             android:layout_below="@+id/item_text_title"
             android:hint="@string/location"
             android:text="테스트 텍스트"
@@ -42,9 +42,19 @@
         <TextView
             android:id="@+id/item_text_name"
             android:layout_width="wrap_content"
-            android:layout_height="70dp"
+            android:layout_height="55dp"
             android:hint="@string/writer"
             android:layout_below="@+id/item_text_location"
+            android:text="테스트 텍스트"
+            android:textColor="@android:color/black"
+            android:textSize="27dp" />
+
+        <TextView
+            android:id="@+id/item_text_suptegory"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:hint="@string/writer"
+            android:layout_below="@+id/item_text_name"
             android:text="테스트 텍스트"
             android:textColor="@android:color/black"
             android:textSize="27dp" />
