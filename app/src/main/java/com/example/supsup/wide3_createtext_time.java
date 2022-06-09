@@ -28,6 +28,7 @@ public class wide3_createtext_time extends AppCompatActivity {
     String pay_help;
     String test1;
     String suptegory;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wide3_createtext_time);

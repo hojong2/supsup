@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -36,10 +38,14 @@ public class wide_home_helpme extends Fragment {
     String address;
 
 
-
+    public String cartegory1;
+    public String cartegory2;
     public static String text_name; // 글정보로 넘겨줄거임
     public static String text_title; // 글정보로 넘겨줄거임
     public static String help_state = "ture";
+    public Button button;
+
+    public String Old = "노인";
 
 
 
@@ -52,6 +58,7 @@ public class wide_home_helpme extends Fragment {
         adapter2 = new wide_adapter3_2();
         listview1 = (ListView) v.findViewById(R.id.wide_sorting1);
         listview2 = (ListView) v.findViewById(R.id.wide_sorting2);
+        button = (Button) v.findViewById(R.id.button_array);
 
         listview1.setAdapter(adapter1);
         listview2.setAdapter(adapter2);
@@ -76,6 +83,21 @@ public class wide_home_helpme extends Fragment {
         CustomAdaptor customAdaptor = new CustomAdaptor();
         recyclerView.setAdapter(customAdaptor);
 
+        listview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                cartegory1 = (String)adapterView.getAdapter().getItem(i);
+
+            }
+        });
+
+
+        listview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                cartegory2 = String.valueOf(adapterView.getItemAtPosition(i));
+            }
+        });
 
         databaseReference.addValueEventListener(new ValueEventListener() { // 참조한 위치에 데이터가 변화가 일어날 때 마다 매번 읽어옴
             @Override
@@ -94,6 +116,43 @@ public class wide_home_helpme extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                databaseReference.addValueEventListener(new ValueEventListener() { // 참조한 위치에 데이터가 변화가 일어날 때 마다 매번 읽어옴
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        textModelList.clear();
+                        for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            TextModel textModel = snapshot.getValue(TextModel.class);
+
+                            if(textModel.help_state.equals("true")){
+
+                                if(cartegory1.equals(textModel.suptegory) && cartegory2.equals(textModel.pay_shape)){
+                                    textModelList.add(textModel);}
+                                else if(cartegory1.equals("전체")&&cartegory2.equals(textModel.pay_shape)){
+                                    textModelList.add(textModel);
+                                }
+                                else if(cartegory1.equals(textModel.suptegory) && cartegory2.equals("전체")){
+                                    textModelList.add(textModel);
+                                }
+                                else if(cartegory1.equals("전체")&&cartegory2.equals("전체")){
+                                    textModelList.add(textModel);
+                                }
+                            }
+                        }
+                        customAdaptor.notifyDataSetChanged();
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
 

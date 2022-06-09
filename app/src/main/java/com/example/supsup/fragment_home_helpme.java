@@ -69,7 +69,6 @@ public class fragment_home_helpme extends Fragment {
     public Button btn_search;
     public EditText edit_search;
 
-    public Collections collections;
 
 
     public static String text_name; // 글정보로 넘겨줄거임

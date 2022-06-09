@@ -76,8 +76,6 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
     DatabaseReference databaseReference = null;
     HashMap<String, Object> childUpdates = null;
 
-    Map<String, Object> userValue = null;
-
 
     TextModel textModel = new TextModel();
     UserModel userModel = new UserModel();
@@ -87,7 +85,7 @@ public class create_text extends AppCompatActivity implements AutoPermissionsLis
     public String[] suptegoryList1 = {"시각","청각","노인","언어","지체","지적"};
 
     public String name;
-    public String text_state; // 모집중, 모집아님
+
 
 
     @Override
