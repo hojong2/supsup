@@ -14,6 +14,7 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -65,6 +66,8 @@ public class fragment_home_helpme extends Fragment {
     public String cartegory1;
     public String cartegory2;
     public Button button;
+    public Button btn_search;
+    public EditText edit_search;
 
     public Collections collections;
 
@@ -88,6 +91,8 @@ public class fragment_home_helpme extends Fragment {
         spinner1=(Spinner)v.findViewById(R.id.spinner1);
         spinner2=(Spinner)v.findViewById(R.id.spinner2);
         button=(Button)v.findViewById(R.id.btn_assort);
+        btn_search=(Button)v.findViewById(R.id.btn_search);
+        edit_search=(EditText)v.findViewById(R.id.edit_search);
 
 
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item,item1);
@@ -191,7 +196,38 @@ public class fragment_home_helpme extends Fragment {
             }
         });
 
+        btn_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String searchtext = edit_search.getText().toString();
+                databaseReference.addValueEventListener(new ValueEventListener() { // 참조한 위치에 데이터가 변화가 일어날 때 마다 매번 읽어옴
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        textModelList.clear();
+                        for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            TextModel textModel = snapshot.getValue(TextModel.class);
 
+                            if(textModel.help_state.equals("true")){
+
+                                if (textModel.title.toLowerCase().contains(searchtext))
+                                {
+                                    // 검색된 데이터를 리스트에 추가한다.
+                                    textModelList.add(textModel);
+                                }
+
+                            }
+                        }
+                        customAdaptor.notifyDataSetChanged();
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
 
         return v;
     }

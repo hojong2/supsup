@@ -1,23 +1,14 @@
 package com.example.supsup;
 
-import android.app.ActivityOptions;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -26,20 +17,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import pl.polidea.view.ZoomView;
-
-public class home_textinfo1 extends AppCompatActivity {
+public class myhelp_textinfo1 extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private String destinationUid;
+
+
 
     public String textUser_name; // 글작성_HelpMe
     public String text_title; // 글제목_HelpYou
 
+    public String textUser_name1; // 글작성
+    public String text_title1; // 글제목
 
     public String money; // 얼만지
     public String date;
@@ -49,23 +40,22 @@ public class home_textinfo1 extends AppCompatActivity {
     public String address;
     public String context;
 
-    //    private DatabaseReference mDatabase;
 
+    //    private DatabaseReference mDatabase;
+    fragment_home_helpme Help_Me = new fragment_home_helpme();
     fragment_home_helpyou Help_you = new fragment_home_helpyou();
+    wide_home_helpme WHelp_Me = new wide_home_helpme();
+    mypage_myhelpyou MHelp_You = new mypage_myhelpyou();
 
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference("context_info");
-
     private List<TextModel> textModelList = new ArrayList<>();
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_textinfo1);
+        setContentView(R.layout.myhelp_textinfo);
 
 
         TextView textView_title = findViewById(R.id.title);
@@ -92,6 +82,7 @@ public class home_textinfo1 extends AppCompatActivity {
 
 
 
+
         databaseReference.addValueEventListener(new ValueEventListener() { // 참조한 위치에 데이터가 변화가 일어날 때 마다 매번 읽어옴
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -99,7 +90,7 @@ public class home_textinfo1 extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     TextModel textModel = snapshot.getValue(TextModel.class);
 
-                    if (textModel.name.equals(Help_you.text_name1) && textModel.title.equals(Help_you.text_title1)) {    //해주세요
+                    if (textModel.name.equals(MHelp_You.text_name) && textModel.title.equals(MHelp_You.text_title)) {    //해주세요
                         textView_address.setText(textModel.address);
                         textView_money.setText(textModel.pay);
                         textView_date.setText(textModel.end_recruit);
@@ -118,16 +109,13 @@ public class home_textinfo1 extends AppCompatActivity {
                         textView_context.setText(textModel.context);
                         textView_suptegory.setText(textModel.suptegory);
 
-                        textUser_name = Help_you.text_name1;  // frag_home_helpme 의 변수 여기다가 설정
-                        text_title = Help_you.text_title1;    // frag_home_helpme 의 변수 여기다가 설정
+                        textUser_name = MHelp_You.text_name;  // frag_home_helpme 의 변수 여기다가 설정
+                        text_title = MHelp_You.text_title;    // frag_home_helpme 의 변수 여기다가 설정
 
                         textView_user_name.setText(textUser_name);
                         textView_title.setText(text_title);
                     }
-
-
                 }
-
             }
 
             @Override
@@ -136,23 +124,34 @@ public class home_textinfo1 extends AppCompatActivity {
             }
         });
 
-
+//
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        Button button_chat = (Button) findViewById(R.id.button_chat);
 
-        button_chat.setOnClickListener(new View.OnClickListener() { // 채팅 버튼 클릭 시 화면 전환
+
+
+        Button button_edit = (Button) findViewById(R.id.button_edit);
+        Button button_delete = (Button) findViewById(R.id.button_delete);
+
+        button_edit.setOnClickListener(new View.OnClickListener() { // 수정 버튼 클릭 시 화면 전환
             @Override
             public void onClick(View view) {
 
-
-
-                Intent intent = new Intent(view.getContext(), MessageActivity.class);
-                intent.putExtra("destinationUid",destinationUid);
+                Intent intent = new Intent(view.getContext(), edit_text.class);
                 startActivity(intent);
 
 
-            } // 채팅 프래그먼트로 가는거 오류남. 채팅 창 액티비티로 바로 이동시키면 될듯
+            }
+        });
+
+        button_delete.setOnClickListener(new View.OnClickListener() { // 수정 버튼 클릭 시 화면 전환
+            @Override
+            public void onClick(View view) {
+
+                String key = databaseReference.child("context_info").toString();
+                System.out.println(key);
+
+            }
         });
     }
 }

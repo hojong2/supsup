@@ -60,93 +60,170 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="도움 키워드 선택"
+                android:text="해주세요/해드려요"
                 android:textSize="30dp"
                 android:background="@drawable/bottom_line"
                 android:layout_marginBottom="10dp"/>
 
             <GridLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="100dp"
                 android:columnCount="2"
-                android:rowCount="2"
+                android:rowCount="1"
                 android:orientation="horizontal">
                 <Button
-                    android:id="@+id/btn1"
+                    android:id="@+id/btn5"
                     android:layout_width="150dp"
                     android:layout_height="80dp"
                     android:layout_marginLeft="27dp"
                     android:layout_marginRight="27dp"
                     android:layout_marginTop="10dp"
-                    android:text="동행"
-                    android:textSize="30dp"
+                    android:text="해주세요"
+                    android:textSize="25dp"
                     android:textColor="@color/white"/>
                 <Button
-                    android:id="@+id/btn2"
+                    android:id="@+id/btn6"
                     android:layout_width="150dp"
                     android:layout_height="80dp"
                     android:layout_marginLeft="27dp"
                     android:layout_marginRight="27dp"
                     android:layout_marginTop="10dp"
-                    android:text="보호자"
-                    android:textSize="30dp"
-                    android:textColor="@color/white"/>
-                <Button
-                    android:id="@+id/btn3"
-                    android:layout_width="150dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="27dp"
-                    android:layout_marginRight="27dp"
-                    android:layout_marginTop="10dp"
-                    android:text="작업"
-                    android:textSize="30dp"
-                    android:textColor="@color/white"/>
-                <Button
-                    android:id="@+id/btn4"
-                    android:layout_width="150dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="27dp"
-                    android:layout_marginRight="27dp"
-                    android:layout_marginTop="10dp"
-                    android:text="대화"
-                    android:textSize="30dp"
+                    android:text="해드려요"
+                    android:textSize="25dp"
                     android:textColor="@color/white"/>
             </GridLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="해주세요/해드려요"
+                android:text="도움 키워드 선택"
                 android:textSize="30dp"
                 android:background="@drawable/bottom_line"
                 android:layout_marginBottom="10dp"/>
-            <GridLayout
+
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:columnCount="2"
-                android:rowCount="1"
-                android:orientation="horizontal">
-            <Button
-                android:id="@+id/btn5"
-                android:layout_width="150dp"
-                android:layout_height="80dp"
-                android:layout_marginLeft="27dp"
-                android:layout_marginRight="27dp"
-                android:layout_marginTop="10dp"
-                android:text="해주세요"
-                android:textSize="25dp"
-                android:textColor="@color/white"/>
-            <Button
-                android:id="@+id/btn6"
-                android:layout_width="150dp"
-                android:layout_height="80dp"
-                android:layout_marginLeft="27dp"
-                android:layout_marginRight="27dp"
-                android:layout_marginTop="10dp"
-                android:text="해드려요"
-                android:textSize="25dp"
-                android:textColor="@color/white"/>
-            </GridLayout>
+                android:layout_height="match_parent">
+                <GridLayout
+                    android:id="@+id/grid_helpyou"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:columnCount="2"
+                    android:rowCount="2"
+                    android:orientation="horizontal"
+                    android:visibility="invisible">
+                    <Button
+                        android:id="@+id/btn1"
+                        android:layout_width="150dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="27dp"
+                        android:layout_marginRight="27dp"
+                        android:layout_marginTop="10dp"
+                        android:text="동행"
+                        android:textSize="30dp"
+                        android:textColor="@color/white"/>
+                    <Button
+                        android:id="@+id/btn2"
+                        android:layout_width="150dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="27dp"
+                        android:layout_marginRight="27dp"
+                        android:layout_marginTop="10dp"
+                        android:text="보호자"
+                        android:textSize="30dp"
+                        android:textColor="@color/white"/>
+                    <Button
+                        android:id="@+id/btn3"
+                        android:layout_width="150dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="27dp"
+                        android:layout_marginRight="27dp"
+                        android:layout_marginTop="10dp"
+                        android:text="작업"
+                        android:textSize="30dp"
+                        android:textColor="@color/white"/>
+                    <Button
+                        android:id="@+id/btn4"
+                        android:layout_width="150dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="27dp"
+                        android:layout_marginRight="27dp"
+                        android:layout_marginTop="10dp"
+                        android:text="대화"
+                        android:textSize="30dp"
+                        android:textColor="@color/white"/>
+                </GridLayout>
+                <GridLayout
+                    android:id="@+id/grid_helpme"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:columnCount="3"
+                    android:rowCount="2"
+                    android:orientation="horizontal"
+                    android:visibility="invisible"
+                    >
+                    <Button
+                        android:id="@+id/btn1_1"
+                        android:layout_width="115dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="시각"
+                        android:textSize="30dp"
+                        android:textColor="@color/white"/>
+                    <Button
+                        android:id="@+id/btn1_2"
+                        android:layout_width="115dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="청각"
+                        android:textSize="30dp"
+                        android:textColor="@color/white"/>
+                    <Button
+                        android:id="@+id/btn1_3"
+                        android:layout_width="115dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="노인"
+                        android:textSize="30dp"
+                        android:textColor="@color/white"/>
+                    <Button
+                        android:id="@+id/btn1_4"
+                        android:layout_width="115dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="언어"
+                        android:textSize="30dp"
+                        android:textColor="@color/white"/>
+                    <Button
+                        android:id="@+id/btn1_5"
+                        android:layout_width="115dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="지체"
+                        android:textSize="30dp"
+                        android:textColor="@color/white"/>
+                    <Button
+                        android:id="@+id/btn1_6"
+                        android:layout_width="115dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="지적"
+                        android:textSize="30dp"
+                        android:textColor="@color/white"/>
+                </GridLayout>
+            </FrameLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

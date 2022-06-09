@@ -33,13 +33,16 @@ import java.util.List;
 
 import pl.polidea.view.ZoomView;
 
-public class home_textinfo1 extends AppCompatActivity {
+public class wide_home_textinfo1 extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private String destinationUid;
+
 
     public String textUser_name; // 글작성_HelpMe
     public String text_title; // 글제목_HelpYou
 
+    public String textUser_name1; // 글작성
+    public String text_title1; // 글제목
 
     public String money; // 얼만지
     public String date;
@@ -49,24 +52,35 @@ public class home_textinfo1 extends AppCompatActivity {
     public String address;
     public String context;
 
-    //    private DatabaseReference mDatabase;
 
+    //    private DatabaseReference mDatabase;
+    fragment_home_helpme Help_Me = new fragment_home_helpme();
     fragment_home_helpyou Help_you = new fragment_home_helpyou();
+    wide_home_helpme WHelp_Me = new wide_home_helpme();
+    wide_home_helpyou WHelp_You = new wide_home_helpyou();
 
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference("context_info");
-
     private List<TextModel> textModelList = new ArrayList<>();
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_textinfo1);
+        setContentView(R.layout.background);
+        View v = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.wide_home_textinfo, null, false);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
+        ZoomView zoomView = new ZoomView(this);
+        zoomView.addView(v);
+        zoomView.setLayoutParams(layoutParams);
+        zoomView.setMiniMapEnabled(false); // 좌측 상단 검은색 미니맵 설정
+        zoomView.setMaxZoom(4f); // 줌 Max 배율 설정  1f 로 설정하면 줌 안됩니다.
+        zoomView.setMiniMapCaption("Mini Map Test"); //미니 맵 내용
+        zoomView.setMiniMapCaptionSize(20); // 미니 맵 내용 글씨 크기 설정
+
+        RelativeLayout container = (RelativeLayout) findViewById(R.id.container);
+        container.addView(zoomView);
 
         TextView textView_title = findViewById(R.id.title);
         TextView textView_address = findViewById(R.id.address);
@@ -82,14 +96,10 @@ public class home_textinfo1 extends AppCompatActivity {
         TextView textView_context = findViewById(R.id.context);
 
 
-
-
         ArrayList<TextModel> textModel = new ArrayList<>();
         final String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-
-
 
 
         databaseReference.addValueEventListener(new ValueEventListener() { // 참조한 위치에 데이터가 변화가 일어날 때 마다 매번 읽어옴
@@ -99,7 +109,7 @@ public class home_textinfo1 extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     TextModel textModel = snapshot.getValue(TextModel.class);
 
-                    if (textModel.name.equals(Help_you.text_name1) && textModel.title.equals(Help_you.text_title1)) {    //해주세요
+                    if (textModel.name.equals(WHelp_You.text_name1) && textModel.title.equals(WHelp_You.text_title1)) {    //해주세요
                         textView_address.setText(textModel.address);
                         textView_money.setText(textModel.pay);
                         textView_date.setText(textModel.end_recruit);
@@ -118,16 +128,13 @@ public class home_textinfo1 extends AppCompatActivity {
                         textView_context.setText(textModel.context);
                         textView_suptegory.setText(textModel.suptegory);
 
-                        textUser_name = Help_you.text_name1;  // frag_home_helpme 의 변수 여기다가 설정
-                        text_title = Help_you.text_title1;    // frag_home_helpme 의 변수 여기다가 설정
+                        textUser_name = WHelp_You.text_name1;  // frag_home_helpme 의 변수 여기다가 설정
+                        text_title = WHelp_You.text_title1;    // frag_home_helpme 의 변수 여기다가 설정
 
                         textView_user_name.setText(textUser_name);
                         textView_title.setText(text_title);
                     }
-
-
                 }
-
             }
 
             @Override
@@ -136,9 +143,12 @@ public class home_textinfo1 extends AppCompatActivity {
             }
         });
 
-
+//
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
+
+        ActionBar ab = getSupportActionBar();
+        ab.setTitle("상세 내용");
         Button button_chat = (Button) findViewById(R.id.button_chat);
 
         button_chat.setOnClickListener(new View.OnClickListener() { // 채팅 버튼 클릭 시 화면 전환
@@ -146,9 +156,8 @@ public class home_textinfo1 extends AppCompatActivity {
             public void onClick(View view) {
 
 
-
                 Intent intent = new Intent(view.getContext(), MessageActivity.class);
-                intent.putExtra("destinationUid",destinationUid);
+                intent.putExtra("destinationUid", destinationUid);
                 startActivity(intent);
 
 

@@ -6,14 +6,4 @@
         android:icon="@drawable/ic_baseline_vpn_key_24"
         app:showAsAction="always"
         android:title=""/>
-    <item
-        android:id="@+id/tab_search"
-        android:icon="@drawable/ic_baseline_search_24"
-        app:showAsAction="always"
-        android:title="" />
-    <item
-        android:id="@+id/tab_alarm"
-        android:icon="@drawable/ic_baseline_notifications_24"
-        app:showAsAction="always"
-        android:title=""/>
 </menu>

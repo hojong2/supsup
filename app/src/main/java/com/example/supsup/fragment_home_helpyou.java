@@ -14,6 +14,7 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -53,6 +54,8 @@ public class fragment_home_helpyou extends Fragment {
     public Spinner spinner3;
     public Spinner spinner4;
     public Button button;
+    public Button btn_search;
+    public EditText edit_search;
 
     private static final String[] item1 = new String[]{"전체","이동","대화","인력"};
     private static final String[] item2 = new String[]{"전체","협의","금전","봉사시간"};
@@ -65,7 +68,7 @@ public class fragment_home_helpyou extends Fragment {
 
     public static String text_name1; // 글정보로 넘겨줄거임
     public static String text_title1; // 글정보로 넘겨줄거임
-    public static String help_state1 = "false";
+    public static String help_state = "false";
 
     public String cartegory3;
     public String cartegory4;
@@ -84,6 +87,8 @@ public class fragment_home_helpyou extends Fragment {
         spinner3=(Spinner)v.findViewById(R.id.spinner3);
         spinner4=(Spinner)v.findViewById(R.id.spinner4);
         button=(Button)v.findViewById(R.id.btn_assort1);
+        btn_search=(Button)v.findViewById(R.id.btn_search);
+        edit_search=(EditText)v.findViewById(R.id.edit_search);
 
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item,item1);
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item,item2);
@@ -194,6 +199,38 @@ public class fragment_home_helpyou extends Fragment {
             }
         });
 
+        btn_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String searchtext = edit_search.getText().toString();
+                databaseReference.addValueEventListener(new ValueEventListener() { // 참조한 위치에 데이터가 변화가 일어날 때 마다 매번 읽어옴
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        textModelList.clear();
+                        for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            TextModel textModel = snapshot.getValue(TextModel.class);
+
+                            if(textModel.help_state.equals("false")){
+
+                                if (textModel.title.toLowerCase().contains(searchtext))
+                                {
+                                    // 검색된 데이터를 리스트에 추가한다.
+                                    textModelList.add(textModel);
+                                }
+
+                            }
+                        }
+                        customAdaptor.notifyDataSetChanged();
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
 
 
 
