@@ -30,20 +30,6 @@ public class MapDB {
         this.title = title;
     }
 
-    public Double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public Double getLongitude() { return longitude; }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
     public void setAddress(String address){ this.address = address;}
     public String getAddress(){return  address;}
 
