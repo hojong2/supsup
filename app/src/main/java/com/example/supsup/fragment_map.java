@@ -80,10 +80,6 @@ public class fragment_map extends Fragment{
             e.printStackTrace();
         }
 
-//        if(mapView != null)
-//        {
-//            mapView.onCreate(savedInstanceState);
-//        }
 
         mapView = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById(R.id.map);
@@ -147,7 +143,8 @@ public class fragment_map extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
-        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             return;
         } else {

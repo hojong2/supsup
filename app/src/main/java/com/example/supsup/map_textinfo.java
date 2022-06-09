@@ -28,22 +28,16 @@ public class map_textinfo extends AppCompatActivity {
 
 
 
-    public String textUser_name; // 글작성_HelpMe
-    public String text_title; // 글제목_HelpYou
-
-    public String textUser_name1; // 글작성
-    public String text_title1; // 글제목
-
-    public String money; // 얼만지
+    public String textUser_name;
+    public String text_title;
     public String date;
     public String time;
-    public String text_state;
     public String pay_shape;
     public String address;
     public String context;
 
 
-//    private DatabaseReference mDatabase;
+
 
     map_bottom_dialog map = new map_bottom_dialog();
 
@@ -89,7 +83,7 @@ public class map_textinfo extends AppCompatActivity {
 
 
 
-            databaseReference.addValueEventListener(new ValueEventListener() { // 참조한 위치에 데이터가 변화가 일어날 때 마다 매번 읽어옴
+            databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     textModelList.clear();
@@ -113,9 +107,8 @@ public class map_textinfo extends AppCompatActivity {
                             textView_address1.setText(textModel.address);
                             textView_context.setText(textModel.context);
 
-                            textUser_name = map.map_name;  // map_bottom_dialog 의 변수 여기다가 설정
-                            text_title = map.map_title;    // map_bottom_dialog 의 변수 여기다가 설정
-
+                            textUser_name = map.map_name;
+                            text_title = map.map_title;
                             textView_user_name.setText(textUser_name);
                             textView_title.setText(text_title);
                         }
@@ -136,7 +129,7 @@ public class map_textinfo extends AppCompatActivity {
 
         Button button_chat = (Button) findViewById(R.id.button_chat);
 
-        button_chat.setOnClickListener(new View.OnClickListener() { // 채팅 버튼 클릭 시 화면 전환
+        button_chat.setOnClickListener(new View.OnClickListener() {
             @Override
            public void onClick(View view) {
 

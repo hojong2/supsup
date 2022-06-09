@@ -115,7 +115,6 @@ public class map_bottom_dialog extends BottomSheetDialogFragment implements Auto
     public void setLocation(String location){ this.location = location; }
     public  void setName(String name){this.name = name;}
     public void setDistance(LatLng to){ this.to = to;}
-//    public void setDistance(double distance){ this.distance = (int) Math.round(distance); }
     public void setCategory(String category){this.category = category;}
 
     public  void Toast(String str){
