@@ -12,8 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,41 +45,75 @@ import java.util.Map;
 
 public class wide_home_helpyou extends Fragment {
     public RecyclerView recyclerView;
-    private ListView listview1;
-    private ListView listview2;
-    private wide_adapter3_1 adapter1;
-    private wide_adapter3_2 adapter2;
+
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference("context_info");
 
     private List<TextModel> textModelList = new ArrayList<>();
 
+    private static final String[] item1 = new String[]{"전체","이동","대화","인력"};
+    private static final String[] item2 = new String[]{"전체","협의","금전","봉사시간"};
 
     public static String text_name1; // 글정보로 넘겨줄거임
     public static String text_title1; // 글정보로 넘겨줄거임
     public static String help_state1 = "false";
 
+    public Spinner spinner3;
+    public Spinner spinner4;
 
-
-
+    public Button button_array;
+    public String cartegory3;
+    public String cartegory4;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.wide_home_helpyou, container, false);
 
-        adapter1 = new wide_adapter3_1();
-        adapter2 = new wide_adapter3_2();
-
+        button_array = (Button)v.findViewById(R.id.button_array);
 
         recyclerView = (RecyclerView) v.findViewById(R.id.wide_recyclerview2);
         recyclerView.setHasFixedSize(true);
+
+        spinner3 = (Spinner)v.findViewById(R.id.wide_sorting1);
+        spinner4 = (Spinner)v.findViewById(R.id.wide_sorting2);
+
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item,item1);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item,item2);
+
+        spinner3.setAdapter(adapter1);
+        spinner4.setAdapter(adapter2);
+
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         CustomAdaptor customAdaptor = new CustomAdaptor();
         recyclerView.setAdapter(customAdaptor);
 
+        spinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                cartegory3 = spinner3.getSelectedItem().toString();
 
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        spinner4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                cartegory4 = spinner4.getSelectedItem().toString();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         databaseReference.addValueEventListener(new ValueEventListener() { // 참조한 위치에 데이터가 변화가 일어날 때 마다 매번 읽어옴
             @Override
@@ -95,6 +132,46 @@ public class wide_home_helpyou extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        button_array.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                databaseReference.addValueEventListener(new ValueEventListener() { // 참조한 위치에 데이터가 변화가 일어날 때 마다 매번 읽어옴
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        textModelList.clear();
+
+                        for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            TextModel textModel = snapshot.getValue(TextModel.class);
+
+                            if(textModel.help_state.equals("false")){
+
+                                if(cartegory3.equals(textModel.suptegory) && cartegory4.equals(textModel.pay_shape)){
+                                    textModelList.add(textModel);}
+                                else if(cartegory3.equals("전체")&&cartegory4.equals(textModel.pay_shape)){
+                                    textModelList.add(textModel);
+                                }
+                                else if(cartegory3.equals(textModel.suptegory) && cartegory4.equals("전체")){
+                                    textModelList.add(textModel);
+                                }
+                                else if(cartegory3.equals("전체")&&cartegory4.equals("전체")){
+                                    textModelList.add(textModel);
+                                }
+                            }
+
+                        }
+                        customAdaptor.notifyDataSetChanged();
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
 

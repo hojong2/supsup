@@ -14,7 +14,7 @@ public class wide_adapter3_1 extends BaseAdapter {
 
     private TextView titleTextView2;
 
-    private ArrayList<data> dataList2 = new ArrayList<data>();
+    private ArrayList<data> dataList2 = new ArrayList<>();
     public wide_adapter3_1() {
 
     }
@@ -25,14 +25,15 @@ public class wide_adapter3_1 extends BaseAdapter {
     }
 
     @Override
+    public data getItem(int i) {
+        return null;
+    }
+
+    @Override
     public long getItemId(int position) {
         return position;
     }
 
-    @Override
-    public data getItem(int position) {
-        return dataList2.get(position);
-    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -51,6 +52,7 @@ public class wide_adapter3_1 extends BaseAdapter {
         data listViewItem = dataList2.get(position);
 
         titleTextView2.setText(listViewItem.getTextname());
+
 
 
         return convertView;
