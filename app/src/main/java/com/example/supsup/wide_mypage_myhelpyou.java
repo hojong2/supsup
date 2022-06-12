@@ -94,6 +94,7 @@ public class wide_mypage_myhelpyou extends AppCompatActivity {
             customTextViewHolder.textView1.setText(textModelList.get(position).title);
             customTextViewHolder.textView2.setText(textModelList.get(position).address);
             customTextViewHolder.textView3.setText(textModelList.get(position).name);
+            customTextViewHolder.textView4.setText(textModelList.get(position).suptegory);
 
         }
 
@@ -107,6 +108,7 @@ public class wide_mypage_myhelpyou extends AppCompatActivity {
             TextView textView1;
             TextView textView2;
             TextView textView3;
+            TextView textView4;
 
             public CustomTextViewHolder(@NonNull View itemView) {
                 super(itemView);
@@ -114,6 +116,7 @@ public class wide_mypage_myhelpyou extends AppCompatActivity {
                 this.textView1 = itemView.findViewById(R.id.item_text_title);
                 this.textView2 = itemView.findViewById(R.id.item_text_location);
                 this.textView3 = itemView.findViewById(R.id.item_text_name);
+                this.textView4 = itemView.findViewById(R.id.item_text_suptegory);
 
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override

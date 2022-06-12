@@ -48,7 +48,8 @@
         <activity android:name=".wide_home"/>
         <activity android:name=".wide_home_textinfo"/>
         <activity android:name=".wide_home_textinfo1"/>
-        <activity android:name=".wide1_createtext_title"/>
+        <activity android:name=".wide1_1_createtext_title"/>
+        <activity android:name=".wide1_2_createtext_title"/>
         <activity android:name=".wide2_createtext_pay"/>
         <activity android:name=".wide3_createtext_time"/>
         <activity android:name=".wide4_createtext_detail"/>

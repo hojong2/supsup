@@ -74,7 +74,6 @@ public class wide_home_mypage extends Fragment {
         profilelinear = (LinearLayout) v.findViewById(R.id.profilelinear);
         listview2.setAdapter(adapter2);
         textView_name = (TextView) v.findViewById(R.id.myname);
-        textView_address = (TextView) v.findViewById(R.id.mylocation);
         imageView_user = (ImageView) v.findViewById(R.id.pimage);
 
         adapter2.addItem2("작성한 해주세요", R.drawable.ic_baseline_arrow_forward_ios_24);

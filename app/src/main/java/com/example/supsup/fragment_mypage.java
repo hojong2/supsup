@@ -147,13 +147,6 @@ public class fragment_mypage extends Fragment {
 
 
 
-        profilelinear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(getActivity(),mypage_profile.class);
-                startActivity(intent);
-            }
-        });
 
         listview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

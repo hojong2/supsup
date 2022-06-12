@@ -73,6 +73,7 @@ public class wide4_createtext_detail extends AppCompatActivity implements AutoPe
     String pay_shape;
     String pay_money;
     String pay_help;
+    String pay;
     String test1;
     String context;
     String address;
@@ -115,6 +116,7 @@ public class wide4_createtext_detail extends AppCompatActivity implements AutoPe
 
         edit_location = (EditText) findViewById(R.id.edit_location);
         edit_detail = (EditText) findViewById(R.id.edit_detail);
+
 
         Button btn_check4_1 = (Button) findViewById(R.id.btn_check4_1);
         Button btn_check4_2 = (Button) findViewById(R.id.btn_check4_2);
@@ -168,18 +170,27 @@ public class wide4_createtext_detail extends AppCompatActivity implements AutoPe
                         textModel.end_date = end_date;
                         textModel.end_datetime = end_datetime;
                         textModel.end_recruit = end_recruit;
-                        if(title==null)
+
+                        if(title==null) {
                             textModel.title = title2;
-                        else if(title2==null)
+                        }
+                        else if(title2==null) {
                             textModel.title = title;
-                        if(pay_shape=="금전")
-                            textModel.pay = pay_money;
-                        else if(pay_shape=="봉사시간")
-                            textModel.pay = pay_help;
-                        else if(pay_shape=="협의")
-                            textModel.pay = "협의";
-                        else if(pay_shape=="페이없음")
-                            textModel.pay = "페이없음";
+                        }
+
+                        switch (pay_shape) {
+                            case "금전":
+                                textModel.pay = pay_money+"원";
+                                break;
+                            case "봉사시간":
+                                textModel.pay = pay_help+"시간";
+                            case "협의":
+                                textModel.pay = "협의";
+                            case "페이없음":
+                                textModel.pay = "페이없음";
+                            default:
+                                textModel.pay = "오류";
+                        }
 
                         textModel.context = edit_detail.getText().toString();
                         textModel.name = name;

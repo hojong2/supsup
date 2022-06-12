@@ -33,7 +33,7 @@
             android:layout_margin="50dp"
             android:layout_width="300dp"
             android:layout_height="150dp"
-            android:id="@+id/btn_createtext"
+            android:id="@+id/btn_createtext1"
             android:background="@drawable/button_yellow"
             app:backgroundTint="@null"
             android:gravity="center"
@@ -41,7 +41,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="글 작성하러 가기"
+                android:text="해주세요 글 작성"
                 android:textSize="30dp"/>
         </LinearLayout>
 
@@ -50,16 +50,15 @@
             android:layout_margin="50dp"
             android:layout_width="300dp"
             android:layout_height="150dp"
-            android:id="@+id/btn_help"
+            android:id="@+id/btn_createtext2"
             android:background="@drawable/button_yellow"
-            android:text="도움말"
             app:backgroundTint="@null"
             android:gravity="center"
             android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="도움말"
+                android:text="해드려요 글 작성"
                 android:textSize="30dp"/>
         </LinearLayout>
     </LinearLayout>

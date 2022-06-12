@@ -50,13 +50,19 @@
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/search_text.xml" value="0.15443840579710144" />
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/select_interface.xml" value="0.16666666666666666" />
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/signup.xml" value="0.1" />
-        <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/wide1_createtext_title.xml" value="0.22" />
+        <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/spinner_item.xml" value="0.1" />
+        <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/test.xml" value="0.1308876811594203" />
+        <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/wide1_1_createtext_title.xml" value="0.12771739130434784" />
+        <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/wide1_2_createtext_title.xml" value="0.1" />
+        <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/wide1_createtext_title.xml" value="0.14326241134751774" />
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/wide2_createtext_pay.xml" value="0.1" />
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/wide3_createtext_time.xml" value="0.1" />
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/wide4_createtext_detail.xml" value="0.1" />
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/wide_helpsort_resource.xml" value="0.1" />
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/wide_home.xml" value="0.1" />
+        <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/wide_home_createtext.xml" value="0.1" />
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/wide_home_helpme.xml" value="0.13333333333333333" />
+        <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/wide_home_helpyou.xml" value="0.1" />
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/wide_home_mypage.xml" value="0.1" />
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/wide_home_mypage_resource.xml" value="0.1" />
         <entry key="..\:/Hojong/AndroidStudioProjects/SUPSUP/app/src/main/res/layout/wide_home_resource.xml" value="0.1" />
@@ -71,9 +77,6 @@
         <entry key="..\:/Users/Yang/AndroidStudioProjects/supsup/app/src/main/res/layout/login.xml" value="0.3619791666666667" />
         <entry key="..\:/Users/Yang/AndroidStudioProjects/supsup/app/src/main/res/layout/message2.xml" value="0.3619791666666667" />
         <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/drawable/bottom_line.xml" value="0.322" />
-        <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/drawable/button_blue.xml" value="0.2835" />
-        <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/drawable/button_yellow.xml" value="0.2835" />
-        <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/drawable/button_yellow2.xml" value="0.2835" />
         <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.306" />
         <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.306" />
         <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.336" />
@@ -87,9 +90,9 @@
         <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/chatlist.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/fragment_chat.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/fragment_home.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/fragment_home_helpme.xml" value="0.1" />
+        <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/fragment_home_helpme.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/fragment_home_helpme_resource.xml" value="0.33" />
-        <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/fragment_home_helpyou.xml" value="0.2379746835443038" />
+        <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/fragment_home_helpyou.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/fragment_map.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/fragment_mypage.xml" value="0.33" />
         <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/fragment_mypage_resource.xml" value="0.21693840579710144" />
@@ -97,7 +100,6 @@
         <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/intro.xml" value="0.22" />
         <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/item_chatlist.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/item_message.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/item_text.xml" value="0.25" />
         <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/login.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/map.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/message2.xml" value="0.36614583333333334" />
@@ -107,19 +109,6 @@
         <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/mypage_myinfo.xml" value="0.1" />
         <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/mypage_profile.xml" value="0.1" />
         <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/mypage_profile_resource.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/notification.xml" value="0.2653985507246377" />
-        <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/select_interface.xml" value="0.2653985507246377" />
-        <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/signup.xml" value="0.2653985507246377" />
-        <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/wide2_createtext_pay.xml" value="0.2653985507246377" />
-        <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/wide4_createtext_detail.xml" value="0.2653985507246377" />
-        <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/wide_helpsort_resource.xml" value="0.2653985507246377" />
-        <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/wide_home.xml" value="0.3619791666666667" />
-        <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/wide_home_createtext.xml" value="0.3619791666666667" />
-        <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/wide_home_helpme.xml" value="0.22" />
-        <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/wide_home_helpyou.xml" value="0.2390625" />
-        <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/wide_home_mypage_resource.xml" value="0.2653985507246377" />
-        <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/wide_home_resource.xml" value="0.22" />
-        <entry key="..\:/Users/qkrrl/AndroidStudioProjects/supsup/app/src/main/res/layout/zoom_item.xml" value="0.13269927536231885" />
         <entry key="..\:/android studio/supsup/app/src/main/res/drawable-v24/text_to_speech-48px.xml" value="0.3405" />
         <entry key="..\:/android studio/supsup/app/src/main/res/drawable/text_to_speech-48px.xml" value="0.3405" />
         <entry key="..\:/android studio/supsup/app/src/main/res/layout/activity_main.xml" value="0.33177083333333335" />

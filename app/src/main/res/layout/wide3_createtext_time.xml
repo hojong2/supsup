@@ -39,7 +39,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
-                android:text="날찌 선택"
+                android:text="날짜 선택"
                 android:textSize="25dp"
                 android:textColor="@color/white"/>
             <Button
